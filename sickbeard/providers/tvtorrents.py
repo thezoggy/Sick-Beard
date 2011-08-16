@@ -29,7 +29,7 @@ class TvTorrentsProvider(generic.TorrentProvider):
     def __init__(self):
 
         generic.TorrentProvider.__init__(self, "TvTorrents")
-        
+
         self.supportsBacklog = False
 
         self.cache = TvTorrentsCache(self)
@@ -38,7 +38,7 @@ class TvTorrentsProvider(generic.TorrentProvider):
 
     def isEnabled(self):
         return sickbeard.TVTORRENTS
-        
+
     def imageName(self):
         return 'tvtorrents.gif'
 
@@ -55,12 +55,12 @@ class TvTorrentsCache(tvcache.TVCache):
     def _getRSSData(self):
         # These will be ignored on the serverside.
         ignore_regex = "all.month|month.of|season[\s\d]*complete"
-    
+
         url = 'http://www.tvtorrents.com/RssServlet?digest='+ sickbeard.TVTORRENTS_DIGEST +'&hash='+ sickbeard.TVTORRENTS_HASH +'&fname=true&exclude=(' + ignore_regex + ')'
         logger.log(u"TvTorrents cache update URL: "+ url, logger.DEBUG)
 
         data = self.provider.getURL(url)
-        
+
         xml_content = etree.fromstring(data)
         description = xml_content.findtext('channel/description')
 

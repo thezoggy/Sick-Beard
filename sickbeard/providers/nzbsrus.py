@@ -30,48 +30,48 @@ import generic
 
 class NZBsRUSProvider(generic.NZBProvider):
 
-	def __init__(self):
+    def __init__(self):
 
-		generic.NZBProvider.__init__(self, "NZBs'R'US")
+        generic.NZBProvider.__init__(self, "NZBs'R'US")
 
-		self.cache = NZBsRUSCache(self)
+        self.cache = NZBsRUSCache(self)
 
-		self.url = 'https://www.nzbsrus.com/'
+        self.url = 'https://www.nzbsrus.com/'
 
-	def isEnabled(self):
-		return sickbeard.NZBSRUS
+    def isEnabled(self):
+        return sickbeard.NZBSRUS
 
-	def _checkAuth(self):
-		if sickbeard.NZBSRUS_UID in (None, "") or sickbeard.NZBSRUS_HASH in (None, ""):
-			raise exceptions.AuthException("NZBs'R'US authentication details are empty, check your config")
+    def _checkAuth(self):
+        if sickbeard.NZBSRUS_UID in (None, "") or sickbeard.NZBSRUS_HASH in (None, ""):
+            raise exceptions.AuthException("NZBs'R'US authentication details are empty, check your config")
 
 
 class NZBsRUSCache(tvcache.TVCache):
 
-	def __init__(self, provider):
+    def __init__(self, provider):
 
-		tvcache.TVCache.__init__(self, provider)
+        tvcache.TVCache.__init__(self, provider)
 
-		# only poll NZBs'R'US every 15 minutes max
-		self.minTime = 15
+        # only poll NZBs'R'US every 15 minutes max
+        self.minTime = 15
 
 
-	def _getRSSData(self):
+    def _getRSSData(self):
 
-		url = self.provider.url + 'rssfeed.php?'
-		urlArgs = {'cat': '91,75',
-				   'i': sickbeard.NZBSRUS_UID,
-				   'h': sickbeard.NZBSRUS_HASH}
+        url = self.provider.url + 'rssfeed.php?'
+        urlArgs = {'cat': '91,75',
+                   'i': sickbeard.NZBSRUS_UID,
+                   'h': sickbeard.NZBSRUS_HASH}
 
-		url += urllib.urlencode(urlArgs)
+        url += urllib.urlencode(urlArgs)
 
-		logger.log(u"NZBs'R'US cache update URL: "+ url, logger.DEBUG)
+        logger.log(u"NZBs'R'US cache update URL: "+ url, logger.DEBUG)
 
-		data = self.provider.getURL(url)
+        data = self.provider.getURL(url)
 
-		return data
+        return data
 
-	def _checkAuth(self, data):
-		return data != 'Invalid Link'
+    def _checkAuth(self, data):
+        return data != 'Invalid Link'
 
 provider = NZBsRUSProvider()

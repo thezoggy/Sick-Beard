@@ -120,8 +120,8 @@ class NewzbinProvider(generic.NZBProvider):
 
         # Video Fmt: (XviD or DivX), NOT 720p, NOT 1080p
         video_fmt = 'Video Fmt' in attrs and ('XviD' in attrs['Video Fmt'] or 'DivX' in attrs['Video Fmt']) \
-                            and ('720p' not in attrs['Video Fmt']) \
-                            and ('1080p' not in attrs['Video Fmt'])
+                  and ('720p' not in attrs['Video Fmt']) \
+                  and ('1080p' not in attrs['Video Fmt'])
 
         # Source: TV Cap or HDTV or (None)
         source = 'Source' not in attrs or 'TV Cap' in attrs['Source'] or 'HDTV' in attrs['Source']
@@ -135,8 +135,8 @@ class NewzbinProvider(generic.NZBProvider):
 
         # Video Fmt: (XviD or DivX), NOT 720p, NOT 1080p
         video_fmt = 'Video Fmt' in attrs and ('XviD' in attrs['Video Fmt'] or 'DivX' in attrs['Video Fmt']) \
-                            and ('720p' not in attrs['Video Fmt']) \
-                            and ('1080p' not in attrs['Video Fmt'])
+                  and ('720p' not in attrs['Video Fmt']) \
+                  and ('1080p' not in attrs['Video Fmt'])
 
         # Source: DVD
         source = 'Source' in attrs and 'DVD' in attrs['Source']
@@ -149,7 +149,7 @@ class NewzbinProvider(generic.NZBProvider):
     def _is_HDTV(self, attrs):
         # Video Fmt: x264, 720p
         video_fmt = 'Video Fmt' in attrs and ('x264' in attrs['Video Fmt']) \
-                            and ('720p' in attrs['Video Fmt'])
+                  and ('720p' in attrs['Video Fmt'])
 
         # Source: TV Cap or HDTV or (None)
         source = 'Source' not in attrs or 'TV Cap' in attrs['Source'] or 'HDTV' in attrs['Source']
@@ -163,7 +163,7 @@ class NewzbinProvider(generic.NZBProvider):
 
         # Video Fmt: H.264, 720p
         video_fmt = 'Video Fmt' in attrs and ('H.264' in attrs['Video Fmt']) \
-                            and ('720p' in attrs['Video Fmt'])
+                  and ('720p' in attrs['Video Fmt'])
 
         # Subtitles: (None)
         subs = 'Subtitles' not in attrs
@@ -174,7 +174,7 @@ class NewzbinProvider(generic.NZBProvider):
 
         # Video Fmt: x264, 720p
         video_fmt = 'Video Fmt' in attrs and ('x264' in attrs['Video Fmt']) \
-                            and ('720p' in attrs['Video Fmt'])
+                  and ('720p' in attrs['Video Fmt'])
 
         # Source: Blu-ray or HD-DVD
         source = 'Source' in attrs and ('Blu-ray' in attrs['Source'] or 'HD-DVD' in attrs['Source'])
@@ -185,7 +185,7 @@ class NewzbinProvider(generic.NZBProvider):
 
         # Video Fmt: x264, 1080p
         video_fmt = 'Video Fmt' in attrs and ('x264' in attrs['Video Fmt']) \
-                            and ('1080p' in attrs['Video Fmt'])
+                  and ('1080p' in attrs['Video Fmt'])
 
         # Source: Blu-ray or HD-DVD
         source = 'Source' in attrs and ('Blu-ray' in attrs['Source'] or 'HD-DVD' in attrs['Source'])
@@ -256,7 +256,7 @@ class NewzbinProvider(generic.NZBProvider):
         searchStr += " -subpack -extras"
 
         logger.log("Searching newzbin for string "+searchStr, logger.DEBUG)
-        
+
         return [searchStr]
 
     def _get_episode_search_strings(self, ep_obj):
@@ -271,7 +271,7 @@ class NewzbinProvider(generic.NZBProvider):
     def _doSearch(self, searchStr, show=None):
 
         data = self._getRSSData(searchStr.encode('utf-8'))
-        
+
         item_list = []
 
         try:
@@ -303,21 +303,21 @@ class NewzbinProvider(generic.NZBProvider):
     def _getRSSData(self, search=None):
 
         params = {
-                'searchaction': 'Search',
-                'fpn': 'p',
-                'category': 8,
-                'u_nfo_posts_only': 0,
-                'u_url_posts_only': 0,
-                'u_comment_posts_only': 0,
-                'u_show_passworded': 0,
-                'u_v3_retention': 0,
-                'ps_rb_video_format': 3082257,
-                'ps_rb_language': 4096,
-                'sort': 'date',
-                'order': 'desc',
-                'u_post_results_amt': 50,
-                'feed': 'rss',
-                'hauth': 1,
+            'searchaction': 'Search',
+            'fpn': 'p',
+            'category': 8,
+            'u_nfo_posts_only': 0,
+            'u_url_posts_only': 0,
+            'u_comment_posts_only': 0,
+            'u_show_passworded': 0,
+            'u_v3_retention': 0,
+            'ps_rb_video_format': 3082257,
+            'ps_rb_language': 4096,
+            'sort': 'date',
+            'order': 'desc',
+            'u_post_results_amt': 50,
+            'feed': 'rss',
+            'hauth': 1,
         }
 
         if search:

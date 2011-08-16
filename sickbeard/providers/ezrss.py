@@ -35,76 +35,76 @@ class EZRSSProvider(generic.TorrentProvider):
     def __init__(self):
 
         generic.TorrentProvider.__init__(self, "EZRSS")
-        
+
         self.supportsBacklog = True
 
         self.cache = EZRSSCache(self)
 
         self.url = 'https://www.ezrss.it/'
-        
+
         self.ezrss_ns = 'http://xmlns.ezrss.it/0.1/'
 
     def isEnabled(self):
         return sickbeard.EZRSS
-        
+
     def imageName(self):
         return 'ezrss.gif'
-      
+
     def getQuality(self, item):
-        
+
         filename = item.findtext('{%s}torrent/{%s}fileName' %(self.ezrss_ns,self.ezrss_ns))
         quality = Quality.nameQuality(filename)
         return quality
 
     def findSeasonResults(self, show, season):
-        
+
         results = {}
-        
+
         if show.air_by_date:
             logger.log(u"EZRSS doesn't support air-by-date backlog because of limitations on their RSS search.", logger.WARNING)
             return results
-        
+
         results = generic.TorrentProvider.findSeasonResults(self, show, season)
-        
+
         return results
     def _get_season_search_strings(self, show, season=None):
-    
+
         params = {}
-    
+
         if not show:
             return params
-        
+
         params['show_name'] = sanitizeSceneName(show.name, ezrss=True).replace('.',' ').encode('utf-8')
-          
+
         if season != None:
             params['season'] = season
-    
+
         return [params]
 
     def _get_episode_search_strings(self, ep_obj):
-    
+
         params = {}
-        
+
         if not ep_obj:
             return params
-                   
+
         params['show_name'] = sanitizeSceneName(ep_obj.show.name, ezrss=True).replace('.',' ').encode('utf-8')
-        
+
         if ep_obj.show.air_by_date:
             params['date'] = str(ep_obj.airdate)
         else:
             params['season'] = ep_obj.season
             params['episode'] = ep_obj.episode
-    
+
         return [params]
 
     def _doSearch(self, search_params, show=None):
-    
+
         params = {"mode": "rss"}
-    
+
         if search_params:
             params.update(search_params)
-      
+
         searchURL = self.url + 'search/index.php?' + urllib.urlencode(params)
 
         logger.log(u"Search string: " + searchURL, logger.DEBUG)
@@ -113,7 +113,7 @@ class EZRSSProvider(generic.TorrentProvider):
 
         if not data:
             return []
-        
+
         try:
             responseSoup = etree.ElementTree(etree.XML(data))
             items = responseSoup.getiterator('item')
@@ -121,17 +121,17 @@ class EZRSSProvider(generic.TorrentProvider):
             logger.log(u"Error trying to load EZRSS RSS feed: "+ex(e), logger.ERROR)
             logger.log(u"RSS data: "+data, logger.DEBUG)
             return []
-        
+
         results = []
 
         for curItem in items:
-            
+
             (title, url) = self._get_title_and_url(curItem)
-            
+
             if not title or not url:
                 logger.log(u"The XML returned from the EZRSS RSS feed is incomplete, this result is unusable: "+data, logger.ERROR)
                 continue
-    
+
             results.append(curItem)
 
         return results
@@ -140,7 +140,7 @@ class EZRSSProvider(generic.TorrentProvider):
         title = item.findtext('title')
         url = item.findtext('link').replace('&amp;','&')
         filename = item.findtext('{%s}torrent/{%s}fileName' %(self.ezrss_ns,self.ezrss_ns))
-        
+
         new_title = self._extract_name_from_filename(filename)
         if new_title:
             title = new_title

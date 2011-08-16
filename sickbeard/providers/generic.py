@@ -192,15 +192,15 @@ class GenericProvider:
 
     def _get_episode_search_strings(self, ep_obj):
         return []
-    
+
     def _get_title_and_url(self, item):
         title = item.findtext('title')
         url = item.findtext('link')
         if url:
             url = url.replace('&amp;','&')
-        
+
         return (title, url)
-    
+
     def findEpisode (self, episode, manualSearch=False):
 
         self._checkAuth()
@@ -292,19 +292,19 @@ class GenericProvider:
                 # we just use the existing info for normal searches
                 actual_season = season
                 actual_episodes = parse_result.episode_numbers
-            
+
             else:
                 if not parse_result.air_by_date:
                     logger.log(u"This is supposed to be an air-by-date search but the result "+title+" didn't parse as one, skipping it", logger.DEBUG)
                     continue
-                
+
                 myDB = db.DBConnection()
                 sql_results = myDB.select("SELECT season, episode FROM tv_episodes WHERE showid = ? AND airdate = ?", [show.tvdbid, parse_result.air_date.toordinal()])
 
                 if len(sql_results) != 1:
                     logger.log(u"Tried to look up the date for the episode "+title+" but the database didn't give proper results, skipping it", logger.WARNING)
                     continue
-                
+
                 actual_season = int(sql_results[0]["season"])
                 actual_episodes = [int(sql_results[0]["episode"])]
 
@@ -314,7 +314,7 @@ class GenericProvider:
                 if not show.wantEpisode(actual_season, epNo, quality):
                     wantEp = False
                     break
-            
+
             if not wantEp:
                 logger.log(u"Ignoring result "+title+" because we don't want an episode that is "+Quality.qualityStrings[quality], logger.DEBUG)
                 continue

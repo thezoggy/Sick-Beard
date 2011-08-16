@@ -13,7 +13,7 @@
 
 # Source SickBeard configuration
 if [ -f /etc/sysconfig/sickbeard ]; then
-        . /etc/sysconfig/sickbeard
+    . /etc/sysconfig/sickbeard
 fi
 
 prog=sickbeard
@@ -32,54 +32,54 @@ options=" --daemon --pidfile=${pidfile}"
 
 # create PID directory if not exist and ensure the SickBeard user can write to it
 if [ ! -d $pidpath ]; then
-	mkdir -p $pidpath
-	chown $username $pidpath
+    mkdir -p $pidpath
+    chown $username $pidpath
 fi
 
 start() {
-        # Start daemon.
-        echo -n $"Starting $prog: "
-        daemon --user=${username} --pidfile=${pidfile} ${nice} python ${homedir}/SickBeard.py ${options}
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && touch $lockfile
-        return $RETVAL
+    # Start daemon.
+    echo -n $"Starting $prog: "
+    daemon --user=${username} --pidfile=${pidfile} ${nice} python ${homedir}/SickBeard.py ${options}
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
 }
 
 stop() {
-        echo -n $"Shutting down $prog: "
-        killproc -p ${pidfile} python
-        RETVAL=$?
-        echo
-        [ $RETVAL -eq 0 ] && rm -f $lockfile
-        return $RETVAL
+    echo -n $"Shutting down $prog: "
+    killproc -p ${pidfile} python
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
 }
 
 # See how we were called.
 case "$1" in
-  start)
+    start)
         start
         ;;
-  stop)
+    stop)
         stop
         ;;
-  status)
+    status)
         status $prog
         ;;
-  restart|force-reload)
+    restart|force-reload)
         stop
         start
         ;;
-  try-restart|condrestart)
+    try-restart|condrestart)
         if status $prog > /dev/null; then
             stop
             start
         fi
         ;;
-  reload)
+    reload)
         exit 3
         ;;
-  *)
+    *)
         echo $"Usage: $0 {start|stop|status|restart|try-restart|force-reload}"
         exit 2
 esac
