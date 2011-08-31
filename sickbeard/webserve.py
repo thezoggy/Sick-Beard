@@ -2402,7 +2402,7 @@ class Home:
             return json.dumps({'result': 'Episode could not be retrieved'})
 
         if epObj.dirty == True:
-            return json.dumps({'result': 'Episode information is dirty'})
+            return json.dumps({'result': 'Episode information is dirty, issue a Force Full Update on the show to resolve'})
         if not ek.ek(os.path.isfile, epObj._location):
             return json.dumps({'result': 'Episode has an invalid location'})
 
@@ -2412,7 +2412,7 @@ class Home:
             return "lift-cup module not found"
 
         liftcup.LiftCup(epObj._location, Quality.nameQuality(epObj._location))
-        return "Lift-Cup process completed for " + str(epObj._location) + "."
+        return "Lift-Cup process issued for " + str(epObj._location) + ". Check your console/logs for further information."
 
 
 class UI:
