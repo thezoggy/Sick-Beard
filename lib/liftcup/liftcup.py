@@ -95,6 +95,23 @@ RAR_PROBLEM = False
 
 
 def find_programs(curdir):
+    def find_on_path(targets):
+        """ Search the PATH for a program and return full path """
+        if WIN32:
+            paths = os.getenv('PATH').split(';')
+        else:
+            paths = os.getenv('PATH').split(':')
+
+        if isinstance(targets, basestring):
+            targets = ( targets, )
+
+        for path in paths:
+            for target in targets:
+                target_path = os.path.abspath(os.path.join(path, target))
+                if os.path.isfile(target_path) and os.access(target_path, os.X_OK):
+                    return target_path
+        return None
+
     def check(path, program):
         p = os.path.abspath(os.path.join(path, program))
         if os.access(p, os.X_OK):
@@ -136,9 +153,10 @@ def find_programs(curdir):
         liftcup.RAR_BINARY = check(curdir, 'win/rar/Rar.exe')
     else:
         if not liftcup.PAR2_BINARY:
-            liftcup.PAR2_BINARY = find_on_path('par2', 'par2create')
+            liftcup.PAR2_BINARY = find_on_path('par2')
         if not liftcup.RAR_BINARY:
             liftcup.RAR_BINARY = find_on_path('rar')
+            print "find_on_path('rar'): " + str(find_on_path('rar'))
 
     if not (WIN32 or DARWIN):
         liftcup.RAR_PROBLEM = not rar_check(liftcup.RAR_BINARY)
@@ -170,9 +188,10 @@ class LiftCup(object):
             print "self.skip_quality: " + str(self.skip_quality)
             print " "
 
-        if quality == Quality.UNKNOWN:
-            logger.log(u"LC: Quality for show is Unknown, aborting process for the good of others.")
-            return
+        if not self.skip_quality:
+            if quality == Quality.UNKNOWN:
+                logger.log(u"LC: Quality for show is Unknown, aborting process for the good of others.")
+                return
 
         # setup env : use/create release folder per user config
         logger.log(u"LC: Config.py TEMP_DIR: " + str(TEMP_DIR))

@@ -11,13 +11,13 @@ TEMP_DIR = 'c:\\program files (x86)\\newsmangler\\uploads'
 # people have to stop/start sb before changes take effect
 
 # not really needed anymore since the internal process are sent to the sb log
-LC_DEBUG = False
+LC_DEBUG = True
 
 # skip executing the commands?
 LC_TEST = False
 
-# un-used currently
-LC_QUALITY = False
+# bypass check for unknown quality
+LC_QUALITY = True
 
 # upload only works for non-windows users since we use newsmangler 
 LC_UPLOAD = True
