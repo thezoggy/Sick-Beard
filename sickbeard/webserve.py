@@ -55,7 +55,6 @@ import xml.etree.cElementTree as etree
 
 from sickbeard import browser
 
-
 class PageTemplate (Template):
     def __init__(self, *args, **KWs):
         KWs['file'] = os.path.join(sickbeard.PROG_DIR, "data/interfaces/default/", KWs['file'])
@@ -2384,6 +2383,37 @@ class Home:
             return json.dumps({'result': statusStrings[ep_obj.status]})
 
         return json.dumps({'result': 'failure'})
+
+    @cherrypy.expose
+    def lcEpisode(self, show=None, season=None, episode=None):
+
+        if show == None or season == None or episode == None:
+            return json.dumps({'result': 'Invalid parameters'})
+
+        showObj = sickbeard.helpers.findCertainShow(sickbeard.showList, int(show))
+        if showObj == None:
+            return json.dumps({'result': 'Show not in show list'})
+
+        if not ek.ek(os.path.isdir, showObj._location):
+            return json.dumps({'result': 'Show has an invalid location'})
+
+        epObj = showObj.getEpisode(int(season), int(episode))
+        if epObj == None:
+            return json.dumps({'result': 'Episode could not be retrieved'})
+
+        if epObj.dirty == True:
+            return json.dumps({'result': 'Episode information is dirty'})
+        if not ek.ek(os.path.isfile, epObj._location):
+            return json.dumps({'result': 'Episode has an invalid location'})
+
+        try:
+            from lib.liftcup import *
+        except ImportError:
+            return "lift-cup module not found"
+
+        liftcup.LiftCup(epObj._location, Quality.nameQuality(epObj._location))
+        return "Lift-Cup process completed for " + str(epObj._location) + "."
+
 
 class UI:
     

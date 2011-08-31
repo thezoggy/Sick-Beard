@@ -3,6 +3,14 @@
 #from sickbeard.common import *
 #import os.path, os
 #import datetime
+
+#try
+  #from lib.liftcup import *
+  #set LIFTCUP_SUPPORT = True
+#except ImportError
+  #set LIFTCUP_SUPPORT = False
+#end try
+
 #set global $title=$show.name
 #set global $header = '<a href="http://thetvdb.com/?tab=series&amp;id=%d" target="_new">%s</a>' % ($show.tvdbid, $show.name)
 
@@ -132,7 +140,7 @@ Change selected episodes to
         <h2>#if int($epResult["season"]) == 0 then "Specials" else "Season "+str($epResult["season"])#</h2>
     </td>
   </tr>
-  <tr id="season-$epResult["season"]-cols"><th width="1%"><input type="checkbox" class="seasonCheck" id="$epResult["season"]" /></th><th>NFO</th><th>TBN</th><th>Episode</th><th>Name</th><th class="nowrap">Airdate</th><th>Filename</th><th>Status</th><th>Search</th></tr>
+  <tr id="season-$epResult["season"]-cols"><th width="1%"><input type="checkbox" class="seasonCheck" id="$epResult["season"]" /></th><th>NFO</th><th>TBN</th><th>Episode</th><th>Name</th><th class="nowrap">Airdate</th><th>Filename</th><th>Status</th><th>Search</th>#if $LIFTCUP_SUPPORT then "<th>Upload</th>" else ""#</tr>
         #set $curSeason = int($epResult["season"])
     #end if    
 
@@ -168,6 +176,13 @@ $epLoc
       <a class="epSearch" href="searchEpisode?show=$show.tvdbid&amp;season=$epResult["season"]&amp;episode=$epResult["episode"]"><img src="$sbRoot/images/search32.png" height="16" alt="search" title="Manual Search" /></a>
     #end if
     </td>
+    #if $LIFTCUP_SUPPORT:
+        <td align="center">
+        #if $epLoc != "":
+              <a class="epUpload" href="lcEpisode?show=$show.tvdbid&amp;season=$epResult["season"]&amp;episode=$epResult["episode"]"><img src="$sbRoot/images/rar16.gif" height="16" alt="upload" title="Lift-Cup" /></a>
+        #end if
+        </td>
+    #end if
    </tr>
 
 #end for
