@@ -153,7 +153,9 @@ def find_programs(curdir):
         liftcup.RAR_BINARY = check(curdir, 'win/rar/Rar.exe')
     else:
         if not liftcup.PAR2_BINARY:
-            liftcup.PAR2_BINARY = find_on_path('par2')
+            liftcup.PAR2_BINARY = find_on_path(('par2', 'par2create'))
+            print "find_on_path('par2'): " + str(find_on_path('par2'))
+            print "find_on_path('par2create'): " + str(find_on_path('par2create'))
         if not liftcup.RAR_BINARY:
             liftcup.RAR_BINARY = find_on_path('rar')
             print "find_on_path('rar'): " + str(find_on_path('rar'))
