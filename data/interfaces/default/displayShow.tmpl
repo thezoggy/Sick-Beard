@@ -57,12 +57,8 @@
 
 <div id="summary" class="align-left">
 <table class="infoTable" cellspacing="1" border="0" cellpadding="0">
-#if $show.network and $show.airs:
-    <tr><td class="showLegend">Airs: </td><td>$show.airs on $show.network</td></tr>
-#else if $show.network:
-    <tr><td class="showLegend">Airs: </td><td>$show.network</td></tr>
-#else if $show.airs:
-    <tr><td class="showLegend">Airs: </td><td>$show.airs</td></tr>
+#if $show.network or $show.airs:
+    <tr><td class="showLegend">Airs: </td><td>$show.airs #if $show.network and $show.airs then "on" else ""# $show.network</td></tr>
 #end if
     <tr><td class="showLegend">Status: </td><td>$show.status</td></tr>
 #if $showLoc[1]:
@@ -121,56 +117,69 @@ Change selected episodes to
 
 <div style="clear:both;" class="clearfix"></div>
 
-<table class="sickbeardTable" cellspacing="1" border="0" cellpadding="0">
-    
+
 #for $epResult in $sqlResults:
+    #set $epStr = str($epResult["season"]) + "x" + str($epResult["episode"])
+    #set $epLoc = $epResult["location"]
 
     #if int($epResult["season"]) != $curSeason:
-  <tr><td colspan="9"><a name="season-$epResult["season"]"></a></td></tr>
-  <tr class="seasonheader" id="season-$epResult["season"]">
-    <td colspan="9">
-        <h2>#if int($epResult["season"]) == 0 then "Specials" else "Season "+str($epResult["season"])#</h2>
-    </td>
-  </tr>
-  <tr id="season-$epResult["season"]-cols"><th width="1%"><input type="checkbox" class="seasonCheck" id="$epResult["season"]" /></th><th>NFO</th><th>TBN</th><th>Episode</th><th>Name</th><th class="nowrap">Airdate</th><th>Filename</th><th>Status</th><th>Search</th></tr>
-        #set $curSeason = int($epResult["season"])
-    #end if    
-
-  #set $epStr = str($epResult["season"]) + "x" + str($epResult["episode"])
-  #set $epLoc = $epResult["location"]
-  <tr class="$Overview.overviewStrings[$epCats[$epStr]] season-$curSeason">
-    <td width="1%">
-#if int($epResult["status"]) != $UNAIRED
-      <input type="checkbox" class="epCheck" id="<%=str(epResult["season"])+'x'+str(epResult["episode"])%>" name="<%=str(epResult["season"]) +"x"+str(epResult["episode"]) %>" />
-#end if
-    </td>
-    <td align="center"><img src="$sbRoot/images/#if $epResult["hasnfo"] == 1 then "nfo.gif\" alt=\"Y" else "nfo-no.gif\" alt=\"N"#" width="23" height="11" /></td>
-    <td align="center"><img src="$sbRoot/images/#if $epResult["hastbn"] == 1 then "tbn.gif\" alt=\"Y" else "tbn-no.gif\" alt=\"N"#" width="23" height="11" /></td>
-    <td align="center">$epResult["episode"]</td>
-    <td>
-        $epResult["name"]
-        #if $epResult["description"] != "" and $epResult["description"] != None:
-        <img src="$sbRoot/images/info32.png" height="16" class="plotInfo" alt="" id="plot_info_$show.tvdbid<%="_"+str(epResult["season"])+"_"+str(epResult["episode"])%>" />
+        #if $curSeason != -1:
+            </tbody>
+        </table>
+        <!-- end season -->
         #end if
-    </td>
-    <td align="center">#if int($epResult["airdate"]) == 1 then "never" else $datetime.date.fromordinal(int($epResult["airdate"]))#</td>
-    <td>
-#if $epLoc and $show._location and $epLoc.lower().startswith($show._location.lower()):
-$epLoc[len($show._location)+1:]
-#elif $epLoc and (not $epLoc.lower().startswith($show._location.lower()) or not $show._location):
-$epLoc
-#end if
-
-    </td>
-    <td class="status_column">$statusStrings[int($epResult["status"])]</td>
-    <td align="center">
-    #if int($epResult["season"]) != 0:
-      <a class="epSearch" href="searchEpisode?show=$show.tvdbid&amp;season=$epResult["season"]&amp;episode=$epResult["episode"]"><img src="$sbRoot/images/search32.png" height="16" alt="search" title="Manual Search" /></a>
+       
+        <br/><a name="season-$epResult["season"]"></a>
+        <h2 align="center" style="color: #000000; font-size: 22px; letter-spacing: 1px; margin: 0;" id="season-$epResult["season"]">#if int($epResult["season"]) == 0 then "Specials" else "Season "+str($epResult["season"])#</h2>
+        #set $curSeason = int($epResult["season"])
+        <!-- start season -->
+        <table class="sickbeardTable" cellspacing="1" border="0" cellpadding="0">
+            <thead>
+                <tr id="season-$epResult["season"]-cols">
+                    <th width="1%"><input type="checkbox" class="seasonCheck" id="$epResult["season"]" /></th><th>NFO</th><th>TBN</th><th>Episode</th><th>Name</th><th class="nowrap">Airdate</th><th>Filename</th><th>Status</th><th>Search</th>
+                </tr>
+            </thead>
+            <tbody>
     #end if
-    </td>
-   </tr>
 
+        #set $epStr = str($epResult["season"]) + "x" + str($epResult["episode"])
+        #set $epLoc = $epResult["location"]
+        <tr class="$Overview.overviewStrings[$epCats[$epStr]] season-$curSeason">
+            <td style="text-align: center;">
+            #if int($epResult["status"]) != $UNAIRED
+              <input type="checkbox" class="epCheck" id="<%=str(epResult["season"])+'x'+str(epResult["episode"])%>" name="<%=str(epResult["season"]) +"x"+str(epResult["episode"]) %>" />
+            #end if
+            </td>
+            <td style="width: 30px; text-align: center;"><img src="$sbRoot/images/#if $epResult["hasnfo"] == 1 then "nfo.gif\" alt=\"Y" else "nfo-no.gif\" alt=\"N"#" width="23" height="11" /></td>
+            <td style="width: 30px; text-align: center;"><img src="$sbRoot/images/#if $epResult["hastbn"] == 1 then "tbn.gif\" alt=\"Y" else "tbn-no.gif\" alt=\"N"#" width="23" height="11" /></td>
+            <td style="width: 54px; text-align: center;">$epResult["episode"]</td>
+            <td style="width: 20%; text-align: left;"> 
+                $epResult["name"]
+                #if $epResult["description"] != "" and $epResult["description"] != None:
+                <img src="$sbRoot/images/info32.png" height="16" class="plotInfo" alt="" id="plot_info_$show.tvdbid<%="_"+str(epResult["season"])+"_"+str(epResult["episode"])%>" />
+                #end if
+            </td>
+            <td style="width: 84px; text-align: center; white-space: nowrap;">#if int($epResult["airdate"]) == 1 then "never" else $datetime.date.fromordinal(int($epResult["airdate"]))#</td>
+            <td>
+            #if $epLoc and $show._location and $epLoc.lower().startswith($show._location.lower()):
+                $epLoc[len($show._location)+1:]
+            #elif $epLoc and (not $epLoc.lower().startswith($show._location.lower()) or not $show._location):
+                $epLoc
+            #else:
+                &nbsp;
+            #end if
+            </td>
+            <td style="width: 15%; text-align: left;" class="status_column">$statusStrings[int($epResult["status"])]</td>
+            <td style="width: 50px; text-align: center;">
+            #if int($epResult["season"]) != 0:
+              <a class="epSearch" href="searchEpisode?show=$show.tvdbid&amp;season=$epResult["season"]&amp;episode=$epResult["episode"]"><img src="$sbRoot/images/search32.png" height="16" alt="search" title="Manual Search" /></a>
+            #end if
+            </td>
+        </tr>
+   
 #end for
-</table><br />
+        </tbody>
+    </table><br />
+    <!-- end season (last) -->
 
 #include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_bottom.tmpl")
