@@ -1,0 +1,43 @@
+body,button,input,select,textarea{font-family:sans-serif;color:#222;}
+hr{display:block;height:1px;border:0;border-top:1px solid #ccc;margin:1em 0;padding:0;}
+pre{white-space:pre;}
+.header{font-size:3em;font-family:Arial, Helvetica, sans-serif;text-align:center;}
+h1.title{text-transform:lowercase;display:inline;clear:left;}
+#container{width:900px;margin-left:auto;margin-right:auto;margin-top:25px;}
+body{color:#555;font:13px/1.5 'Helvetica Neue',Arial,'Liberation Sans',FreeSans,sans-serif;border:0 none;margin:0;padding:0;}
+h1,h2,h3,p,blockquote,form,label,ul,ol,dl,address,table,pre{margin-bottom:1em;}
+h1{font-size:3em;font-weight:300;}
+h2,legend,caption{font-size:1.3em;font-weight:700;}
+h2.special{font-size:1.4em;}
+h1,h2,h3{line-height:1.1;margin-bottom:0.75em;color:#333;}
+a{color:#0094C2;text-decoration:none;}
+a:hover{color:#0080A6;text-decoration:underline;}
+table{width:100%;margin:0 0 3em;}
+table caption{font-weight:400;text-align:left;}
+th,thead th{border-bottom:1px solid #EEE;font-weight:700;text-align:left;width:140px;font-size:1.1em;padding:4px 0;}
+td{background:none repeat scroll 0 0 #FFF;border-bottom:1px solid #EEE;vertical-align:top;padding:4px 0;}
+tr:hover td,tr:hover td.active{background:none repeat scroll 0 0 #F8F8F8;}
+.parameter{border-bottom:1px solid #EEE;padding:8px 0 4px;}
+.parameter:first-child{border-top:1px solid #EEE;}
+.parameter:hover{background-color:#F8F8F8;}
+.parameter .param{color:#333;display:block;float:left;font-weight:700;width:200px;padding-left:15px;}
+.parameter .param span{color:#999;display:block;font-weight:400;}
+.parameter ul{margin-top:.2em;margin-bottom:.5em;}
+.parameter ul li{margin-left:210px;}
+.parameter p{margin-left:220px;}
+div.field{margin-bottom:2em;}
+div.field h2{margin-bottom:0.5em;}
+.updated{color:#777;font-style:italic;font-weight:400;margin-bottom:1em;float:right;margin-top:1em;vertical-align:middle;}
+#api-overview .views-field-title{width:30%;text-transform:lowercase;padding-left:15px;}
+#api-overview .views-field-body{width:70%;text-transform:lowercase;}
+div.example{background-color:#F8F4E7;border:1px solid #E4E0D3;color:#333;overflow-x:auto;margin:0 0 6em;padding:5px;}
+div.example pre{margin-left:15px;}
+span.default{color:#00C;}
+li.none{list-style:none;}
+span.api{color:#A00;}
+span.cmd{color:#00A;}
+span.arg{color:#060;}
+span.opt{color:#CC6200;}
+span.version{color:#444;}
+::-moz-selection,::selection{background:#fe57a1;color:#fff;text-shadow:none;}
+.ident{padding-left:15px;}

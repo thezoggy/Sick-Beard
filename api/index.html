@@ -1,0 +1,3205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"> 
+  <head>
+    <title>SickBeard API</title>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+    <link rel="stylesheet" type="text/css" href="./css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/main.css"/>
+
+    <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.scrolltopcontrol-1.1.js"></script>
+    <script type="text/javascript" src="./js/jquery.bookmarkscroll.js"></script>
+  </head>
+  <body>
+  <a name="top"></a>
+  <div id="container">
+
+    <a name="apioverview"></a>
+    <h1 class="header">
+        <img src="./img/sickbeard.png" alt="API Overview"/><br/>
+    </h1>
+    <div id="api-overview">
+        <div class="content">
+          <table class="views-table">
+            <thead>
+              <tr>
+                <th class="views-field views-field-title">
+                  Command
+                </th>
+                <th class="views-field views-field-body">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="odd views-row-first">
+                <td class="views-field views-field-title">
+                  <a href="#episode">episode</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Displays the information of a specific episode.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#episodesearch">episode.search</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Initiate a manual search for a specific episode.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#episodesetstatus">episode.setstatus</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Set the status of an episode.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#exceptions">exceptions</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display scene exceptions for all or a given show.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#future">future</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display the upcoming episodes.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#history">history</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display SickBeard's downloaded/snatched history.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#historyclear">history.clear</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Clear SickBeard's history.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#historytrim">history.trim</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Trim SickBeard's history.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#logs">logs</a>
+                </td>
+                <td class="views-field views-field-body">
+                  View SickBeard's log.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#show">show</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display information for a given shown.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showaddexisting">show.addexisting</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Add a show in SickBeard with an existing folder.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showaddnew">show.addnew</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Add a show in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showcache">show.cache</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display if the poster/banner SickBeard's image cache is valid.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showdelete">show.delete</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Delete a show from SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showgetbanner">show.getbanner</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Retrieve the shows banner from SickBeard's cache.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showgetposter">show.getposter</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Retrieve the shows poster from SickBeard's cache.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showgetquality">show.getquality</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Get quality settings for a show in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showpause">show.pause</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Set a show's paused state in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showrefresh">show.refresh</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Refresh a show in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showseasonlist">show.seasonlist</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display the season list for a given show.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showseasons">show.seasons</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display a listing of episodes for all or a given season.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showsetquality">show.setquality</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Set quality for a show in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showstats">show.stats</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display episode statistics for a given show.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showupdate">show.update</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Update a show in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#shows">shows</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display all shows in SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#showsstats">shows.stats</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display the global episode and show statistics.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sb">sb</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display misc SickBeard related information.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbaddrootdir">sb.addrootdir</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Add a root (parent) directory.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbcheckscheduler">sb.checkscheduler</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Query the SickBeard scheduler.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbdeleterootdir">sb.deleterootdir</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Delete a root (parent) directory.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbforcesearch">sb.forcesearch</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Force the episode search early.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbgetdefaults">sb.getdefaults</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Get SickBeard user defaults.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbgetmessages">sb.getmessages</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Get messages from the notification queue.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbgetrootdirs">sb.getrootdirs</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Get root (parent) directories set by user.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbpausebacklog">sb.pausebacklog</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Pause the backlog search.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbping">sb.ping</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Check to see if SickBeard is running.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbrestart">sb.restart</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Restart SickBeard.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbsearchtvdb">sb.searchtvdb</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Search TVDB for a show name or tvdbid.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbsetdefaults">sb.setdefaults</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Set SickBeard user defaults.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#sbshutdown">sb.shutdown</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Shutdown SickBeard.
+                </td>
+              </tr>
+
+
+            <thead>
+              <tr>
+                <th style="border-bottom: 0;">&nbsp;</th>
+                <th style="border-bottom: 0;">&nbsp;</th>
+              </tr>
+              <tr>
+                <th class="views-field views-field-title">
+                  Special Commands
+                </th>
+                <th class="views-field views-field-body">
+                  Description
+                </th>
+              </tr>
+            </thead>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#debug">debug</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display cherrypy's traceback if thrown.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#profile">profile</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Call profiler on API command and output to console.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#help">help</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Display the help for the requested API command.
+                </td>
+              </tr>
+
+
+            <thead>
+              <tr>
+                <th style="border-bottom: 0;">&nbsp;</th>
+                <th style="border-bottom: 0;">&nbsp;</th>
+              </tr>
+              <tr>
+                <th class="views-field views-field-title">
+                  Miscellaneous
+                </th>
+                <th class="views-field views-field-body">
+                  Description
+                </th>
+              </tr>
+            </thead>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#apibuilder">api builder</a>
+                </td>
+                <td class="views-field views-field-body">
+                  SickBeard's API Builder tool.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#apiadvanced">advanced api</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Advanced usage of the API.
+                </td>
+              </tr>
+              <tr>
+                <td class="views-field views-field-title">
+                  <a href="#apidisclaimer">disclaimer</a>
+                </td>
+                <td class="views-field views-field-body">
+                  Disclaimer about the API.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+    <br/>
+    <div id="api-content">
+        <a name="episode"></a>
+          <h1 class="title">
+            episode
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Displays the information of a specific episode matching the corresponding tvdbid, season and episode number.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season <span>required</span></span>
+                  <p>
+                    season number
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">episode <span>required</span></span>
+                  <p>
+                    episode number
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">full_path <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>0<span class="default">]</span>, 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=3&amp;episode=1&amp;full_path=1</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "airdate": "2011-07-28", 
+        "description": "The third-season opener explores alien connections with the American West, including the claim that an alien was buried in a cemetery in Texas; Utah petroglyphs depicting unusual beings; and reports of strange creatures from 19th-century ranchers in California.", 
+        "location": "S:\\TV\\Ancient Aliens\\Season 03\\Ancient.Aliens.S03E01.Aliens.and.the.Old.West.720p.HDTV.x264-DiVERGE.mkv", 
+        "name": "Aliens and the Old West", 
+        "quality": "HD TV", 
+        "status": "Downloaded"
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="episodesearch"></a>
+          <h1 class="title">
+            episode.search
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Initiate a search for a specific episode matching the corresponding tvdbid, season and episode number.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season <span>required</span></span>
+                  <p>
+                    season number
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">episode <span>required</span></span>
+                  <p>
+                    episode number
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=episode.search&amp;tvdbid=194751&amp;season=2011&amp;episode=105</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Unable to find episode", 
+    "result": "failure"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="episodesetstatus"></a>
+          <h1 class="title">
+            episode.setstatus
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Set the status of an epsiode.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season <span>required</span></span>
+                  <p>
+                    season number
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">episode <span>required</span></span>
+                  <p>
+                    episode number
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">status <span>required</span></span>
+                  <p>
+                    wanted, skipped, archived, ignored
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=82374&amp;season=5&amp;episode=1&amp;status=wanted</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Episode status changed to Wanted, and backlog started", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+        <a name="exceptions"></a>
+          <h1 class="title">
+            exceptions
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display scene exceptions for all or a given show.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>optional</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=exceptions&amp;tvdbid=248261</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        "National Terrorism Strike Force: San Diego: Sport Utility Vehicle", 
+        "National Terrorism Strike Force: San Diego: SUV", 
+        "NTSF:SD:SUV::", 
+        "NTSF SD SUV"
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+        <a name="future"></a>
+          <h1 class="title">
+            future
+          </h1>
+          <div class="updated">
+            Updated on 2012-01-04<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display the upcoming episodes for the shows currently added in the users' database.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">sort <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>date<span class="default">]</span>, network, name
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">type <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                    <ul>
+                        <li>missed - show's date is older than today</li>
+                        <li>today - show's date is today</li>
+                        <li>soon - show's date greater than today but less than a week</li>
+                        <li>later - show's date greater than a week</li>
+                    </ul>
+                  <p>
+                    <span class="default">[</span>missed|today|soon|later<span class="default">]</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">paused <span>optional</span></span>
+                    <ul>
+                        <li>0 - do not show paused</li>
+                        <li>1 - show paused</li>
+                    </ul>
+                  <p>
+                    <span class="default">if not set then use the user's default setting in SickBeard (future_show_paused)</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=future&amp;sort=date&amp;type=today|missed</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "missed": [
+            {
+                "airdate": "2011-11-21", 
+                "airs": "Monday 8:00 PM", 
+                "ep_name": "The Rebound Girl", 
+                "ep_plot": "Ted and Barney discuss making a life-changing decision together, and Robin tries to discourage Marshall and Lily from moving to Long Island.", 
+                "episode": 11, 
+                "network": "CBS", 
+                "paused": 0, 
+                "quality": "HD", 
+                "season": 7, 
+                "show_name": "How I Met Your Mother", 
+                "show_status": "Continuing", 
+                "tvdbid": 75760, 
+                "weekday": 1
+            }, 
+            {
+                "airdate": "2011-11-21", 
+                "airs": "Monday 10:00 PM", 
+                "ep_name": "Kill Shot", 
+                "ep_plot": "A sniper on a killing spree is terrorizing New York City. With the clock ticking down to the next murder and nothing to go on except a killer with no apparent motive but to instill terror, this could prove the team's toughest case yet. The hunt is made even more complicated when Beckett begins to experience increasingly strong moments of PTSD - moments she tries hard to hide from Castle and the detectives.", 
+                "episode": 9, 
+                "network": "ABC", 
+                "paused": 1, 
+                "quality": "SD", 
+                "season": 4, 
+                "show_name": "Castle (2009)", 
+                "show_status": "Continuing", 
+                "tvdbid": 83462, 
+                "weekday": 1
+            }
+        ], 
+        "today": [
+            {
+                "airdate": "2011-11-22", 
+                "airs": "Monday 8:00 PM", 
+                "ep_name": "Smoked Turkey", 
+                "ep_plot": "Dixon tries to pursue a relationship with a resistant Adrianna, while Ivy and Raj\u2019s arguing takes a toll on their relationship. Liam plans a holiday dinner for the gang, and an unexpected guest shows up. Meanwhile, Naomi goes to extremes to prove her love to Austin.", 
+                "episode": 10, 
+                "network": "The CW", 
+                "paused": 0, 
+                "quality": "SD", 
+                "season": 4, 
+                "show_name": "90210", 
+                "show_status": "Continuing", 
+                "tvdbid": 82716, 
+                "weekday": 2
+            }
+        ]
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+        <a name="history"></a>
+          <h1 class="title">
+            history
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display SickBeard's downloaded/snatched history.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">limit <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>100<span class="default">]</span>
+                  </p>
+                  <p>
+                    <span class="warning">There is an artificial max limit of 100 currently imposed for the limit command to ensure performance.</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">type <span>optional</span></span>
+                  <p>
+                    downloaded, snatched
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=history&amp;limit=2</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        {
+            "date": "2011-08-19 12:58", 
+            "episode": 4, 
+            "provider": "-1", 
+            "quality": "SD TV", 
+            "resource": "project.runway.s09e04.all.about.nina.hdtv.xvid-crimson.avi", 
+            "resource_path": "C:\\Users\\sickbeard\\Documents\\downloads\\complete\\TV\\Project.Runway.S09E04.All.About.Nina.HDTV.XviD-CRiMSON", 
+            "season": 9, 
+            "show_name": "Project Runway", 
+            "status": "Downloaded", 
+            "tvdbid": 74285
+        }, 
+        {
+            "date": "2011-08-19 12:25", 
+            "episode": 4, 
+            "provider": "NZBs.org", 
+            "quality": "SD TV", 
+            "resource": "Project.Runway.S09E04.All.About.Nina.HDTV.XviD-CRiMSON", 
+            "resource_path": "", 
+            "season": 9, 
+            "show_name": "Project Runway", 
+            "status": "Snatched", 
+            "tvdbid": 74285
+        }
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+        <a name="historyclear"></a>
+          <h1 class="title">
+            history.clear
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Clear SickBeard's history.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=history.clear</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "History Cleared", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+        <a name="historytrim"></a>
+          <h1 class="title">
+            history.trim
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Trim SickBeard's history by removing entries greater than 30 days old.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=history.trim</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Removed history entries greater than 30 days old", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="logs"></a>
+          <h1 class="title">
+            logs
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              View SickBeard's log.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">min_level <span>optional</span></span>
+                  <p>
+                    debug, info, warning, <span class="default">[</span>error<span class="default">]</span>
+                  </p>
+                  <p>
+                    The minimum level classification of log entries to show, with each level inherting its above level.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=logs&amp;min_level=info</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: No new cache images needed, not retrieving new ones", 
+        "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: Checking &amp; filling cache for show True Blood", 
+        "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: 82283: Writing NFOs for all episodes", 
+        "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: 82283: Loading all episodes with a location from the database", 
+        "Aug-10 02:57:35 INFO     SHOWQUEUE-REFRESH :: 82283: Loading all episodes from the show directory S:\\TV\\True Blood", 
+        "Aug-10 02:57:35 INFO     SHOWQUEUE-REFRESH :: Performing refresh on True Blood", 
+        "Aug-10 02:54:36 WARNING  SHOWQUEUE-FORCE-UPDATE :: Unable to add TVRage info: Show is already in database, not adding the TVRage info", 
+        "Aug-10 02:54:36 INFO     SHOWQUEUE-FORCE-UPDATE :: Checking the last aired episode to see if the dates match between TVDB and TVRage", 
+        "Aug-10 02:54:32 INFO     SHOWQUEUE-FORCE-UPDATE :: 95011: Loading all episodes from theTVDB...", 
+        "Aug-10 02:54:30 INFO     SHOWQUEUE-FORCE-UPDATE :: Loading all episodes from the DB", 
+        "Aug-10 02:54:30 INFO     SHOWQUEUE-FORCE-UPDATE :: 95011: Loading show info from theTVDB", 
+        "Aug-10 02:54:30 INFO     SHOWQUEUE-FORCE-UPDATE :: Beginning update of Modern Family", 
+        "Aug-10 02:54:25 ERROR    SEARCHQUEUE-BACKLOG-248261 :: No NZB/Torrent providers found or enabled in the sickbeard config. Please check your settings.", 
+        "Aug-10 02:54:25 INFO     SEARCHQUEUE-BACKLOG-248261 :: Searching for stuff we need from NTSF:SD:SUV:: season 1"
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="show"></a>
+          <h1 class="title">
+            show
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-26<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display information for a given show
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show&amp;tvdbid=79349</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "air_by_date": 0, 
+        "airs": "Sunday 9:00 PM", 
+        "cache": {
+            "banner": 1, 
+            "poster": 1
+        }, 
+        "genre": [
+            "Action and Adventure", 
+            "Drama"
+        ], 
+        "language": "en", 
+        "location": "S:\\TV\\Dexter", 
+        "network": "Showtime", 
+        "next_ep_airdate": "2011-11-27", 
+        "paused": 0, 
+        "quality": "HD", 
+        "quality_details": {
+            "archive": [], 
+            "initial": [
+                "hdtv", 
+                "hdbluray", 
+                "hdwebdl"
+            ]
+        }, 
+        "season_folders": 1, 
+        "season_list": [
+            6, 
+            5, 
+            4, 
+            3, 
+            2, 
+            1, 
+            0
+        ], 
+        "show_name": "Dexter", 
+        "status": "Continuing", 
+        "tvrage_id": 7926, 
+        "tvrage_name": "Dexter"
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showaddexisting"></a>
+          <h1 class="title">
+            show.addexisting
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-30<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Add a show to SickBeard using an existing folder.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">location <span>required</span></span>
+                  <p>
+                    path to existing show folder
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season_folder <span>optional</span></span>
+                  <p>
+                    0, 1
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">initial <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">archive <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;season_folder=1&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "name": "Chuck"
+    }, 
+    "message": "Chuck has been queued to be added", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showaddnew"></a>
+          <h1 class="title">
+            show.addnew
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-30<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Add a show to SickBeard providing the parent directory where the tv shows folder should be created.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">location <span>optional</span></span>
+                  <p>
+                    path to existing folder to store show
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used -- if valid</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">lang <span>optional</span></span>
+                  <p>
+                    two letter tvdb language, en = english
+                  </p>
+                  <p>
+                    <span class="default">[</span>en<span class="default">]</span>, zh, hr, cs, da, nl, fi, fr, de, el, he, hu, it, ja, ko, no, pl, pt, ru, sl, es, sv, tr
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season_folder <span>optional</span></span>
+                  <p>
+                    0, 1
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">status <span>optional</span></span>
+                  <p>
+                    wanted, skipped, archived, ignored
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">initial <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">archive <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                  <p>
+                    <span class="default">if not provided then the config setting (default) is used</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.addnew&amp;tvdbid=101501&amp;location=S:\TV&amp;status=archived</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "name": "Ancient Aliens"
+    }, 
+    "message": "Ancient Aliens has been queued to be added", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showcache"></a>
+          <h1 class="title">
+            show.cache
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display if the poster/banner SickBeard's image cache is valid.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.cache&amp;tvdbid=224041</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "banner": 1, 
+        "poster": 0
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showdelete"></a>
+          <h1 class="title">
+            show.delete
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Delete a show from SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.delete&amp;tvdbid=80348</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Chuck has been deleted", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showgetbanner"></a>
+          <h1 class="title">
+            show.getbanner
+          </h1>
+          <div class="updated">
+            Updated on 2011-12-13<br/>
+            <span class="version">added: <b>0.2</b></span>
+          </div>
+          <div>
+            <p>
+              Retrieve the stored banner image from SickBeard's cache for a particular tvdbid.<br/>
+              <span class="default">If no image is found then the default sb banner is shown.</span>
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.getbanner&amp;tvdbid=82066</tt>
+                <div class="example">
+                    <img src="./img/82066.banner.jpg" alt=""/><br/>
+                </div>
+            </div>
+          </div>
+
+        <a name="showgetposter"></a>
+          <h1 class="title">
+            show.getposter
+          </h1>
+          <div class="updated">
+            Updated on 2011-12-13<br/>
+            <span class="version">added: <b>0.2</b></span>
+          </div>
+          <div>
+            <p>
+              Retrieve the stored poster image from SickBeard's cache for a particular tvdbid.<br/>
+              <span class="default">If no image is found then the default sb poster is shown.</span>
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.getposter&amp;tvdbid=82066</tt>
+                <div class="example">
+                    <img src="./img/82066.poster.jpg" alt=""/><br/>
+                </div>
+            </div>
+          </div>
+
+        <a name="showgetquality"></a>
+          <h1 class="title">
+            show.getquality
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Get quality settings of a show in SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.getquality&amp;tvdbid=80348</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "archive": [
+            "hdbluray", 
+            "hdwebdl"
+        ], 
+        "initial": [
+            "hdtv"
+        ]
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showpause"></a>
+          <h1 class="title">
+            show.pause
+          </h1>
+          <div class="updated">
+            Updated on 2011-12-29<br/>
+            <span class="version">added: <b>0.2</b></span>
+          </div>
+          <div>
+            <p>
+              Set a show's paused state in SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+                <div class="parameter">
+                  <span class="param">pause <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>0<span class="default">]</span>, 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.pause&amp;tvdbid=76707&amp;pause=0</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Fear Factor has been unpaused", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showrefresh"></a>
+          <h1 class="title">
+            show.refresh
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Refresh a show in SickBeard by rescanning local files.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.refresh&amp;tvdbid=82283</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "True Blood has queued to be refreshed", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+
+        <a name="showseasonlist"></a>
+          <h1 class="title">
+            show.seasonlist
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display the season list for a given show.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">sort <span>optional</span></span>
+                  <p>
+                    asc, <span class="default">[</span>desc<span class="default">]</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.seasonlist&amp;tvdbid=80621</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        4, 
+        3, 
+        2, 
+        1, 
+        0
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showseasons"></a>
+          <h1 class="title">
+            show.seasons
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display a listing of episodes for all or a given season.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season <span>optional</span></span>
+                  <p>
+                    season number
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.seasons&amp;tvdbid=182061&amp;season=2</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "1": {
+            "airdate": "2011-09-04", 
+            "name": "Something Wicked This Fae Comes", 
+            "quality": "HD TV", 
+            "status": "Downloaded"
+        }, 
+        "2": {
+            "airdate": "2011-09-11", 
+            "name": "I Fought the Fae (And the Fae Won)", 
+            "quality": "N/A", 
+            "status": "Wanted"
+        }, 
+        "3": {
+            "airdate": "2011-09-18", 
+            "name": "Scream a Little Dream", 
+            "quality": "N/A", 
+            "status": "Unaired"
+        }, 
+        "4": {
+            "airdate": "2011-09-25", 
+            "name": "Episode 4", 
+            "quality": "N/A", 
+            "status": "Unaired"
+        }, 
+        "5": {
+            "airdate": "", 
+            "name": "Episode 5", 
+            "quality": "N/A", 
+            "status": "Skipped"
+        }
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showsetquality"></a>
+          <h1 class="title">
+            show.setquality
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Set desired quality of a show in SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">initial <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">archive <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.setquality&amp;tvdbid=79488&amp;initial=sdtv|sddvd&amp;archive=sddvd|hdwebdl|hdbluray</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "30 Rock quality has been changed to Custom", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showstats"></a>
+          <h1 class="title">
+            show.stats
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display episode statistics for a given show.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.stats&amp;tvdbid=80270</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "archived": 0, 
+        "downloaded": {
+            "1080p_bluray": 0, 
+            "720p_bluray": 0, 
+            "720p_web-dl": 0, 
+            "hd_tv": 11, 
+            "sd_dvd": 13, 
+            "sd_tv": 50, 
+            "total": 74, 
+            "unknown": 0
+        }, 
+        "ignored": 0, 
+        "skipped": 1, 
+        "snatched": {
+            "1080p_bluray": 0, 
+            "720p_bluray": 0, 
+            "720p_web-dl": 0, 
+            "hd_tv": 0, 
+            "sd_dvd": 0, 
+            "sd_tv": 0, 
+            "total": 0, 
+            "unknown": 0
+        }, 
+        "total": 75, 
+        "unaired": 0, 
+        "wanted": 0
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showupdate"></a>
+          <h1 class="title">
+            show.update
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Update a show in SickBeard by pulling down information from TVDB and rescan local files.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>required</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=show.update&amp;tvdbid=95011</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Modern Family has queued to be updated", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="shows"></a>
+          <h1 class="title">
+            shows
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-26<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display all shows in SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">sort <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>id<span class="default">]</span>, name <br />
+                  </p>
+                  <p>
+                    id - sort by tvdbid <br />
+                    name - sort by show name
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">paused <span>optional</span></span>
+                    <ul>
+                        <li>0 - show only non paused</li>
+                        <li>1 - show only paused</li>
+                    </ul>
+                  <p>
+                    <span class="default">if not set then both paused and non paused are shown</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=shows</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "71489": {
+            "air_by_date": 0, 
+            "cache": {
+                "banner": 1, 
+                "poster": 1
+            }, 
+            "language": "en", 
+            "network": "USA Network", 
+            "next_ep_airdate": "", 
+            "paused": 0, 
+            "quality": "HD", 
+            "show_name": "Law &amp; Order: Criminal Intent", 
+            "status": "Ended", 
+            "tvrage_id": 4203, 
+            "tvrage_name": "Law &amp; Order: Criminal Intent"
+        }, 
+        "140141": {
+            "air_by_date": 0, 
+            "cache": {
+                "banner": 0, 
+                "poster": 0
+            }, 
+            "language": "fr", 
+            "network": "CBS", 
+            "next_ep_airdate": "2012-01-15", 
+            "paused": 0, 
+            "quality": "Any", 
+            "show_name": "Undercover Boss (US)", 
+            "status": "Continuing", 
+            "tvrage_id": 22657, 
+            "tvrage_name": "Undercover Boss"
+        }, 
+...
+        "194751": {
+            "air_by_date": 1, 
+            "cache": {
+                "banner": 1, 
+                "poster": 1
+            }, 
+            "language": "en", 
+            "network": "TBS Superstation", 
+            "next_ep_airdate": 2011-11-28", 
+            "paused": 0, 
+            "quality": "Custom", 
+            "show_name": "Conan (2010)", 
+            "status": "Continuing", 
+            "tvrage_id": 0, 
+            "tvrage_name": ""
+        }, 
+        "248261": {
+            "air_by_date": 0, 
+            "cache": {
+                "banner": 1, 
+                "poster": 1
+            }, 
+            "language": "en", 
+            "network": "Cartoon Network", 
+            "next_ep_airdate": "", 
+            "paused": 1, 
+            "quality": "Custom", 
+            "show_name": "NTSF:SD:SUV::", 
+            "status": "Continuing", 
+            "tvrage_id": 28439, 
+            "tvrage_name": "NTSF:SD:SUV"
+        }
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="showsstats"></a>
+          <h1 class="title">
+            shows.stats
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display global episode and show statistics.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=shows.stats</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "ep_downloaded": 2754, 
+        "ep_total": 2808, 
+        "shows_active": 49, 
+        "shows_total": 61
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sb"></a>
+          <h1 class="title">
+            sb
+          </h1>
+          <div class="updated">
+            Updated on 2011-12-29<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Display misc SickBeard related information. This is also the default command that the api will show if none is specified.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "api_commands": [
+            "episode", 
+            "episode.search", 
+            "episode.setstatus", 
+            "exceptions", 
+            "future", 
+            "help", 
+            "history", 
+            "history.clear", 
+            "history.trim", 
+            "logs", 
+            "sb", 
+            "sb.addrootdir", 
+            "sb.checkscheduler", 
+            "sb.deleterootdir", 
+            "sb.forcesearch", 
+            "sb.getdefaults", 
+            "sb.getmessages", 
+            "sb.getrootdirs", 
+            "sb.pausebacklog", 
+            "sb.ping", 
+            "sb.restart", 
+            "sb.searchtvdb", 
+            "sb.setdefaults", 
+            "sb.shutdown", 
+            "show", 
+            "show.addexisting", 
+            "show.addnew", 
+            "show.cache", 
+            "show.delete", 
+            "show.getquality", 
+            "show.pause", 
+            "show.refresh", 
+            "show.seasonlist", 
+            "show.seasons", 
+            "show.setquality", 
+            "show.stats", 
+            "show.update", 
+            "shows", 
+            "shows.stats"
+        ], 
+        "api_version": 0.2, 
+        "sb_version": "master"
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbaddrootdir"></a>
+          <h1 class="title">
+            sb.addrootdir
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-20<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Add a root (parent) directory (only if it is a valid location), and set as the default root dir if requested to SickBeard's config.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">location <span>required</span></span>
+                  <p>
+                    full path to a root (parent) directory of tv shows
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">default <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>0<span class="default">]</span>, 1
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.addrootdir&amp;location=C:\Temp&amp;default=1</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        {
+            "default": 0, 
+            "location": "S:\\Invalid_Location", 
+            "valid": 0
+        }, 
+        {
+            "default": 1, 
+            "location": "C:\\Temp", 
+            "valid": 1
+        }, 
+        {
+            "default": 0, 
+            "location": "D:\\SickBeard_TV", 
+            "valid": 1
+        }
+    ], 
+    "message": "Root directories updated", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbcheckscheduler"></a>
+          <h1 class="title">
+            sb.checkscheduler
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Query the SickBeard scheduler.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.checkscheduler</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "backlog_is_paused": 0, 
+        "backlog_is_running": 1, 
+        "last_backlog": "2011-09-18", 
+        "next_backlog": "2011-10-09", 
+        "next_search": "16:38:49", 
+        "search_is_running": 0
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbdeleterootdir"></a>
+          <h1 class="title">
+            sb.deleterootdir
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-20<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Delete a root (parent) directory from the root directory list in SickBeard's config.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">location <span>required</span></span>
+                  <p>
+                    full path to a root (parent) directory of tv shows
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.deleterootdir&amp;location=C:\Temp</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        {
+            "default": 0, 
+            "location": "S:\\Invalid_Location", 
+            "valid": 0
+        }, 
+        {
+            "default": 1, 
+            "location": "D:\\SickBeard_TV", 
+            "valid": 1
+        }
+    ], 
+    "message": "Root directory deleted", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbforcesearch"></a>
+          <h1 class="title">
+            sb.forcesearch
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Force the episode search early.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.forcesearch</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Episode search forced", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbgetdefaults"></a>
+          <h1 class="title">
+            sb.getdefaults
+          </h1>
+          <div class="updated">
+            Updated on 2012-01-04<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Get default settings from SickBeard's config.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.getdefaults</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "archive": [
+            "hdtv", 
+            "hdbluray", 
+            "hdwebdl"
+        ], 
+        "future_show_paused": 1, 
+        "initial": [
+            "sddvd", 
+            "sdtv"
+        ], 
+        "season_folders": 1, 
+        "status": "Skipped"
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbgetmessages"></a>
+          <h1 class="title">
+            sb.getmessages
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Get un-claimed messages from the ui.notification queue.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.getmessages</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        {
+            "message": "This is test number 2", 
+            "title": "Test 2", 
+            "type": "error"
+        }, 
+        {
+            "message": "This is test number 1", 
+            "title": "Test 1", 
+            "type": "notice"
+        }
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbgetrootdirs"></a>
+          <h1 class="title">
+            sb.getrootdirs
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-08<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Get the root (parent) directories from SickBeard's config, test if valid, and which is the default.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.getrootdirs</tt>
+                <div class="example">
+<pre>
+{
+    "data": [
+        {
+            "default": 0, 
+            "location": "S:\\Invalid_Location", 
+            "valid": 0
+        }, 
+        {
+            "default": 0, 
+            "location": "C:\\Temp", 
+            "valid": 1
+        }, 
+        {
+            "default": 1, 
+            "location": "D:\\SickBeard_TV", 
+            "valid": 1
+        }
+    ], 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbpausebacklog"></a>
+          <h1 class="title">
+            sb.pausebacklog
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Pause the backlog search.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+                <div class="parameter">
+                  <span class="param">pause <span>optional</span></span>
+                  <p>
+                    <span class="default">[</span>0<span class="default">]</span>, 1
+                  </p>
+                </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.pausebacklog&amp;pause=1</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Backlog Paused", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbping"></a>
+          <h1 class="title">
+            sb.ping
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Check to see if SickBeard is running.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.ping</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "pid": 13152
+    }, 
+    "message": "Pong", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbrestart"></a>
+          <h1 class="title">
+            sb.restart
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Restart SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.restart</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "SickBeard is restarting...", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbsearchtvdb"></a>
+          <h1 class="title">
+            sb.searchtvdb
+          </h1>
+          <div class="updated">
+            Updated on 2011-11-30<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Search TVDB for a show with a given string or tvdbid
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">name <span>optional</span></span>
+                  <p>
+                    show name
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">tvdbid <span>optional</span></span>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">lang <span>optional</span></span>
+                  <p>
+                    two letter tvdb language, en = english
+                  </p>
+                  <p>
+                    <span class="default">[</span>en<span class="default">]</span>, zh, hr, cs, da, nl, fi, fr, de, el, he, hu, it, ja, ko, no, pl, pt, ru, sl, es, sv, tr
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.searchtvdb&amp;name=Leno&amp;lang=en</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "langid": 7, 
+        "results": [
+            {
+                "first_aired": "1992-05-25", 
+                "name": "The Tonight Show with Jay Leno", 
+                "tvdbid": 70336
+            }, 
+            {
+                "first_aired": "2009-09-14", 
+                "name": "The Jay Leno Show", 
+                "tvdbid": 113921
+            }
+        ]
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbsetdefaults"></a>
+          <h1 class="title">
+            sb.setdefaults
+          </h1>
+          <div class="updated">
+            Updated on 2012-01-04<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Set default settings for SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                  <span class="param">future_show_paused <span>optional</span></span>
+                    <ul>
+                        <li>0 - exclude paused shows on coming ep</li>
+                        <li>1 - include paused shows on coming ep</li>
+                    </ul>
+                </div>
+                <div class="parameter">
+                  <span class="param">status <span>optional</span></span>
+                  <p>
+                    wanted, skipped, archived, ignored
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">season_folder <span>optional</span></span>
+                    <ul>
+                        <li>0 - do not use season folders</li>
+                        <li>1 - use season folders</li>
+                    </ul>
+                </div>
+                <div class="parameter">
+                  <span class="param">initial <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                </div>
+                <div class="parameter">
+                  <span class="param">archive <span>optional</span></span>
+                  <p>
+                    multiple types can be passed when delimited by |
+                  </p>
+                  <p>
+                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;season_folder=1&amp;initial=sdtv|sddvd</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "Saved Defaults", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+        <a name="sbshutdown"></a>
+          <h1 class="title">
+            sb.shutdown
+          </h1>
+          <div class="updated">
+            Updated on 2011-09-18<br/>
+            <span class="version">added: <b>0.1</b></span>
+          </div>
+          <div>
+            <p>
+              Shutdown SickBeard.
+            </p>
+            <div class="field text field-doc-params">
+              <h2>
+                Parameters
+              </h2>
+              <div>
+                <div class="parameter">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <h2>
+                Example Request
+              </h2>
+                <tt>/api/1234/?cmd=sb.shutdown</tt>
+                <div class="example">
+<pre>
+{
+    "data": {}, 
+    "message": "SickBeard is shutting down...", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+          </div>
+
+    </div> <!-- end api-content -->
+
+    <hr/><br/>
+    <a name="apiglobal"></a>
+    <h1 class="header">Special Commands</h1>
+        <div class="content">
+            <p>
+                There are a few special commands that when passed and set to 1, they modify how the API processor functions.<br/>
+            </p>
+
+        <a name="debug"></a>
+        <h2 class="special">debug</h2>
+        <div class="field ident">
+          <p>
+            When passing an API command generally you get back either a; success, failure, timeout, error, fatal, or denied result. <br/>
+            This keeps things predictable and nice, however if you wanted to get the traceback returned instead you would need to use debug.<br/>
+            This would allow you to test, see what the problem and fix it without having to replicate the issue manually.<br/>
+            I would not recommend using debug for any production code as this would break json processing as predicting the result would be hard.
+          </p>
+          <tt>/api/1234/?cmd=xxx&amp;debug=1</tt>
+          <div class="example">
+<pre>
+{
+xxx
+}
+</pre>
+          </div>
+        </div>
+
+        <a name="profile"></a>
+        <h2 class="special">profile</h2>
+        <div class="field ident">
+          <p>
+            The profile option when enabled attaches a profiler before the command is issued and detaches when completed. <br/>
+            This will analyze the function being called and report back various stats.<br/>
+            The results of the call dispatcher is displayed to the <b>console</b> and not the API caller.<br/>
+            For details on how to read the output visit: <a href="http://docs.python.org/library/profile.html">http://docs.python.org/library/profile.html</a>
+          </p>
+          <tt>/api/1234/?cmd=shows.stats&amp;profile=1</tt>
+          <div class="example">
+<pre>
+{
+    "data": {
+        "ep_downloaded": 2962, 
+        "ep_total": 3891, 
+        "shows_active": 48, 
+        "shows_total": 62
+    }, 
+    "message": "", 
+    "result": "success"
+
+}
+</pre>
+          <br/>
+          <b>console shows:</b>
+<pre>
+*** PROFILER RESULTS ***
+call_dispatcher (C:\Program Files (x86)\Sick-Beard\sickbeard\webapi.py:181)
+function called 1 times
+
+         471 function calls in 0.024 seconds
+
+   Ordered by: cumulative time, internal time, call count
+   List reduced from 91 to 40 due to restriction <40>
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.000    0.000    0.024    0.024 webapi.py:181(call_dispatcher)
+        1    0.000    0.000    0.024    0.024 webapi.py:2255(run)
+        2    0.000    0.000    0.023    0.012 db.py:93(select)
+        2    0.000    0.000    0.023    0.012 db.py:57(action)
+        2    0.023    0.011    0.023    0.011 {method 'execute' of 'sqlite3.Connection' objects}
+        5    0.000    0.000    0.001    0.000 logger.py:178(log)
+        5    0.000    0.000    0.001    0.000 logger.py:140(log)
+        5    0.000    0.000    0.001    0.000 __init__.py:1110(debug)
+        5    0.000    0.000    0.000    0.000 __init__.py:1231(_log)
+        1    0.000    0.000    0.000    0.000 {method 'close' of 'sqlite3.Connection' objects}
+        5    0.000    0.000    0.000    0.000 __init__.py:1252(handle)
+        1    0.000    0.000    0.000    0.000 db.py:48(__init__)
+        5    0.000    0.000    0.000    0.000 __init__.py:1284(callHandlers)
+        5    0.000    0.000    0.000    0.000 __init__.py:731(handle)
+        1    0.000    0.000    0.000    0.000 {_sqlite3.connect}
+        5    0.000    0.000    0.000    0.000 __init__.py:917(emit)
+        5    0.000    0.000    0.000    0.000 __init__.py:830(emit)
+        5    0.000    0.000    0.000    0.000 __init__.py:1218(makeRecord)
+        5    0.000    0.000    0.000    0.000 __init__.py:242(__init__)
+        5    0.000    0.000    0.000    0.000 __init__.py:708(format)
+        5    0.000    0.000    0.000    0.000 __init__.py:451(format)
+        5    0.000    0.000    0.000    0.000 __init__.py:1531(getLogger)
+        5    0.000    0.000    0.000    0.000 __init__.py:994(getLogger)
+        5    0.000    0.000    0.000    0.000 __init__.py:823(flush)
+        5    0.000    0.000    0.000    0.000 __init__.py:1197(findCaller)
+        5    0.000    0.000    0.000    0.000 {method 'flush' of 'file' objects}
+        5    0.000    0.000    0.000    0.000 ntpath.py:196(basename)
+        5    0.000    0.000    0.000    0.000 {method 'write' of 'file' objects}
+        5    0.000    0.000    0.000    0.000 ntpath.py:164(split)
+       10    0.000    0.000    0.000    0.000 threading.py:115(acquire)
+        5    0.000    0.000    0.000    0.000 __init__.py:404(formatTime)
+        2    0.000    0.000    0.000    0.000 {method 'fetchall' of 'sqlite3.Cursor' objects}
+       10    0.000    0.000    0.000    0.000 threading.py:135(release)
+        5    0.000    0.000    0.000    0.000 ntpath.py:189(splitext)
+        5    0.000    0.000    0.000    0.000 __init__.py:210(_acquireLock)
+        5    0.000    0.000    0.000    0.000 genericpath.py:85(_splitext)
+        1    0.000    0.000    0.000    0.000 db.py:35(dbFilename)
+        5    0.000    0.000    0.000    0.000 ntpath.py:42(normcase)
+        5    0.000    0.000    0.000    0.000 __init__.py:695(release)
+        5    0.000    0.000    0.000    0.000 __init__.py:688(acquire)
+</pre>
+          </div>
+        </div>
+
+        <a name="help"></a>
+        <h2 class="special">help</h2>
+        <div class="field ident">
+          <p>
+            When set this will overide running the command and show the command specific help instead. <br/>
+            This will list the required and optinal parameters along with their allowed values.<br/>
+          </p>
+          <tt>/api/1234/?cmd=sb.setdefaults&amp;help=1</tt>
+          <div class="example">
+<pre>
+{
+    "data": {
+        "optionalPramameters": {
+            "archive": {
+                "allowedValues": [
+                    "sddvd", 
+                    "hdtv", 
+                    "hdwebdl", 
+                    "hdbluray", 
+                    "fullhdbluray", 
+                    "unknown", 
+                    "any"
+                ], 
+                "defaultValue": null, 
+                "desc": "archive quality for the show"
+            }, 
+            "initial": {
+                "allowedValues": [
+                    "sdtv", 
+                    "sddvd", 
+                    "hdtv", 
+                    "hdwebdl", 
+                    "hdbluray", 
+                    "fullhdbluray", 
+                    "unknown", 
+                    "any"
+                ], 
+                "defaultValue": null, 
+                "desc": "initial quality for the show"
+            }, 
+            "season_folder": {
+                "allowedValues": [
+                    0, 
+                    1
+                ], 
+                "defaultValue": null, 
+                "desc": "use season subfolders within the show directory"
+            }, 
+            "status": {
+                "allowedValues": [
+                    "wanted", 
+                    "skipped", 
+                    "archived", 
+                    "ignored"
+                ], 
+                "defaultValue": null, 
+                "desc": "status of missing episodes"
+            }
+        }, 
+        "requiredParameters": {}
+    }, 
+    "message": "No description available", 
+    "result": "success"
+}
+</pre>
+          </div>
+        </div>
+
+            <br/>
+        </div>
+
+    <hr/><br/>
+    <a name="apibuilder"></a>
+    <h1 class="header">SickBeard API Builder</h1>
+        <div class="content">
+            <p>
+                The API Builder is a JavaScript based tool that uses a series of linked drop down list to allow the user to quickly and easily select from a pre-defined set of commands with corresponding options to try out. 
+                Upon submission of said options it will generate a URL string and also send the generated query to the SickBeard API code to process, with the processed result being returned back in the same window below. 
+                This allows the user to generate some data without needing to know any programming knowledge. Note that a valid API key must first be generated, this can be done from the (Config > General) section at the bottom. 
+                The API accesses the information the same way as the actual SickBeard program does but is streamlined to be returned as JSON (JavaScript Object Notation) in a consistent manner that should be easy to understand and parse. 
+                Once the key is created, launch the API Builder and try it out.
+            </p>
+
+            <p>
+                Here is an example of the API Builder using the <b>Shows</b> command but limiting the results to tvshows that is in <b>my</b> database marked as <b>paused</b>:
+            </p>
+
+            <img src="./img/sb-api_builder.png" alt="API Builder" style="border-top: 1px solid #666699;"/>
+
+            <p>
+                The api data URL constructed CAN be written in several different valid formats/order with all returning the same output.<br/>
+                This adds flexibility for programmers however we do suggest using the provided format that the API Builder generates as we feel it is the most logical and least error prone when starting out.<br/>
+            </p>
+            
+            <p>
+                When defining the arguments/options/commands in the post format the object key must be in <b>lower case</b>; 'cmd', 'tvdbid', 'apikey' as 'cMd' would return unexpected results.
+                While we try to support true/false/TRUE/FALSE as acceptable input, we recommend you use the Boolean values of <b>1</b> for true and <b>0</b> for false.
+                As this is much more efficient and less error prone to code for.
+            </p>
+
+            <p>
+                Note that all the examples below are all requesting the SAME command/option but written in the different formats.<br/>
+                Similar fields have been color coded to help with the comparison of URL formats. ( <span class="api">apikey</span> <span class="cmd">command</span> <span class="arg">arguments</span> <span class="opt">option</span> )
+            </p>
+
+            <ul>
+                <li><b>shorthand format:</b> <br/>(the order must be followed! as each segment is inferred)
+                    <ul>
+                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
+                    </ul>
+                </li>
+                <li><b>shorthand format with command explicitly defined:</b>
+                    <ul>
+                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="cmd">episode</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
+                    </ul>
+                </li>
+                <li><b>shorthand can be converted into a traditional serialized post/get format:</b> <br/>(you must define the command but the options may be placed in any order):
+                    <ul>
+                        <li class="none">/api/?cmd=<span class="cmd">episode</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
+                    </ul>
+                </li>
+                <li><b>and finally you can mix-n-match the shorthand and post format:</b> <br/>(if using shorthand the apikey must be first if not explicitly defined otherwise the 'command' will be wrongly used as the apikey)
+                    <ul>
+                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/?cmd=<span class="cmd">episode</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
+                        <li class="none">/api/<span class="cmd">episode</span>/?tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span></li>
+                    </ul>
+                </li>
+            </ul>
+        <br/>
+        </div>
+
+    <hr/><br/>
+    <a name="apiadvanced"></a>
+    <h1 class="header">Advanced API Use</h1>
+        <div class="content">
+            <p>
+                Besides being able to write the URL in different formats you may also combine commands<span style="color: #aa0000;">*</span> together in one request, this is called chaining. <br/>
+                This can be useful in the mobile environment when the functionality of saving a request outweighs the complexity of doing so.<br/>
+                <span style="color: #aa0000;">Show.GetBanner and Show.GetPoster can not be used in chaining due the commands returning an image rather than JSON.</span>
+            </p>
+            
+            <p>
+                Delimitate each command by <b>|</b>. Each command passed will be used as your object key to reference.<br/>
+            </p>
+
+            <p>
+                Each command will be returned as its own subset, with the command name as the object key along with retaining its result status. The chained group also has its own result status as well.
+            </p>
+
+            <br/>
+
+            <p>
+                So let us pretend we wanted to get the output of the commands: <span class="cmd">sb.getdefaults</span>, <span class="cmd">sb.getrootdirs</span>, and <span class="cmd">logs</span> (with the <span class="opt">min_level</span> set to <span class="arg">error</span>).<br/>
+                You could issue 3 separate commands and then you would have to parse/process 3 separate requests. Or you could chain all these in 1 command.
+            </p>
+            <div class="field">
+              <h2>
+                Chaining Example (using the command name as the returned object key)
+              </h2>
+                <tt>/api/1234/?cmd=sb.getdefaults|sb.getrootdirs|logs&amp;min_level=error</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "logs": {
+            "data": [
+                "Nov-16 10:22:09 ERROR    SEARCHQUEUE-RSS-SEARCH :: No NZB/Torrent providers found or enabled in the sickbeard config. Please check your settings."
+            ], 
+            "message": "", 
+            "result": "success"
+        }, 
+        "sb.getdefaults": {
+            "data": {
+                "archive": [
+                    "fullhdbluray"
+                ], 
+                "initial": [
+                    "sddvd"
+                ], 
+                "season_folders": 0, 
+                "status": "Ignored"
+            }, 
+            "message": "", 
+            "result": "success"
+        }, 
+        "sb.getrootdirs": {
+            "data": [
+                {
+                    "default": 0, 
+                    "location": "S:\\TV", 
+                    "valid": 1
+                }, 
+                {
+                    "default": 1, 
+                    "location": "I:\\PUB\\TV1", 
+                    "valid": 0
+                }, 
+                {
+                    "default": 0, 
+                    "location": "D:\\Sickbeard_TV", 
+                    "valid": 1
+                }
+            ], 
+            "message": "", 
+            "result": "success"
+        }
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+
+            <p>
+                If you need to call the same command but pass different options you can do this by:<br/>
+                Delimitate each command by <b>|</b> as done before.<br/>
+                Append a '_' along with a unique string/number as a suffix to each similar command.<br/>
+                The <b>_?</b> (? being a unique string/number) will used as the object key to reference for each command subset inside.<br/>
+                Each argument/option must be explicitly defined in the format of <b>command_?.</b>option, however similar arguments/options may be defined without the specific command_? as it will be used globally for each command.
+            </p>
+
+            <p>
+                So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">5</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">6</span>).<br/>
+                Since the tvdbid and season are the same we can just use leave them as they are so each command uses them, however if we could explicitly define them for each command that would be fine as well.
+            </p>
+            <div class="field">
+              <h2>
+                Chaining Example (similar commands, using global options and an uniquely defined option)
+              </h2>
+                <tt>/api/1234/?cmd=episode_1234|episode_6&amp;tvdbid=79349&amp;season=6&amp;episode_1234.episode=5&amp;episode_6.episode=6</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "episode": {
+            "1234": {
+                "data": {
+                    "airdate": "2011-10-30", 
+                    "description": "With the help of his newfound friend Brother Sam, Dexter wonders if there is light within him to counter the darkness, while the search for the Doomsday Killers takes him in a new direction; Batista and Quinn pay a visit to the university where Professor Gellar taught; due to departmental regulations following the shooting, Debra is forced to begin therapy.", 
+                    "location": "Season 06\\Dexter.S06E05.HD.TV.mkv", 
+                    "name": "The Angel of Death", 
+                    "quality": "HD TV", 
+                    "status": "Downloaded"
+                }, 
+                "message": "", 
+                "result": "success"
+            }, 
+            "6": {
+                "data": {
+                    "airdate": "2011-11-06", 
+                    "description": "Dexter is caught up in a very personal case that awakens the needs of his Dark Passenger; Debra feels overwhelmed by her new Lieutenant duties, made all the more complicated when she finds out Quinn slept with a witness in the Doomsday case.", 
+                    "location": "Season 06\\Dexter.S06E06.HD.TV.mkv", 
+                    "name": "Just Let Go", 
+                    "quality": "HD TV", 
+                    "status": "Downloaded"
+                }, 
+                "message": "", 
+                "result": "success"
+            }
+        }
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+
+            <p>
+                So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">1</span>, <span class="opt">episode</span> set to <span class="arg">1</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">1</span> and <span class="opt">full_path</span> set to <span class="arg">1</span>).<br/>
+                Since the tvdbid and episode are the same we can just use leave them as they are and define the episode option uniquely for each similar command.
+            </p>
+            <div class="field">
+              <h2>
+                Chaining Example (similar commands, using global options and an uniquely defined option -- more advanced)
+              </h2>
+                <tt>/api/1234/?cmd=episode_s01e01|episode_s06e01&amp;episode_s01e01.season=1&amp;tvdbid=79349&amp;episode=1&amp;episode_s06e01.season=6&amp;episode_s06e01.full_path=1</tt>
+                <div class="example">
+<pre>
+{
+    "data": {
+        "episode": {
+            "s01e01": {
+                "data": {
+                    "airdate": "2006-10-01", 
+                    "description": "Dexter is a forensic expert in blood patterns who works with the Miami Police Department. He is also a serial killer, who kills people that the police can't bring to justice. He has to hide his double life from his sister, his girlfriend and his co-workers. He is intrigued by a killer who has found a way to kill girls without leaving blood behind.", 
+                    "location": "Dexter.S01.DVDRip.XviD-SAiNTS\\Dexter.S01E01.Dexter.DVDRip.XviD-SAiNTS.avi", 
+                    "name": "Dexter", 
+                    "quality": "SD DVD", 
+                    "status": "Downloaded"
+                }, 
+                "message": "", 
+                "result": "success"
+            }, 
+            "s06e01": {
+                "data": {
+                    "airdate": "2011-10-02", 
+                    "description": "Dexter shows up at his 20th high-school reunion with the intention of confronting the former prom king. Elsewhere, an investigation into a heinous murder with religious overtones leads Dexter to ponder spiritual matters and wonder about his son's legacy. And an unexpected situation results in Debra becoming a hero.", 
+                    "location": "S:\\TV\\Dexter\\Season 06\\Dexter.S06E01.HD.TV.mkv", 
+                    "name": "Those Kinds of Things", 
+                    "quality": "HD TV", 
+                    "status": "Downloaded"
+                }, 
+                "message": "", 
+                "result": "success"
+            }
+        }
+    }, 
+    "message": "", 
+    "result": "success"
+}
+</pre>
+                </div>
+            </div>
+        </div>
+
+    <hr/><br/>
+    <a name="apidisclaimer"></a>
+    <h1 class="header">Disclaimer</h1>
+        <div class="content">
+            <p>
+                SickBeard is currently in 'alpha' state and the development is far from stable. <br/>
+                We do not anticipate the API breaking upon a new release, however, any modifications to the database may require a code update for the API module for it to fully take advantage of the change. 
+                For example there is a future branch of SickBeard where it will store the file size and original scene name of the release downloaded. 
+                When this update gets merged to source the API will not display this data until the affected API commands are updated.
+            </p>
+            <br/>
+        </div>
+
+    </div>
+  </div> <!-- end container -->
+  </body>
+</html>
