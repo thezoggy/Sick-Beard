@@ -32,6 +32,7 @@ div.field h2{margin-bottom:0.5em;}
 #api-overview .views-field-body{width:70%;text-transform:lowercase;}
 div.example{background-color:#F8F4E7;border:1px solid #E4E0D3;color:#333;overflow-x:auto;margin:0 0 6em;padding:5px;}
 div.example pre{margin-left:15px;}
+tt { color: #990000; font-size: 14px; }
 span.default{color:#00C;}
 li.none{list-style:none;}
 span.api{color:#A00;}
