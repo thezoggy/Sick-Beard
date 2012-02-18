@@ -7,12 +7,10 @@
 
     <link rel="stylesheet" type="text/css" href="./css/normalize.css"/>
     <link rel="stylesheet" type="text/css" href="./css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="./css/prettify.css"/>
 
     <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
     <script type="text/javascript" src="./js/jquery.scrolltopcontrol-1.1.js"></script>
     <script type="text/javascript" src="./js/jquery.bookmarkscroll.js"></script>
-    <script type="text/javascript" src="./js/prettify.js"></script>
 
   </head>
   <body onload="prettyPrint()">
@@ -495,7 +493,7 @@
               </h2>
                 <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=3&amp;episode=1&amp;full_path=1</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "airdate": "2011-07-28", 
@@ -556,7 +554,7 @@
               </h2>
                 <tt>/api/1234/?cmd=episode.search&amp;tvdbid=194751&amp;season=2011&amp;episode=105</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Unable to find episode", 
@@ -616,7 +614,7 @@
               </h2>
                 <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=82374&amp;season=5&amp;episode=1&amp;status=wanted</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Episode status changed to Wanted, and backlog started", 
@@ -656,7 +654,7 @@
               </h2>
                 <tt>/api/1234/?cmd=exceptions&amp;tvdbid=248261</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         "National Terrorism Strike Force: San Diego: Sport Utility Vehicle", 
@@ -727,7 +725,7 @@
               </h2>
                 <tt>/api/1234/?cmd=future&amp;sort=date&amp;type=today|missed</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "missed": [
@@ -827,7 +825,7 @@
               </h2>
                 <tt>/api/1234/?cmd=history&amp;limit=2</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         {
@@ -889,7 +887,7 @@
               </h2>
                 <tt>/api/1234/?cmd=history.clear</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "History Cleared", 
@@ -926,7 +924,7 @@
               </h2>
                 <tt>/api/1234/?cmd=history.trim</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Removed history entries greater than 30 days old", 
@@ -971,7 +969,7 @@
               </h2>
                 <tt>/api/1234/?cmd=logs&amp;min_level=info</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: No new cache images needed, not retrieving new ones", 
@@ -1028,7 +1026,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show&amp;tvdbid=79349</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "air_by_date": 0, 
@@ -1148,7 +1146,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;season_folder=1&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "name": "Chuck"
@@ -1252,7 +1250,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.addnew&amp;tvdbid=101501&amp;location=S:\TV&amp;status=archived</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "name": "Ancient Aliens"
@@ -1296,7 +1294,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.cache&amp;tvdbid=224041</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "banner": 1, 
@@ -1341,7 +1339,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.delete&amp;tvdbid=80348</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Chuck has been deleted", 
@@ -1451,7 +1449,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.getquality&amp;tvdbid=80348</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "archive": [
@@ -1508,7 +1506,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.pause&amp;tvdbid=76707&amp;pause=0</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Fear Factor has been unpaused", 
@@ -1550,7 +1548,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.refresh&amp;tvdbid=82283</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "True Blood has queued to be refreshed", 
@@ -1599,7 +1597,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.seasonlist&amp;tvdbid=80621</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         4, 
@@ -1653,7 +1651,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.seasons&amp;tvdbid=182061&amp;season=2</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "1": {
@@ -1742,7 +1740,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.setquality&amp;tvdbid=79488&amp;initial=sdtv|sddvd&amp;archive=sddvd|hdwebdl|hdbluray</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "30 Rock quality has been changed to Custom", 
@@ -1782,7 +1780,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.stats&amp;tvdbid=80270</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "archived": 0, 
@@ -1851,7 +1849,7 @@
               </h2>
                 <tt>/api/1234/?cmd=show.update&amp;tvdbid=95011</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Modern Family has queued to be updated", 
@@ -1907,7 +1905,7 @@
               </h2>
                 <tt>/api/1234/?cmd=shows</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "71489": {
@@ -2011,7 +2009,7 @@
               </h2>
                 <tt>/api/1234/?cmd=shows.stats</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "ep_downloaded": 2754, 
@@ -2054,7 +2052,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "api_commands": [
@@ -2146,7 +2144,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.addrootdir&amp;location=C:\Temp&amp;default=1</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         {
@@ -2200,7 +2198,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.checkscheduler</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "backlog_is_paused": 0, 
@@ -2249,7 +2247,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.deleterootdir&amp;location=C:\Temp</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         {
@@ -2298,7 +2296,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.forcesearch</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Episode search forced", 
@@ -2336,7 +2334,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.getdefaults</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "archive": [
@@ -2387,7 +2385,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.getmessages</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         {
@@ -2436,7 +2434,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.getrootdirs</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": [
         {
@@ -2492,7 +2490,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.pausebacklog&amp;pause=1</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Backlog Paused", 
@@ -2530,7 +2528,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.ping</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "pid": 13152
@@ -2570,7 +2568,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.restart</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "SickBeard is restarting...", 
@@ -2627,7 +2625,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.searchtvdb&amp;name=Leno&amp;lang=en</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "langid": 7, 
@@ -2715,7 +2713,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;season_folder=1&amp;initial=sdtv|sddvd</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "Saved Defaults", 
@@ -2753,7 +2751,7 @@
               </h2>
                 <tt>/api/1234/?cmd=sb.shutdown</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {}, 
     "message": "SickBeard is shutting down...", 
@@ -2785,7 +2783,7 @@
           </p>
           <tt>/api/1234/?cmd=xxx&amp;debug=1</tt>
           <div class="example">
-<pre class="prettyprint">
+<pre>
 {
 xxx
 }
@@ -2804,7 +2802,7 @@ xxx
           </p>
           <tt>/api/1234/?cmd=shows.stats&amp;profile=1</tt>
           <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "ep_downloaded": 2962, 
@@ -2819,7 +2817,7 @@ xxx
 </pre>
           <br/>
           <b>console shows:</b>
-<pre class="prettyprint">
+<pre>
 *** PROFILER RESULTS ***
 call_dispatcher (C:\Program Files (x86)\Sick-Beard\sickbeard\webapi.py:181)
 function called 1 times
@@ -2883,7 +2881,7 @@ function called 1 times
           </p>
           <tt>/api/1234/?cmd=sb.setdefaults&amp;help=1</tt>
           <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "optionalPramameters": {
@@ -3035,7 +3033,7 @@ function called 1 times
               </h2>
                 <tt>/api/1234/?cmd=sb.getdefaults|sb.getrootdirs|logs&amp;min_level=error</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "logs": {
@@ -3106,7 +3104,7 @@ function called 1 times
               </h2>
                 <tt>/api/1234/?cmd=episode_1234|episode_6&amp;tvdbid=79349&amp;season=6&amp;episode_1234.episode=5&amp;episode_6.episode=6</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "episode": {
@@ -3153,7 +3151,7 @@ function called 1 times
               </h2>
                 <tt>/api/1234/?cmd=episode_s01e01|episode_s06e01&amp;episode_s01e01.season=1&amp;tvdbid=79349&amp;episode=1&amp;episode_s06e01.season=6&amp;episode_s06e01.full_path=1</tt>
                 <div class="example">
-<pre class="prettyprint">
+<pre>
 {
     "data": {
         "episode": {
