@@ -1,357 +1,359 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>SickBeard API</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/normalize.css"/>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.css"/>
     <link rel="stylesheet" type="text/css" href="./css/main.css"/>
 
-    <script type="text/javascript" src="./js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="./js/jquery.scrolltopcontrol-1.1.js"></script>
     <script type="text/javascript" src="./js/jquery.bookmarkscroll.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
 
   </head>
   <body>
   <a name="top"></a>
 
-  <div id="container">
+  <div class="container">
 
-    <a name="apioverview"></a>
-    <h1 class="header">
-        <img src="./img/sickbeard.png" alt="API Overview"/><br/>
+    <h1 class="page-header title">
+      <img src="./img/sickbeard.png" alt="SickBeard API" />
     </h1>
-    <div id="api-overview">
-        <div class="content">
-          <table class="views-table">
+
+    <div class="row">
+      <div class="span12">
+
+          <table class="table table-striped" id="api-overview">
             <thead>
               <tr>
-                <th class="views-field-title">
+                <th class="views-field-title span4">
                   Command
                 </th>
-                <th class="views-field-body">
+                <th class="views-field-body span8">
                   Description
                 </th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#episode">episode</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Displays the information of a specific episode.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#episodesearch">episode.search</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Initiate a manual search for a specific episode.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#episodesetstatus">episode.setstatus</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Set the status of an episode.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#exceptions">exceptions</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display scene exceptions for all or a given show.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#future">future</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display the upcoming episodes.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#history">history</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display SickBeard's downloaded/snatched history.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#historyclear">history.clear</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Clear SickBeard's history.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#historytrim">history.trim</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Trim SickBeard's history.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#logs">logs</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   View SickBeard's log.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#show">show</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display information for a given shown.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showaddexisting">show.addexisting</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Add a show in SickBeard with an existing folder.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showaddnew">show.addnew</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Add a show in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showcache">show.cache</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display if the poster/banner SickBeard's image cache is valid.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showdelete">show.delete</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Delete a show from SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showgetbanner">show.getbanner</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Retrieve the shows banner from SickBeard's cache.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showgetposter">show.getposter</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Retrieve the shows poster from SickBeard's cache.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showgetquality">show.getquality</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Get quality settings for a show in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showpause">show.pause</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Set a show's paused state in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showrefresh">show.refresh</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Refresh a show in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showseasonlist">show.seasonlist</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display the season list for a given show.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showseasons">show.seasons</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display a listing of episodes for all or a given season.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showsetquality">show.setquality</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Set quality for a show in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showstats">show.stats</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display episode statistics for a given show.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showupdate">show.update</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Update a show in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#shows">shows</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display all shows in SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#showsstats">shows.stats</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display the global episode and show statistics.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sb">sb</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display misc SickBeard related information.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbaddrootdir">sb.addrootdir</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Add a root (parent) directory.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbcheckscheduler">sb.checkscheduler</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Query the SickBeard scheduler.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbdeleterootdir">sb.deleterootdir</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Delete a root (parent) directory.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbforcesearch">sb.forcesearch</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Force the episode search early.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbgetdefaults">sb.getdefaults</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Get SickBeard user defaults.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbgetmessages">sb.getmessages</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Get messages from the notification queue.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbgetrootdirs">sb.getrootdirs</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Get root (parent) directories set by user.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbpausebacklog">sb.pausebacklog</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Pause the backlog search.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbping">sb.ping</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Check to see if SickBeard is running.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbrestart">sb.restart</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Restart SickBeard.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbsearchtvdb">sb.searchtvdb</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Search TVDB for a show name or tvdbid.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbsetdefaults">sb.setdefaults</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Set SickBeard user defaults.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#sbshutdown">sb.shutdown</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Shutdown SickBeard.
                 </td>
               </tr>
@@ -359,39 +361,39 @@
 
             <thead>
               <tr>
-                <th style="border-bottom: 0;">&nbsp;</th>
-                <th style="border-bottom: 0;">&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
               </tr>
               <tr>
-                <th class="views-field-title">
+                <th style="border-top: 0;">
                   Special Commands
                 </th>
-                <th class="views-field-body">
+                <th style="border-top: 0;">
                   Description
                 </th>
               </tr>
             </thead>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#debug">debug</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display cherrypy's traceback if thrown.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#profile">profile</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Call profiler on API command and output to console.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#help">help</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Display the help for the requested API command.
                 </td>
               </tr>
@@ -399,100 +401,199 @@
 
             <thead>
               <tr>
-                <th style="border-bottom: 0;">&nbsp;</th>
-                <th style="border-bottom: 0;">&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
               </tr>
               <tr>
-                <th class="views-field-title">
+                <th style="border-top: 0;">
                   Miscellaneous
                 </th>
-                <th class="views-field-body">
+                <th style="border-top: 0;">
                   Description
                 </th>
               </tr>
             </thead>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#apibuilder">api builder</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   SickBeard's API Builder tool.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#apiadvanced">advanced api</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Advanced usage of the API.
                 </td>
               </tr>
               <tr>
-                <td class="views-field-title">
+                <td>
                   <a href="#apidisclaimer">disclaimer</a>
                 </td>
-                <td class="views-field-body">
+                <td>
                   Disclaimer about the API.
                 </td>
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-      
-    <br/>
-    <div id="api-content">
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (api-toc) -->
+
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="api-changelog"></a>
+            <h1 class="header">
+              Change Log
+            </h1>
+            <p>
+              This section is to provider developers a quick overview on SB API changes.<br/>
+            </p>
+            <div id="changelog" class="accordion">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a href="#v02" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
+                    SickBeard API v0.2
+                    <span class="pull-right">01/30/2012</span>
+                  </a>
+                </div>
+                <div class="accordion-body in collapse" id="v02">
+                  <div class="accordion-inner">
+                    <p>
+                      Minor tweaks and a few new commands. Build 492
+                    </p>
+                    <h4>
+                      Added Commands
+                    </h4>
+                    <ul>
+                      <li><a href="#showgetbanner">show.getbanner</a></li>
+                      <li><a href="#showgetposter">show.getposter</a></li>
+                      <li><a href="#showpause">show.pause</a></li>
+                    </ul>
+                    <h4>
+                      Modified Commands
+                    </h4>
+                    <ul>
+                      <li><a href="#future">future</a></li>
+                        <li class="detail">Added support to show or not show paused eps in the coming eps section of the API</li>
+                      <li><a href="#sbsetdefaults">sb.setdefaults</a></li>
+                        <li class="detail">Added the ability to get/set the comping ep display default setting with regards to paused shows (future_show_paused)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a href="#v01" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
+                    SickBeard API v0.1
+                    <span class="pull-right">12/06/2011</span>
+                  </a>
+                </div>
+                <div class="accordion-body collapse" id="v01">
+                  <div class="accordion-inner">
+                    Initial API design, was included to the 491 build.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br/>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (api-changelog) -->
+
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="episode"></a>
-          <h1 class="title">
-            episode
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              episode
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Displays the information of a specific episode matching the corresponding tvdbid, season and episode number.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Displays the information of a specific episode matching the corresponding tvdbid, season and episode number.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     season number
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">episode <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     episode number
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">full_path <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     <span class="default">[</span>0<span class="default">]</span>, 1
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=3&amp;episode=1&amp;full_path=1</tt>
-                <div class="example">
-<pre>
+                  <ul>
+                    <li>0 - show only the filename for the location</li>
+                    <li>1 - show full path for location</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=3&amp;episode=1&amp;full_path=1</tt>
+<pre class="example">
 {
     "data": {
         "airdate": "2011-07-28", 
@@ -506,154 +607,227 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (episode) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="episodesearch"></a>
-          <h1 class="title">
-            episode.search
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              episode.search
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Initiate a search for a specific episode matching the corresponding tvdbid, season and episode number.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Initiate a search for a specific episode matching the corresponding tvdbid, season and episode number.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     season number
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">episode <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     episode number
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=episode.search&amp;tvdbid=194751&amp;season=2011&amp;episode=105</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=episode.search&amp;tvdbid=194751&amp;season=2011&amp;episode=105</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Unable to find episode", 
     "result": "failure"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (episode.search) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="episodesetstatus"></a>
-          <h1 class="title">
-            episode.setstatus
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              episode.setstatus
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2012-06-10<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Set the status of an epsiode.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Set the status of an epsiode.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     season number
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">episode <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     episode number
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">status <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     wanted, skipped, archived, ignored
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=82374&amp;season=5&amp;episode=1&amp;status=wanted</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=82374&amp;season=5&amp;episode=1&amp;status=wanted</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Episode status changed to Wanted, and backlog started", 
     "result": "success"
 }
 </pre>
-                </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (episode.setstatus) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="exceptions"></a>
+          <div class="page-header">
+            <h1 class="command">
+              exceptions
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
-        <a name="exceptions"></a>
-          <h1 class="title">
-            exceptions
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Display scene exceptions for all or a given show.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display scene exceptions for all or a given show.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=exceptions&amp;tvdbid=248261</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=exceptions&amp;tvdbid=248261</tt>
+<pre class="example">
 {
     "data": [
         "National Terrorism Strike Force: San Diego: Sport Utility Vehicle", 
@@ -665,66 +839,92 @@
     "result": "success"
 }
 </pre>
-                </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (exceptions) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="future"></a>
+          <div class="page-header">
+            <h1 class="command">
+              future
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2012-01-04<br/>
+              <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
-        <a name="future"></a>
-          <h1 class="title">
-            future
-          </h1>
-          <div class="updated">
-            Updated on 2012-01-04<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Display the upcoming episodes for the shows currently added in the users' database.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display the upcoming episodes for the shows currently added in the users' database.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">sort <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     <span class="default">[</span>date<span class="default">]</span>, network, name
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">type <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
-                    <ul>
-                        <li>missed - show's date is older than today</li>
-                        <li>today - show's date is today</li>
-                        <li>soon - show's date greater than today but less than a week</li>
-                        <li>later - show's date greater than a week</li>
-                    </ul>
+                  <ul>
+                      <li>missed - show's date is older than today</li>
+                      <li>today - show's date is today</li>
+                      <li>soon - show's date greater than today but less than a week</li>
+                      <li>later - show's date greater than a week</li>
+                  </ul>
                   <p>
                     <span class="default">[</span>missed|today|soon|later<span class="default">]</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">paused <span>optional</span></span>
-                    <ul>
-                        <li>0 - do not show paused</li>
-                        <li>1 - show paused</li>
-                    </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - do not show paused</li>
+                    <li>1 - show paused</li>
+                  </ul>
                   <p>
-                    <span class="default">if not set then use the user's default setting in SickBeard (future_show_paused)</span>
+                    <span class="default">if not set then the user's default setting in SickBeard is used (future_show_paused)</span>
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=future&amp;sort=date&amp;type=today|missed</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=future&amp;sort=date&amp;type=today|missed</tt>
+<pre class="example">
 {
     "data": {
         "missed": [
@@ -781,50 +981,73 @@
     "result": "success"
 }
 </pre>
-                </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (future) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="history"></a>
+          <div class="page-header">
+            <h1 class="command">
+              history
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
-        <a name="history"></a>
-          <h1 class="title">
-            history
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Display SickBeard's downloaded/snatched history.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display SickBeard's downloaded/snatched history.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">limit <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     <span class="default">[</span>100<span class="default">]</span>
                   </p>
                   <p>
-                    <span class="warning">There is an artificial max limit of 100 currently imposed for the limit command to ensure performance.</span>
+                    <div class="alert alert-warning">There is an artificial max limit of 100 currently imposed for the limit command to ensure performance.</div>
+                    Use 0 if you want to see all history, note this could cause heavy cpu/disk usage for the user as well as cause your application to time out while it's waiting for the data.<br/>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">type <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     downloaded, snatched
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=history&amp;limit=2</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=history&amp;limit=2</tt>
+<pre class="example">
 {
     "data": [
         {
@@ -856,119 +1079,168 @@
     "result": "success"
 }
 </pre>
-                </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (history) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="historyclear"></a>
+          <div class="page-header">
+            <h1 class="command">
+              history.clear
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
-        <a name="historyclear"></a>
-          <h1 class="title">
-            history.clear
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Clear SickBeard's history.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=history.clear</tt>
-                <div class="example">
-<pre>
+          <p>
+            Clear SickBeard's history.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=history.clear</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "History Cleared", 
     "result": "success"
 }
 </pre>
-                </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (history.clear) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="historytrim"></a>
+          <div class="page-header">
+            <h1 class="command">
+              history.trim
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
-        <a name="historytrim"></a>
-          <h1 class="title">
-            history.trim
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Trim SickBeard's history by removing entries greater than 30 days old.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=history.trim</tt>
-                <div class="example">
-<pre>
+          <p>
+            Trim SickBeard's history by removing entries greater than 30 days old.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=history.trim</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Removed history entries greater than 30 days old", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (history.trim) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="logs"></a>
-          <h1 class="title">
-            logs
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              logs
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              View SickBeard's log.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            View SickBeard's log.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">min_level <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     debug, info, warning, <span class="default">[</span>error<span class="default">]</span>
                   </p>
                   <p>
                     The minimum level classification of log entries to show, with each level inherting its above level.
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=logs&amp;min_level=info</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=logs&amp;min_level=info</tt>
+<pre class="example">
 {
     "data": [
         "Aug-10 02:57:36 INFO     SHOWQUEUE-REFRESH :: No new cache images needed, not retrieving new ones", 
@@ -990,42 +1262,59 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (logs) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="show"></a>
-          <h1 class="title">
-            show
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-26<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-26<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display information for a given show
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display information for a given show.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show&amp;tvdbid=79349</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show&amp;tvdbid=79349</tt>
+<pre class="example">
 {
     "data": {
         "air_by_date": 0, 
@@ -1071,50 +1360,80 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showaddexisting"></a>
-          <h1 class="title">
-            show.addexisting
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-30<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.addexisting
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-30<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Add a show to SickBeard using an existing folder.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Add a show to SickBeard using an existing folder.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">location <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     path to existing show folder
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season_folder <span>optional</span></span>
-                  <p>
-                    0, 1
-                  </p>
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - do not use season folders</li>
+                    <li>1 - use season folders</li>
+                  </ul>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">initial <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
@@ -1124,28 +1443,32 @@
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">archive <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;season_folder=1&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;season_folder=1&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
+<pre class="example">
 {
     "data": {
         "name": "Chuck"
@@ -1154,71 +1477,109 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.addexisting) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showaddnew"></a>
-          <h1 class="title">
-            show.addnew
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-30<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.addnew
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-30<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Add a show to SickBeard providing the parent directory where the tv shows folder should be created.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Add a show to SickBeard providing the parent directory where the tv shows folder should be created.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">location <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     path to existing folder to store show
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used -- if valid</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">lang <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     two letter tvdb language, en = english
                   </p>
                   <p>
                     <span class="default">[</span>en<span class="default">]</span>, zh, hr, cs, da, nl, fi, fr, de, el, he, hu, it, ja, ko, no, pl, pt, ru, sl, es, sv, tr
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season_folder <span>optional</span></span>
-                  <p>
-                    0, 1
-                  </p>
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - do not use season folders</li>
+                    <li>1 - use season folders</li>
+                  </ul>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">status <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     wanted, skipped, archived, ignored
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">initial <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
@@ -1228,28 +1589,32 @@
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">archive <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.addnew&amp;tvdbid=101501&amp;location=S:\TV&amp;status=archived</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.addnew&amp;tvdbid=101501&amp;location=S:\TV&amp;status=archived</tt>
+<pre class="example">
 {
     "data": {
         "name": "Ancient Aliens"
@@ -1258,42 +1623,59 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.addnew) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showcache"></a>
-          <h1 class="title">
-            show.cache
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.cache
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display if the poster/banner SickBeard's image cache is valid.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display if the poster/banner SickBeard's image cache is valid.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.cache&amp;tvdbid=224041</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.cache&amp;tvdbid=224041</tt>
+<pre class="example">
 {
     "data": {
         "banner": 1, 
@@ -1303,152 +1685,226 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.cache) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showdelete"></a>
-          <h1 class="title">
-            show.delete
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.delete
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Delete a show from SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Delete a show from SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.delete&amp;tvdbid=80348</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.delete&amp;tvdbid=80348</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Chuck has been deleted", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.delete) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showgetbanner"></a>
-          <h1 class="title">
-            show.getbanner
-          </h1>
-          <div class="updated">
-            Updated on 2011-12-13<br/>
-            <span class="version">added: <b>0.2</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.getbanner
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-12-13<br/>
+              <span class="version">added: <b>0.2</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Retrieve the stored banner image from SickBeard's cache for a particular tvdbid.<br/>
-              <span class="default">If no image is found then the default sb banner is shown.</span>
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
+          <p>
+            Retrieve the stored banner image from SickBeard's cache for a particular tvdbid.<br/>
+            <span class="default">If no image is found then the default sb banner is shown.</span>
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.getbanner&amp;tvdbid=82066</tt>
-                <div class="example">
-                    <img src="./img/82066.banner.jpg" alt=""/><br/>
-                </div>
-            </div>
-          </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.getbanner&amp;tvdbid=82066</tt>
+          <img src="./img/82066.banner.jpg" alt="" class="example"/>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.getbanner) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showgetposter"></a>
-          <h1 class="title">
-            show.getposter
-          </h1>
-          <div class="updated">
-            Updated on 2011-12-13<br/>
-            <span class="version">added: <b>0.2</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Retrieve the stored poster image from SickBeard's cache for a particular tvdbid.<br/>
-              <span class="default">If no image is found then the default sb poster is shown.</span>
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
-                  <span class="param">tvdbid <span>required</span></span>
-                  <p>
-                    tvdbid unique show id
-                  </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.getposter&amp;tvdbid=82066</tt>
-                <div class="example">
-                    <img src="./img/82066.poster.jpg" alt=""/><br/>
-                </div>
+          <div class="page-header">
+            <h1 class="command">
+              show.getposter
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-12-13<br/>
+              <span class="version">added: <b>0.2</b></span>
             </div>
           </div>
+          <p>
+            Retrieve the stored poster image from SickBeard's cache for a particular tvdbid.<br/>
+            <span class="default">If no image is found then the default sb poster is shown.</span>
+          </p>
 
-        <a name="showgetquality"></a>
-          <h1 class="title">
-            show.getquality
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
-          </div>
-          <div>
-            <p class="summary">
-              Get quality settings of a show in SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.getquality&amp;tvdbid=80348</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.getposter&amp;tvdbid=82066</tt>
+          <img src="./img/82066.poster.jpg" alt="" class="example"/>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.getposter) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="showgetquality"></a>
+          <div class="page-header">
+            <h1 class="command">
+              show.getquality
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
+          </div>
+          <p>
+            Get quality settings of a show in SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
+                  <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
+                  <p>
+                    tvdbid unique show id
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.getquality&amp;tvdbid=80348</tt>
+<pre class="example">
 {
     "data": {
         "archive": [
@@ -1463,140 +1919,201 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.getquality) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showpause"></a>
-          <h1 class="title">
-            show.pause
-          </h1>
-          <div class="updated">
-            Updated on 2011-12-29<br/>
-            <span class="version">added: <b>0.2</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.pause
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-12-29<br/>
+              <span class="version">added: <b>0.2</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Set a show's paused state in SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Set a show's paused state in SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">pause <span>optional</span></span>
+                </td>
+                <td>
                   <p>
-                    <span class="default">[</span>0<span class="default">]</span>, 1
+                    <span class="default">[</span>0<span class="default">]</span>,1
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.pause&amp;tvdbid=76707&amp;pause=0</tt>
-                <div class="example">
-<pre>
+                  <ul>
+                    <li>0 - unpause show</li>
+                    <li>1 - pause show</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.pause&amp;tvdbid=76707&amp;pause=0</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Fear Factor has been unpaused", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.pause) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showrefresh"></a>
-          <h1 class="title">
-            show.refresh
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.refresh
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Refresh a show in SickBeard by rescanning local files.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Refresh a show in SickBeard by rescanning local files.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.refresh&amp;tvdbid=82283</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.refresh&amp;tvdbid=82283</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "True Blood has queued to be refreshed", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
 
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.refresh) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showseasonlist"></a>
-          <h1 class="title">
-            show.seasonlist
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.seasonlist
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display the season list for a given show.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display the season list for a given show.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">sort <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     asc, <span class="default">[</span>desc<span class="default">]</span>
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.seasonlist&amp;tvdbid=80621</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.seasonlist&amp;tvdbid=80621</tt>
+<pre class="example">
 {
     "data": [
         4, 
@@ -1609,48 +2126,69 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.seasonlist) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showseasons"></a>
-          <h1 class="title">
-            show.seasons
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.seasons
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display a listing of episodes for all or a given season.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display a listing of episodes for all or a given season.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     season number
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.seasons&amp;tvdbid=182061&amp;season=2</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.seasons&amp;tvdbid=182061&amp;season=2</tt>
+<pre class="example">
 {
     "data": {
         "1": {
@@ -1688,98 +2226,144 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.seasons) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showsetquality"></a>
-          <h1 class="title">
-            show.setquality
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.setquality
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Set desired quality of a show in SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
+          <p>
+            Set desired quality of a show in SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">initial <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
                     sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">archive <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.setquality&amp;tvdbid=79488&amp;initial=sdtv|sddvd&amp;archive=sddvd|hdwebdl|hdbluray</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.setquality&amp;tvdbid=79488&amp;initial=sdtv|sddvd&amp;archive=sddvd|hdwebdl|hdbluray</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "30 Rock quality has been changed to Custom", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.setquality) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showstats"></a>
-          <h1 class="title">
-            show.stats
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.stats
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display episode statistics for a given show.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
+          <p>
+            Display episode statistics for a given show.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.stats&amp;tvdbid=80270</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.stats&amp;tvdbid=80270</tt>
+<pre class="example">
 {
     "data": {
         "archived": 0, 
@@ -1813,98 +2397,136 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.stats) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showupdate"></a>
-          <h1 class="title">
-            show.update
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              show.update
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Update a show in SickBeard by pulling down information from TVDB and rescan local files.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Update a show in SickBeard by pulling down information from TVDB and rescan local files.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=show.update&amp;tvdbid=95011</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=show.update&amp;tvdbid=95011</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Modern Family has queued to be updated", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (show.update) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="shows"></a>
-          <h1 class="title">
-            shows
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-26<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              shows
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-26<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display all shows in SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Display a list of all shows in SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">sort <span>optional</span></span>
+                </td>
+                <td>
                   <p>
-                    <span class="default">[</span>id<span class="default">]</span>, name <br />
+                    <span class="default">[</span>id<span class="default">]</span>, name
                   </p>
-                  <p>
-                    id - sort by tvdbid <br />
-                    name - sort by show name
-                  </p>
-                </div>
-                <div class="parameter">
+                  <ul>
+                      <li>id - sort by tvdbid</li>
+                      <li>name - sort by show name</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">paused <span>optional</span></span>
-                    <ul>
-                        <li>0 - show only non paused</li>
-                        <li>1 - show only paused</li>
-                    </ul>
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - show only non paused</li>
+                    <li>1 - show only paused</li>
+                  </ul>
                   <p>
                     <span class="default">if not set then both paused and non paused are shown</span>
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=shows</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=shows</tt>
+<pre class="example">
 {
     "data": {
         "71489": {
@@ -1977,38 +2599,53 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (shows) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="showsstats"></a>
-          <h1 class="title">
-            shows.stats
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              shows.stats
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display global episode and show statistics.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=shows.stats</tt>
-                <div class="example">
-<pre>
+          <p>
+            Display global episode and show statistics.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=shows.stats</tt>
+<pre class="example">
 {
     "data": {
         "ep_downloaded": 2754, 
@@ -2020,38 +2657,53 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (shows.stats) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sb"></a>
-          <h1 class="title">
-            sb
-          </h1>
-          <div class="updated">
-            Updated on 2011-12-29<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-12-29<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Display misc SickBeard related information. This is also the default command that the api will show if none is specified.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb</tt>
-                <div class="example">
-<pre>
+          <p>
+            Display misc SickBeard related information. This is also the default command that the api will show if none is specified.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb</tt>
+<pre class="example">
 {
     "data": {
         "api_commands": [
@@ -2102,48 +2754,73 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbaddrootdir"></a>
-          <h1 class="title">
-            sb.addrootdir
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-20<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.addrootdir
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-20<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Add a root (parent) directory (only if it is a valid location), and set as the default root dir if requested to SickBeard's config.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Add a root (parent) directory (only if it is a valid location), and set as the default root dir if requested to SickBeard's config.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">location <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     full path to a root (parent) directory of tv shows
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">default <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     <span class="default">[</span>0<span class="default">]</span>, 1
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.addrootdir&amp;location=C:\Temp&amp;default=1</tt>
-                <div class="example">
-<pre>
+                  <ul>
+                    <li>0 - do not change global default</li>
+                    <li>1 - set location as the new global default</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.addrootdir&amp;location=C:\Temp&amp;default=1</tt>
+<pre class="example">
 {
     "data": [
         {
@@ -2166,38 +2843,53 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.addrootdir) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbcheckscheduler"></a>
-          <h1 class="title">
-            sb.checkscheduler
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.checkscheduler
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Query the SickBeard scheduler.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.checkscheduler</tt>
-                <div class="example">
-<pre>
+          <p>
+            Query the SickBeard scheduler.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.checkscheduler</tt>
+<pre class="example">
 {
     "data": {
         "backlog_is_paused": 0, 
@@ -2211,42 +2903,59 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.checkscheduler) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbdeleterootdir"></a>
-          <h1 class="title">
-            sb.deleterootdir
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-20<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.deleterootdir
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-20<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Delete a root (parent) directory from the root directory list in SickBeard's config.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Delete a root (parent) directory from the root directory list in SickBeard's config.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">location <span>required</span></span>
+                </td>
+                <td>
                   <p>
                     full path to a root (parent) directory of tv shows
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.deleterootdir&amp;location=C:\Temp</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.deleterootdir&amp;location=C:\Temp</tt>
+<pre class="example">
 {
     "data": [
         {
@@ -2264,76 +2973,106 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.deleterootdir) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbforcesearch"></a>
-          <h1 class="title">
-            sb.forcesearch
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.forcesearch
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Force the episode search early.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.forcesearch</tt>
-                <div class="example">
-<pre>
+          <p>
+            Force the episode search early.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.forcesearch</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Episode search forced", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.forcesearch) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbgetdefaults"></a>
-          <h1 class="title">
-            sb.getdefaults
-          </h1>
-          <div class="updated">
-            Updated on 2012-01-04<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.getdefaults
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2012-01-04<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Get default settings from SickBeard's config.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.getdefaults</tt>
-                <div class="example">
-<pre>
+          <p>
+            Get default settings from SickBeard's config.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.getdefaults</tt>
+<pre class="example">
 {
     "data": {
         "archive": [
@@ -2353,38 +3092,53 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.getdefaults) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbgetmessages"></a>
-          <h1 class="title">
-            sb.getmessages
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.getmessages
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Get un-claimed messages from the ui.notification queue.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.getmessages</tt>
-                <div class="example">
-<pre>
+          <p>
+            Get un-claimed messages from the ui.notification queue.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.getmessages</tt>
+<pre class="example">
 {
     "data": [
         {
@@ -2402,38 +3156,53 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.getmessages) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbgetrootdirs"></a>
-          <h1 class="title">
-            sb.getrootdirs
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-08<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.getrootdirs
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-08<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Get the root (parent) directories from SickBeard's config, test if valid, and which is the default.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.getrootdirs</tt>
-                <div class="example">
-<pre>
+          <p>
+            Get the root (parent) directories from SickBeard's config, test if valid, and which is the default.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.getrootdirs</tt>
+<pre class="example">
 {
     "data": [
         {
@@ -2456,78 +3225,116 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.getrootdirs) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbpausebacklog"></a>
-          <h1 class="title">
-            sb.pausebacklog
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.pausebacklog
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Pause the backlog search.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-                <div class="parameter">
+          <p>
+            Pause the backlog search.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">pause <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     <span class="default">[</span>0<span class="default">]</span>, 1
                   </p>
-                </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.pausebacklog&amp;pause=1</tt>
-                <div class="example">
-<pre>
+                  <ul>
+                    <li>0 - unpause the backlog</li>
+                    <li>1 - pause the backlog</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.pausebacklog&amp;pause=1</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Backlog Paused", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.pausebacklog) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbping"></a>
-          <h1 class="title">
-            sb.ping
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.ping
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Check to see if SickBeard is running.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.ping</tt>
-                <div class="example">
-<pre>
+          <p>
+            Check to see if SickBeard is running.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.ping</tt>
+<pre class="example">
 {
     "data": {
         "pid": 13152
@@ -2536,95 +3343,135 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.ping) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbrestart"></a>
-          <h1 class="title">
-            sb.restart
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.restart
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Restart SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.restart</tt>
-                <div class="example">
-<pre>
+          <p>
+            Restart SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.restart</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "SickBeard is restarting...", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.restart) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbsearchtvdb"></a>
-          <h1 class="title">
-            sb.searchtvdb
-          </h1>
-          <div class="updated">
-            Updated on 2011-11-30<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.searchtvdb
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-11-30<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Search TVDB for a show with a given string or tvdbid
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Search TVDB for a show with a given string or tvdbid.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">name <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     show name
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">tvdbid <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     tvdbid unique show id
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">lang <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     two letter tvdb language, en = english
                   </p>
                   <p>
                     <span class="default">[</span>en<span class="default">]</span>, zh, hr, cs, da, nl, fi, fr, de, el, he, hu, it, ja, ko, no, pl, pt, ru, sl, es, sv, tr
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.searchtvdb&amp;name=Leno&amp;lang=en</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.searchtvdb&amp;name=Leno&amp;lang=en</tt>
+<pre class="example">
 {
     "data": {
         "langid": 7, 
@@ -2645,135 +3492,197 @@
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.searchtvdb) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbsetdefaults"></a>
-          <h1 class="title">
-            sb.setdefaults
-          </h1>
-          <div class="updated">
-            Updated on 2012-01-04<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.setdefaults
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2012-01-04<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Set default settings for SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
+          <p>
+            Set default settings for SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td>
                   <span class="param">future_show_paused <span>optional</span></span>
-                    <ul>
-                        <li>0 - exclude paused shows on coming ep</li>
-                        <li>1 - include paused shows on coming ep</li>
-                    </ul>
-                </div>
-                <div class="parameter">
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - exclude paused shows on coming ep</li>
+                    <li>1 - include paused shows on coming ep</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">status <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     wanted, skipped, archived, ignored
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">season_folder <span>optional</span></span>
-                    <ul>
-                        <li>0 - do not use season folders</li>
-                        <li>1 - use season folders</li>
-                    </ul>
-                </div>
-                <div class="parameter">
+                </td>
+                <td>
+                  <ul>
+                    <li>0 - do not use season folders</li>
+                    <li>1 - use season folders</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">initial <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
                     sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
-                </div>
-                <div class="parameter">
+                </td>
+              </tr>
+              <tr class="parameter">
+                <td>
                   <span class="param">archive <span>optional</span></span>
+                </td>
+                <td>
                   <p>
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;season_folder=1&amp;initial=sdtv|sddvd</tt>
-                <div class="example">
-<pre>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;season_folder=1&amp;initial=sdtv|sddvd</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "Saved Defaults", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.setdefaults) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="sbshutdown"></a>
-          <h1 class="title">
-            sb.shutdown
-          </h1>
-          <div class="updated">
-            Updated on 2011-09-18<br/>
-            <span class="version">added: <b>0.1</b></span>
+          <div class="page-header">
+            <h1 class="command">
+              sb.shutdown
+            </h1>
+            <div class="updated pull-right">
+              Updated on 2011-09-18<br/>
+              <span class="version">added: <b>0.1</b></span>
+            </div>
           </div>
-          <div>
-            <p class="summary">
-              Shutdown SickBeard.
-            </p>
-            <div class="field field-doc-params">
-              <h2>
-                Parameters
-              </h2>
-              <div>
-                <div class="parameter">
-                </div>
-              </div>
-            </div><!-- /field-doc-params -->
-            <div class="field">
-              <h2>
-                Example Request
-              </h2>
-                <tt>/api/1234/?cmd=sb.shutdown</tt>
-                <div class="example">
-<pre>
+          <p>
+            Shutdown SickBeard.
+          </p>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="span3">
+                  Parameter
+                </th>
+                <th class="span9">
+                  Description
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="parameter">
+                <td colspan="2" class="empty">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>
+            Example Request
+          </h3>
+          <tt>/api/1234/?cmd=sb.shutdown</tt>
+<pre class="example">
 {
     "data": {}, 
     "message": "SickBeard is shutting down...", 
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-          </div>
 
-    </div> <!-- end api-content -->
+      </div> <!-- /span12 -->
+    </div> <!-- /row (sb.shutdown) -->
 
-    <hr/><br/>
-    <a name="apiglobal"></a>
-    <h1 class="header">Special Commands</h1>
-        <div class="content">
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="apiglobal"></a>
+            <h1 class="header">
+              Special Commands
+            </h1>
             <p>
-                There are a few special commands that when passed and set to 1, they modify how the API processor functions.<br/>
+              There are a few special commands that when passed and set to 1, they modify how the API processor functions.
             </p>
 
+      </div> <!-- /span12 -->
+    </div> <!-- /row (apiglobal) -->
+
+    <div class="row">
+      <div class="span12">
+
         <a name="debug"></a>
-        <h2 class="special">debug</h2>
-        <div class="field ident">
+          <div class="page-header">
+            <h1 class="command">
+              debug
+            </h1>
+          </div>
           <p>
             When passing an API command generally you get back either a; success, failure, timeout, error, fatal, or denied result. <br/>
             This keeps things predictable and nice, however if you wanted to get the traceback returned instead you would need to use debug.<br/>
@@ -2781,18 +3690,26 @@
             I would not recommend using debug for any production code as this would break json processing as predicting the result would be hard.
           </p>
           <tt>/api/1234/?cmd=xxx&amp;debug=1</tt>
-          <div class="example">
-<pre>
+<pre class="example">
 {
 xxx
 }
 </pre>
-          </div>
-        </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (debug) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="profile"></a>
-        <h2 class="special">profile</h2>
-        <div class="field ident">
+          <div class="page-header">
+            <h1 class="command">
+              profile
+            </h1>
+          </div>
           <p>
             The profile option when enabled attaches a profiler before the command is issued and detaches when completed. <br/>
             This will analyze the function being called and report back various stats.<br/>
@@ -2800,8 +3717,7 @@ xxx
             For details on how to read the output visit: <a href="http://docs.python.org/library/profile.html">http://docs.python.org/library/profile.html</a>
           </p>
           <tt>/api/1234/?cmd=shows.stats&amp;profile=1</tt>
-          <div class="example">
-<pre>
+<pre class="example">
 {
     "data": {
         "ep_downloaded": 2962, 
@@ -2868,19 +3784,27 @@ function called 1 times
         5    0.000    0.000    0.000    0.000 __init__.py:695(release)
         5    0.000    0.000    0.000    0.000 __init__.py:688(acquire)
 </pre>
-          </div>
-        </div>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (profile) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
 
         <a name="help"></a>
-        <h2 class="special">help</h2>
-        <div class="field ident">
+          <div class="page-header">
+            <h1 class="command">
+              help
+            </h1>
+          </div>
           <p>
             When set this will overide running the command and show the command specific help instead. <br/>
-            This will list the required and optinal parameters along with their allowed values.<br/>
+            This will list the required and optinal parameters along with their allowed values.
           </p>
           <tt>/api/1234/?cmd=sb.setdefaults&amp;help=1</tt>
-          <div class="example">
-<pre>
+<pre class="example">
 {
     "data": {
         "optionalPramameters": {
@@ -2936,103 +3860,113 @@ function called 1 times
     "result": "success"
 }
 </pre>
-          </div>
-        </div>
 
-            <br/>
-        </div>
+      </div> <!-- /span12 -->
+    </div> <!-- /row (help) -->
 
-    <hr/><br/>
-    <a name="apibuilder"></a>
-    <h1 class="header">SickBeard API Builder</h1>
-        <div class="content">
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="apibuilder"></a>
+            <h1 class="header">
+              SickBeard API Builder
+            </h1>
             <p>
-                The API Builder is a JavaScript based tool that uses a series of linked drop down list to allow the user to quickly and easily select from a pre-defined set of commands with corresponding options to try out. 
-                Upon submission of said options it will generate a URL string and also send the generated query to the SickBeard API code to process, with the processed result being returned back in the same window below. 
-                This allows the user to generate some data without needing to know any programming knowledge. Note that a valid API key must first be generated, this can be done from the (Config > General) section at the bottom. 
-                The API accesses the information the same way as the actual SickBeard program does but is streamlined to be returned as JSON (JavaScript Object Notation) in a consistent manner that should be easy to understand and parse. 
-                Once the key is created, launch the API Builder and try it out.
+              The API Builder is a JavaScript based tool that uses a series of linked drop down list to allow the user to quickly and easily select from a pre-defined set of commands with corresponding options to try out. 
+              Upon submission of said options it will generate a URL string and also send the generated query to the SickBeard API code to process, with the processed result being returned back in the same window below. 
+              This allows the user to generate some data without needing to know any programming knowledge. Note that a valid API key must first be generated, this can be done from the (Config > General) section at the bottom. 
+              The API accesses the information the same way as the actual SickBeard program does but is streamlined to be returned as JSON (JavaScript Object Notation) in a consistent manner that should be easy to understand and parse. 
+              Once the key is created, launch the API Builder and try it out.
             </p>
-
             <p>
-                Here is an example of the API Builder using the <b>Shows</b> command but limiting the results to tvshows that is in <b>my</b> database marked as <b>paused</b>:
+              Here is an example of the API Builder using the <b>Shows</b> command but limiting the results to tvshows that is in <b>my</b> database marked as <b>paused</b>:
             </p>
-
-            <img src="./img/sb-api_builder.png" alt="API Builder" style="border-top: 1px solid #666699;"/>
-
             <p>
-                The api data URL constructed CAN be written in several different valid formats/order with all returning the same output.<br/>
-                This adds flexibility for programmers however we do suggest using the provided format that the API Builder generates as we feel it is the most logical and least error prone when starting out.<br/>
+              <img src="./img/sb-api_builder.png" alt="API Builder" style="border-top: 1px solid #666699;"/>
             </p>
-            
             <p>
-                When defining the arguments/options/commands in the post format the object key must be in <b>lower case</b>; 'cmd', 'tvdbid', 'apikey' as 'cMd' would return unexpected results.
-                While we try to support true/false/TRUE/FALSE as acceptable input, we recommend you use the Boolean values of <b>1</b> for true and <b>0</b> for false.
-                As this is much more efficient and less error prone to code for.
+              The api data URL constructed CAN be written in several different valid formats/order with all returning the same output.<br/>
+              This adds flexibility for programmers however we do suggest using the provided format that the API Builder generates as we feel it is the most logical and least error prone when starting out.
             </p>
-
             <p>
-                Note that all the examples below are all requesting the SAME command/option but written in the different formats.<br/>
-                Similar fields have been color coded to help with the comparison of URL formats. ( <span class="api">apikey</span> <span class="cmd">command</span> <span class="arg">arguments</span> <span class="opt">option</span> )
+              When defining the arguments/options/commands in the post format the object key must be in <b>lower case</b>; 'cmd', 'tvdbid', 'apikey' as 'cMd' would return unexpected results.
+              While we try to support true/false/TRUE/FALSE as acceptable input, we recommend you use the Boolean values of <b>1</b> for true and <b>0</b> for false.
+              As this is much more efficient and less error prone to code for.
             </p>
-
+            <p>
+              Note that all the examples below are all requesting the SAME command/option but written in the different formats.<br/>
+              Similar fields have been color coded to help with the comparison of URL formats. ( <span class="api">apikey</span> <span class="cmd">command</span> <span class="arg">arguments</span> <span class="opt">option</span> )
+            </p>
             <ul>
-                <li><b>shorthand format:</b> <br/>(the order must be followed! as each segment is inferred)
-                    <ul>
-                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
-                    </ul>
-                </li>
-                <li><b>shorthand format with command explicitly defined:</b>
-                    <ul>
-                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="cmd">episode</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
-                    </ul>
-                </li>
-                <li><b>shorthand can be converted into a traditional serialized post/get format:</b> <br/>(you must define the command but the options may be placed in any order):
-                    <ul>
-                        <li class="none">/api/?cmd=<span class="cmd">episode</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
-                    </ul>
-                </li>
-                <li><b>and finally you can mix-n-match the shorthand and post format:</b> <br/>(if using shorthand the apikey must be first if not explicitly defined otherwise the 'command' will be wrongly used as the apikey)
-                    <ul>
-                        <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/?cmd=<span class="cmd">episode</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
-                        <li class="none">/api/<span class="cmd">episode</span>/?tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span></li>
-                    </ul>
-                </li>
+              <li><b>shorthand format:</b> <br/>(the order must be followed! as each segment is inferred)
+                <ul>
+                  <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
+                </ul>
+              </li>
+              <li><b>shorthand format with command explicitly defined:</b>
+                <ul>
+                  <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/<span class="cmd">episode</span>/<span class="arg">&lt;tvdb_id&gt;</span>/<span class="arg">&lt;season_number&gt;</span>/<span class="arg">&lt;episode_number&gt;</span></li>
+                </ul>
+              </li>
+              <li><b>shorthand can be converted into a traditional serialized post/get format:</b> <br/>(you must define the command but the options may be placed in any order):
+                <ul>
+                  <li class="none">/api/?cmd=<span class="cmd">episode</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
+                </ul>
+              </li>
+              <li><b>and finally you can mix-n-match the shorthand and post format:</b> <br/>(if using shorthand the apikey must be first if not explicitly defined otherwise the 'command' will be wrongly used as the apikey)
+                <ul>
+                  <li class="none">/api/<span class="api">&lt;api_key&gt;</span>/?cmd=<span class="cmd">episode</span>&amp;tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span></li>
+                  <li class="none">/api/<span class="cmd">episode</span>/?tvdbid=<span class="arg">&lt;tvdb_id&gt;</span>&amp;season=<span class="arg">&lt;season_number&gt;</span>&amp;episode=<span class="arg">&lt;episode_number&gt;</span>&amp;apikey=<span class="api">&lt;api_key&gt;</span></li>
+                </ul>
+              </li>
             </ul>
-        <br/>
-        </div>
 
-    <hr/><br/>
-    <a name="apiadvanced"></a>
-    <h1 class="header">Advanced API Use</h1>
-        <div class="content">
+      </div> <!-- /span12 -->
+    </div> <!-- /row (apibuilder) -->
+
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="apiadvanced"></a>
+            <h1 class="header">
+              Advanced API Use
+            </h1>
             <p>
-                Besides being able to write the URL in different formats you may also combine commands<span style="color: #aa0000;">*</span> together in one request, this is called chaining. <br/>
-                This can be useful in the mobile environment when the functionality of saving a request outweighs the complexity of doing so.<br/>
-                <span style="color: #aa0000;">Show.GetBanner and Show.GetPoster can not be used in chaining due the commands returning an image rather than JSON.</span>
-            </p>
-            
-            <p>
-                Delimitate each command by <b>|</b>. Each command passed will be used as your object key to reference.<br/>
+              Besides being able to write the URL in different formats you may also combine commands<span style="color: #aa0000;">*</span> together in one request, this is called chaining. <br/>
+              This can be useful in the mobile environment when the functionality of saving a request outweighs the complexity of doing so.<br/>
             </p>
 
             <p>
-                Each command will be returned as its own subset, with the command name as the object key along with retaining its result status. The chained group also has its own result status as well.
+              <div class="alert alert-important">Show.GetBanner and Show.GetPoster can <b>not</b> be used in chaining since the commands returning an image rather than JSON data.</div>
+            </p>
+
+            <p>
+              Delimitate each command by <b>|</b>. Each command passed will be used as your object key to reference.<br/>
+            </p>
+
+            <p>
+              Each command will be returned as its own subset, with the command name as the object key along with retaining its result status. The chained group also has its own result status as well.
+            </p>
+
+            <p>
+              So let us pretend we wanted to get the output of the commands: <span class="cmd">sb.getdefaults</span>, <span class="cmd">sb.getrootdirs</span>, and <span class="cmd">logs</span> (with the <span class="opt">min_level</span> set to <span class="arg">error</span>).<br/>
+              You could issue 3 separate commands and then you would have to parse/process 3 separate requests. Or you could chain all these in 1 command.
             </p>
 
             <br/>
-
-            <p>
-                So let us pretend we wanted to get the output of the commands: <span class="cmd">sb.getdefaults</span>, <span class="cmd">sb.getrootdirs</span>, and <span class="cmd">logs</span> (with the <span class="opt">min_level</span> set to <span class="arg">error</span>).<br/>
-                You could issue 3 separate commands and then you would have to parse/process 3 separate requests. Or you could chain all these in 1 command.
-            </p>
-            <div class="field">
-              <h2>
-                Chaining Example (using the command name as the returned object key)
-              </h2>
-                <tt>/api/1234/?cmd=sb.getdefaults|sb.getrootdirs|logs&amp;min_level=error</tt>
-                <div class="example">
-<pre>
+            <h3>
+              Chaining Example (using the command name as the returned object key)
+            </h3>
+            <tt>/api/1234/?cmd=sb.getdefaults|sb.getrootdirs|logs&amp;min_level=error</tt>
+<pre class="example">
 {
     "data": {
         "logs": {
@@ -3082,28 +4016,27 @@ function called 1 times
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
 
+            <br/>
             <p>
-                If you need to call the same command but pass different options you can do this by:<br/>
-                Delimitate each command by <b>|</b> as done before.<br/>
-                Append a '_' along with a unique string/number as a suffix to each similar command.<br/>
-                The <b>_?</b> (? being a unique string/number) will used as the object key to reference for each command subset inside.<br/>
-                Each argument/option must be explicitly defined in the format of <b>command_?.</b>option, however similar arguments/options may be defined without the specific command_? as it will be used globally for each command.
+              If you need to call the same command but pass different options you can do this by:<br/>
+              Delimitate each command by <b>|</b> as done before.<br/>
+              Append a '_' along with a unique string/number as a suffix to each similar command.<br/>
+              The <b>_?</b> (? being a unique string/number) will used as the object key to reference for each command subset inside.<br/>
+              Each argument/option must be explicitly defined in the format of <b>command_?.</b>option, however similar arguments/options may be defined without the specific command_? as it will be used globally for each command.
             </p>
 
             <p>
-                So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">5</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">6</span>).<br/>
-                Since the tvdbid and season are the same we can just use leave them as they are so each command uses them, however if we could explicitly define them for each command that would be fine as well.
+              So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">5</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">6</span>).<br/>
+              Since the tvdbid and season are the same we can just use leave them as they are so each command uses them, however if we could explicitly define them for each command that would be fine as well.
             </p>
-            <div class="field">
-              <h2>
-                Chaining Example (similar commands, using global options and an uniquely defined option)
-              </h2>
-                <tt>/api/1234/?cmd=episode_1234|episode_6&amp;tvdbid=79349&amp;season=6&amp;episode_1234.episode=5&amp;episode_6.episode=6</tt>
-                <div class="example">
-<pre>
+
+            <br/>
+            <h3>
+              Chaining Example (similar commands, using global options and an uniquely defined option)
+            </h3>
+            <tt>/api/1234/?cmd=episode_1234|episode_6&amp;tvdbid=79349&amp;season=6&amp;episode_1234.episode=5&amp;episode_6.episode=6</tt>
+<pre class="example">
 {
     "data": {
         "episode": {
@@ -3137,20 +4070,19 @@ function called 1 times
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
 
+            <br/>
             <p>
-                So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">1</span>, <span class="opt">episode</span> set to <span class="arg">1</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">1</span> and <span class="opt">full_path</span> set to <span class="arg">1</span>).<br/>
-                Since the tvdbid and episode are the same we can just use leave them as they are and define the episode option uniquely for each similar command.
+              So let us pretend we wanted to get the output of the commands: <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">1</span>, <span class="opt">episode</span> set to <span class="arg">1</span>) and <span class="cmd">episode</span> (with the <span class="opt">tvdbid</span> set to <span class="arg">79349</span>, <span class="opt">season</span> set to <span class="arg">6</span>, <span class="opt">episode</span> set to <span class="arg">1</span> and <span class="opt">full_path</span> set to <span class="arg">1</span>).<br/>
+              Since the tvdbid and episode are the same we can just use leave them as they are and define the episode option uniquely for each similar command.
             </p>
-            <div class="field">
-              <h2>
-                Chaining Example (similar commands, using global options and an uniquely defined option -- more advanced)
-              </h2>
-                <tt>/api/1234/?cmd=episode_s01e01|episode_s06e01&amp;episode_s01e01.season=1&amp;tvdbid=79349&amp;episode=1&amp;episode_s06e01.season=6&amp;episode_s06e01.full_path=1</tt>
-                <div class="example">
-<pre>
+
+            <br/>
+            <h3>
+              Chaining Example (similar commands, global options and an uniquely defined option -- more advanced)
+            </h3>
+            <tt>/api/1234/?cmd=episode_s01e01|episode_s06e01&amp;episode_s01e01.season=1&amp;tvdbid=79349&amp;episode=1&amp;episode_s06e01.season=6&amp;episode_s06e01.full_path=1</tt>
+<pre class="example">
 {
     "data": {
         "episode": {
@@ -3184,24 +4116,33 @@ function called 1 times
     "result": "success"
 }
 </pre>
-                </div>
-            </div>
-        </div>
 
-    <hr/><br/>
-    <a name="apidisclaimer"></a>
-    <h1 class="header">Disclaimer</h1>
-        <div class="content">
+      </div> <!-- /span12 -->
+    </div> <!-- /row (apiadvanced) -->
+
+    <br/><br/>
+    <hr/>
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="apidisclaimer"></a>
+            <h1 class="header">
+              Disclaimer
+            </h1>
             <p>
-                SickBeard is currently in 'alpha' state and the development is far from stable. <br/>
-                We do not anticipate the API breaking upon a new release, however, any modifications to the database may require a code update for the API module for it to fully take advantage of the change. 
-                For example there is a future branch of SickBeard where it will store the file size and original scene name of the release downloaded. 
-                When this update gets merged to source the API will not display this data until the affected API commands are updated.
+              SickBeard is currently in 'alpha' state and the development is far from stable. <br/>
+              We do not anticipate the API breaking upon a new release, however, any modifications to the database may require a code update for the API module for it to fully take advantage of the change. 
+              For example there is a future branch of SickBeard where it will store the file size and original scene name of the release downloaded. 
+              When this update gets merged to source the API will not display this data until the affected API commands are updated.
             </p>
             <br/>
-        </div>
 
-    </div>
-  </div> <!-- end container -->
+      </div> <!-- /span12 -->
+    </div> <!-- /row (apidisclaimer) -->
+
+  </div> <!-- /container -->
+
   </body>
 </html>
