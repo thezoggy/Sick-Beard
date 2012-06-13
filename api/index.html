@@ -58,7 +58,7 @@
                   <a href="#episodesetstatus">episode.setstatus</a>
                 </td>
                 <td>
-                  Set the status of an episode.
+                  Set the status of an episode. <span class="label label-info">updated</span>
                 </td>
               </tr>
               <tr>
@@ -460,12 +460,44 @@
             <div id="changelog" class="accordion">
               <div class="accordion-group">
                 <div class="accordion-heading">
+                  <a href="#v03" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
+                    SickBeard API v0.3
+                    <span class="pull-right">06/xx/2012</span>
+                  </a>
+                </div>
+                <div class="accordion-body in collapse" id="v03">
+                  <div class="accordion-inner">
+                    <p>
+                      custom_naming related changes. ability to add shows without dir.
+                    </p>
+                    <h4>
+                      Modified Commands
+                    </h4>
+                    <ul>
+                      <li><a href="#sbgetdefaults">sb.getdefaults</a></li>
+                      <li><a href="#sbsetdefaults">sb.setdefaults</a></li>
+                      <li><a href="#showaddexisting">show.addexisting</a></li>
+                        <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
+                      <li><a href="#showaddnew">show.addnew</a></li>
+                        <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
+                        <li class="detail">param <b>add_show_wo_dir</b>?</li>
+                      <li><a href="#episodesetstatus">episode.setstatus</a></li>
+                        <li class="detail">param <b>episode</b> was changed from required to optional</li>
+                        <li class="detail">param <b>force</b> was added to support the replacement of previously downloaded episodes (now by default we skip replacing)</li>
+                      <li><a href="#episode">episode</a></li>
+                        <li class="detail">added file_size, file_size_human and release_name to output</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-group">
+                <div class="accordion-heading">
                   <a href="#v02" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
                     SickBeard API v0.2
                     <span class="pull-right">01/30/2012</span>
                   </a>
                 </div>
-                <div class="accordion-body in collapse" id="v02">
+                <div class="accordion-body collapse" id="v02">
                   <div class="accordion-inner">
                     <p>
                       Minor tweaks and a few new commands. Build 492
@@ -522,7 +554,7 @@
               episode
             </h1>
             <div class="updated pull-right">
-              Updated on 2011-09-18<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -592,15 +624,18 @@
           <h3>
             Example Request
           </h3>
-          <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=3&amp;episode=1&amp;full_path=1</tt>
+          <tt>/api/1234/?cmd=episode&amp;tvdbid=101501&amp;season=4&amp;episode=8&amp;full_path=1</tt>
 <pre class="example">
 {
     "data": {
-        "airdate": "2011-07-28", 
-        "description": "The third-season opener explores alien connections with the American West, including the claim that an alien was buried in a cemetery in Texas; Utah petroglyphs depicting unusual beings; and reports of strange creatures from 19th-century ranchers in California.", 
-        "location": "S:\\TV\\Ancient Aliens\\Season 03\\Ancient.Aliens.S03E01.Aliens.and.the.Old.West.720p.HDTV.x264-DiVERGE.mkv", 
-        "name": "Aliens and the Old West", 
+        "airdate": "2012-04-06", 
+        "description": "Might an examination of Leonardo Da Vinci's masterful paintings, highly technical hand-drawn sketches, and private journals reveal knowledge of otherworldly technology and extraterrestrial beings?", 
+        "file_size": 1369797174, 
+        "file_size_human": "1.28 GB", 
+        "location": "S:\\TV\\Ancient Aliens\\Season 04\\Ancient.Aliens.S04E08.HD.TV.mkv", 
+        "name": "The Da Vinci Conspiracy", 
         "quality": "HD TV", 
+        "release_name": "Ancient.Aliens.S04E08.720p.HDTV.x264-DiVERGE", 
         "status": "Downloaded"
     }, 
     "message": "", 
@@ -701,12 +736,12 @@
               episode.setstatus
             </h1>
             <div class="updated pull-right">
-              Updated on 2012-06-10<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
           <p>
-            Set the status of an epsiode.
+            Set the status of an epsiode or season.
           </p>
 
           <table class="table">
@@ -743,11 +778,12 @@
               </tr>
               <tr class="parameter">
                 <td>
-                  <span class="param">episode <span>required</span></span>
+                  <span class="param">episode <span>optional</span></span>
                 </td>
                 <td>
                   <p>
-                    episode number
+                    episode number<br/>
+                    <span class="label label-info">updated</span> <b>0.3</b> if an episode is not provided then the whole season status will be set.
                   </p>
                 </td>
               </tr>
@@ -761,18 +797,76 @@
                   </p>
                 </td>
               </tr>
+              <tr class="parameter">
+                <td>
+                  <span class="param">force <span>optional</span></span>
+                </td>
+                <td>
+                  <p>
+                    <span class="default">[</span>0<span class="default">]</span>, 1
+                  </p>
+                  <ul>
+                    <li>0 - skip setting the status for existing episodes</li>
+                    <li>1 - force status to be set for existing episodes (can replace downloaded episodes)</li>
+                  </ul>
+                </td>
+              </tr>
             </tbody>
           </table>
 
           <h3>
             Example Request
           </h3>
-          <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=82374&amp;season=5&amp;episode=1&amp;status=wanted</tt>
+          <tt>/api/1234/?cmd=episode.setstatus&amp;tvdbid=71173&amp;season=1&amp;status=wanted</tt>
 <pre class="example">
 {
-    "data": {}, 
-    "message": "Episode status changed to Wanted, and backlog started", 
-    "result": "success"
+    "data": [
+        {
+            "episode": 1, 
+            "message": "Refusing to change status because it is already marked as DOWNLOADED", 
+            "result": "failure", 
+            "season": 1, 
+            "status": "Downloaded (SD DVD)"
+        }, 
+        {
+            "episode": 2, 
+            "message": "Refusing to change status because it is already marked as DOWNLOADED", 
+            "result": "failure", 
+            "season": 1, 
+            "status": "Downloaded (SD DVD)"
+        }, 
+        {
+            "episode": 3, 
+            "message": "Refusing to change status because it is already marked as DOWNLOADED", 
+            "result": "failure", 
+            "season": 1, 
+            "status": "Downloaded (SD DVD)"
+        }, 
+...
+        {
+            "episode": 22, 
+            "message": "", 
+            "result": "success", 
+            "season": 1, 
+            "status": "Wanted"
+        }, 
+        {
+            "episode": 23, 
+            "message": "", 
+            "result": "success", 
+            "season": 1, 
+            "status": "Wanted"
+        }, 
+        {
+            "episode": 24, 
+            "message": "", 
+            "result": "success", 
+            "season": 1, 
+            "status": "Wanted"
+        }
+    ], 
+    "message": "Failed to set all or some status. Check data. Backlog started", 
+    "result": "failure"
 }
 </pre>
 
@@ -1277,7 +1371,7 @@
               show
             </h1>
             <div class="updated pull-right">
-              Updated on 2011-11-26<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -1323,6 +1417,7 @@
             "banner": 1, 
             "poster": 1
         }, 
+        "flatten_folders": 0, 
         "genre": [
             "Action and Adventure", 
             "Drama"
@@ -1341,7 +1436,6 @@
                 "hdwebdl"
             ]
         }, 
-        "season_folders": 1, 
         "season_list": [
             6, 
             5, 
@@ -1375,7 +1469,7 @@
               show.addexisting
             </h1>
             <div class="updated pull-right">
-              Updated on 2011-11-30<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -1417,12 +1511,12 @@
               </tr>
               <tr class="parameter">
                 <td>
-                  <span class="param">season_folder <span>optional</span></span>
+                  <span class="param">flatten_folders <span>optional</span></span>
                 </td>
                 <td>
                   <ul>
-                    <li>0 - do not use season folders</li>
-                    <li>1 - use season folders</li>
+                    <li>0 - use season folders if part of rename string</li>
+                    <li>1 - do not use season folders</li>
                   </ul>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -1467,7 +1561,7 @@
           <h3>
             Example Request
           </h3>
-          <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;season_folder=1&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
+          <tt>/api/1234/?cmd=show.addexisting&amp;tvdbid=80348&amp;location=S:\TV\Chuck&amp;flatten_folders=0&amp;initial=hdtv&amp;archive=hdwebdl|hdbluray</tt>
 <pre class="example">
 {
     "data": {
@@ -1550,12 +1644,12 @@
               </tr>
               <tr class="parameter">
                 <td>
-                  <span class="param">season_folder <span>optional</span></span>
+                  <span class="param">flatten_folders <span>optional</span></span>
                 </td>
                 <td>
                   <ul>
-                    <li>0 - do not use season folders</li>
-                    <li>1 - use season folders</li>
+                    <li>0 - use season folders if part of rename string</li>
+                    <li>1 - do not use season folders</li>
                   </ul>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -3041,7 +3135,7 @@
               sb.getdefaults
             </h1>
             <div class="updated pull-right">
-              Updated on 2012-01-04<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -3080,12 +3174,12 @@
             "hdbluray", 
             "hdwebdl"
         ], 
+        "flatten_folders": 0, 
         "future_show_paused": 1, 
         "initial": [
             "sddvd", 
             "sdtv"
         ], 
-        "season_folders": 1, 
         "status": "skipped"
     }, 
     "message": "", 
@@ -3507,7 +3601,7 @@
               sb.setdefaults
             </h1>
             <div class="updated pull-right">
-              Updated on 2012-01-04<br/>
+              Updated on 2012-06-13<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -3550,12 +3644,12 @@
               </tr>
               <tr class="parameter">
                 <td>
-                  <span class="param">season_folder <span>optional</span></span>
+                  <span class="param">flatten_folders <span>optional</span></span>
                 </td>
                 <td>
                   <ul>
-                    <li>0 - do not use season folders</li>
-                    <li>1 - use season folders</li>
+                    <li>0 - use season folders if part of rename string</li>
+                    <li>1 - do not use season folders</li>
                   </ul>
                 </td>
               </tr>
@@ -3591,7 +3685,7 @@
           <h3>
             Example Request
           </h3>
-          <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;season_folder=1&amp;initial=sdtv|sddvd</tt>
+          <tt>/api/1234/?cmd=sb.setdefaults&amp;status=skipped&amp;flatten_folders=0&amp;initial=sdtv|sddvd</tt>
 <pre class="example">
 {
     "data": {}, 
@@ -3821,6 +3915,21 @@ function called 1 times
                 "defaultValue": null, 
                 "desc": "archive quality for the show"
             }, 
+            "flatten_folders": {
+                "allowedValues": [
+                    0, 
+                    1
+                ], 
+                "defaultValue": null, 
+                "desc": "flatten subfolders within the show directory"
+            }, 
+            "future_show_paused": {
+                "allowedValues": [
+                    0, 
+                    1
+                ], 
+                "defaultValue": null
+            }, 
             "initial": {
                 "allowedValues": [
                     "sdtv", 
@@ -3834,14 +3943,6 @@ function called 1 times
                 ], 
                 "defaultValue": null, 
                 "desc": "initial quality for the show"
-            }, 
-            "season_folder": {
-                "allowedValues": [
-                    0, 
-                    1
-                ], 
-                "defaultValue": null, 
-                "desc": "use season subfolders within the show directory"
             }, 
             "status": {
                 "allowedValues": [
@@ -3981,10 +4082,11 @@ function called 1 times
                 "archive": [
                     "fullhdbluray"
                 ], 
+                "flatten_folders": 1, 
+                "future_show_paused": 1, 
                 "initial": [
                     "sddvd"
                 ], 
-                "season_folders": 0, 
                 "status": "ignored"
             }, 
             "message": "", 
