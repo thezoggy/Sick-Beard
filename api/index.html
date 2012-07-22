@@ -55,10 +55,10 @@
               </tr>
               <tr>
                 <td>
-                  <a href="#episodesetstatus">episode.setstatus</a>
+                  <a href="#episodesetstatus">episode.setstatus</a> <span class="label label-info">updated</span>
                 </td>
                 <td>
-                  Set the status of an episode. <span class="label label-info">updated</span>
+                  Set the status of an episode.
                 </td>
               </tr>
               <tr>
@@ -397,6 +397,14 @@
                   Display the help for the requested API command.
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <a href="#callback">callback / jsonp</a> <span class="label label-info">new</span>
+                </td>
+                <td>
+                  Used for JSONP requests to provide a callback for the API output.
+                </td>
+              </tr>
 
 
             <thead>
@@ -413,6 +421,14 @@
                 </th>
               </tr>
             </thead>
+              <tr>
+                <td>
+                  <a href="#api-changelog">change log</a>
+                </td>
+                <td>
+                  SickBeard API change log.
+                </td>
+              </tr>
               <tr>
                 <td>
                   <a href="#apibuilder">api builder</a>
@@ -461,31 +477,40 @@
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a href="#v03" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
-                    SickBeard API v0.3
-                    <span class="pull-right">06/xx/2012</span>
+                    SickBeard API v3
+                    <span class="pull-right">07/xx/2012</span>
                   </a>
                 </div>
-                <div class="accordion-body in collapse" id="v03">
+                <div class="accordion-body collapse" id="v03">
                   <div class="accordion-inner">
                     <p>
-                      custom_naming related changes. ability to add shows without dir.
+                      Changing of the SB-API version number scheme to a whole number due to <a href="http://docs.python.org/tutorial/floatingpoint.html#representation-error" target="_blank">python's IEEE floating-point representation error</a>.<br/>
+                      Modifications made to several commands for the custom_naming related changes.
                     </p>
+                    <h4>
+                      Added Commands
+                    </h4>
+                    <ul>
+                      <li><a href="#callback">callback</a></li>
+                        <li class="detail">global command for jsonp style request</li>
+                    </ul>
                     <h4>
                       Modified Commands
                     </h4>
                     <ul>
                       <li><a href="#sbgetdefaults">sb.getdefaults</a></li>
+                        <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
                       <li><a href="#sbsetdefaults">sb.setdefaults</a></li>
+                        <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
                       <li><a href="#showaddexisting">show.addexisting</a></li>
                         <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
                       <li><a href="#showaddnew">show.addnew</a></li>
                         <li class="detail">param <b>season_folder</b> was replaced with <b>flatten_folders</b></li>
-                        <li class="detail">param <b>add_show_wo_dir</b>?</li>
                       <li><a href="#episodesetstatus">episode.setstatus</a></li>
                         <li class="detail">param <b>episode</b> was changed from required to optional</li>
                         <li class="detail">param <b>force</b> was added to support the replacement of previously downloaded episodes (now by default we skip replacing)</li>
                       <li><a href="#episode">episode</a></li>
-                        <li class="detail">added file_size, file_size_human and release_name to output</li>
+                        <li class="detail">added <b>file_size</b>, <b>file_size_human</b> and <b>release_name</b> to output</li>
                     </ul>
                   </div>
                 </div>
@@ -783,7 +808,7 @@
                 <td>
                   <p>
                     episode number<br/>
-                    <span class="label label-info">updated</span> <b>0.3</b> if an episode is not provided then the whole season status will be set.
+                    <span class="label label-info">v3</span> if an episode is not provided then the whole season status will be set.
                   </p>
                 </td>
               </tr>
@@ -3964,6 +3989,64 @@ function called 1 times
 
       </div> <!-- /span12 -->
     </div> <!-- /row (help) -->
+
+    <br/><br/>
+
+    <div class="row">
+      <div class="span12">
+
+        <a name="callback"></a>
+          <div class="page-header">
+            <h1 class="command">
+              callback / jsonp
+            </h1>
+          </div>
+          <p>
+            Added for developers that need to do <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>.<br/>
+            This provides the ability to wrap the api response in a callback method by using the <b>callback</b> or <b>jsonp</b> parameter in the request.<br/>
+            The value used for the callback can be whatever the user wants, however non alpha numeric characters are not allowed with the exception of <b>$</b>, <b>.</b>, and <b>_</b>.
+          </p>
+          <tt>/api/1234/?cmd=shows.stats&amp;callback=parseResponse</tt>
+<pre class="example">
+parseResponse({
+    "data": {
+        "ep_downloaded": 3277, 
+        "ep_total": 3480, 
+        "shows_active": 55, 
+        "shows_total": 70
+    }, 
+    "message": "", 
+    "result": "success"
+});
+</pre>
+          <br/>
+          <tt>/api/1234/?cmd=exceptions&amp;tvdbid=110381&amp;jsonp=foo</tt>
+<pre class="example">
+foo({
+    "data": [
+        "Archer", 
+        "Archer (2009)"
+    ], 
+    "message": "", 
+    "result": "success"
+});
+</pre>
+
+          <p>
+            You can write a javascript handler to process the callback above like this:
+          </p>
+<pre>
+function foo(response) {
+  var result = response.result
+  var data = response.data
+  if result === "success" {
+    console.log(data)
+  }
+}
+</pre>
+
+      </div> <!-- /span12 -->
+    </div> <!-- /row (callback) -->
 
     <br/><br/>
     <hr/>
