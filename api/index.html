@@ -16,7 +16,7 @@
   <body>
   <a name="top"></a>
 
-  <div class="container">
+  <div class="container content">
 
     <h1 class="page-header title">
       <img src="./img/sickbeard.png" alt="SickBeard API" />
@@ -26,6 +26,7 @@
       <div class="span12">
 
           <table class="table table-striped" id="api-overview">
+
             <thead>
               <tr>
                 <th class="views-field-title span4">
@@ -357,7 +358,7 @@
                   Shutdown SickBeard.
                 </td>
               </tr>
-
+            </tbody>
 
             <thead>
               <tr>
@@ -373,6 +374,7 @@
                 </th>
               </tr>
             </thead>
+            <tbody>
               <tr>
                 <td>
                   <a href="#debug">debug</a>
@@ -405,7 +407,7 @@
                   Used for JSONP requests to provide a callback for the API output.
                 </td>
               </tr>
-
+            </tbody>
 
             <thead>
               <tr>
@@ -421,6 +423,7 @@
                 </th>
               </tr>
             </thead>
+            <tbody>
               <tr>
                 <td>
                   <a href="#api-changelog">change log</a>
@@ -454,7 +457,18 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+
+          </table> <!-- /api-overview -->
 
       </div> <!-- /span12 -->
     </div> <!-- /row (api-toc) -->
@@ -473,7 +487,7 @@
             <p>
               This section is to provider developers a quick overview on SB API changes.<br/>
             </p>
-            <div id="changelog" class="accordion">
+            <div id="changelog" class="accordion well well-small">
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a href="#v03" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
@@ -2866,7 +2880,7 @@
             "shows", 
             "shows.stats"
         ], 
-        "api_version": 0.2, 
+        "api_version": 0.3, 
         "sb_version": "master"
     }, 
     "message": "", 
@@ -4313,16 +4327,16 @@ function foo(response) {
       <div class="span12">
 
         <a name="apidisclaimer"></a>
-            <h1 class="header">
-              Disclaimer
-            </h1>
-            <p>
-              SickBeard is currently in 'alpha' state and the development is far from stable. <br/>
-              We do not anticipate the API breaking upon a new release, however, any modifications to the database may require a code update for the API module for it to fully take advantage of the change. 
-              For example there is a future branch of SickBeard where it will store the file size and original scene name of the release downloaded. 
-              When this update gets merged to source the API will not display this data until the affected API commands are updated.
-            </p>
-            <br/>
+          <h1 class="header">
+            Disclaimer
+          </h1>
+          <p>
+            SickBeard is currently in 'alpha' state and the development is far from stable. <br/>
+            We do not anticipate the API breaking upon a new release, however, any modifications to the database may require a code update for the API module for it to fully take advantage of the change. 
+            For example there is a future branch of SickBeard where it will store the file size and original scene name of the release downloaded. 
+            When this update gets merged to source the API will not display this data until the affected API commands are updated.
+          </p>
+          <br/>
 
       </div> <!-- /span12 -->
     </div> <!-- /row (apidisclaimer) -->

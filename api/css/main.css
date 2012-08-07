@@ -49,7 +49,7 @@ img.example {
   background-color: #F8F4E7;
   padding: 5px;
 }
-td.empty {
+tr.parameter {
   border-bottom: 1px solid #DDD;
 }
 .none {
@@ -79,7 +79,10 @@ span.opt {
 span.version {
   color: #444;
 }
-.accordion-body {
+.accordion-group {
+  background-color: #fff;
+}
+.accordion-body, .accordion-inner {
   background-color: #F8F4E7;
 }
 .detail {
@@ -88,4 +91,13 @@ span.version {
   margin-top: 3px;
   margin-bottom: 3px;
   color: #333;
+}
+
+body {
+  background: url("../img/bg.png") repeat scroll 0 0 transparent;
+}
+.content {
+  padding: 25px;
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
