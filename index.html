@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
-
-  <title>thezoggy/Sick-Beard/api @ GitHub</title>
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>thezoggy/Sick-Beard/api @ GitHub</title>
 
   <style type="text/css">
     body {
@@ -18,18 +17,18 @@
     }
     .download { float: right; }
   </style>
-  
+
 <script>
 
 var browser_type=navigator.appName
 var browser_version=parseInt(navigator.appVersion)
 
-if (browser_type=="Netscape"&&browser_version>=4)
-    window.location.replace("http://thezoggy.github.com/Sick-Beard/api/")
-else if (browser_type=="Microsoft Internet Explorer"&&browser_version>=4)
-    window.location.replace("http://thezoggy.github.com/Sick-Beard/api/")
-else
+if (browser_version >= 4) {
+    if (browser_type == "Netscape" || browser_type == "Microsoft Internet Explorer")
+        window.location.replace("http://thezoggy.github.com/Sick-Beard/api/")
+} else {
     window.location="http://thezoggy.github.com/Sick-Beard/api/"
+}
 </script>
 
 </head>
