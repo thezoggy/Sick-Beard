@@ -56,7 +56,7 @@
               </tr>
               <tr>
                 <td>
-                  <a href="#episodesetstatus">episode.setstatus</a> <span class="label label-info">updated</span>
+                  <a href="#episodesetstatus">episode.setstatus</a>
                 </td>
                 <td>
                   Set the status of an episode.
@@ -401,7 +401,7 @@
               </tr>
               <tr>
                 <td>
-                  <a href="#callback">callback / jsonp</a> <span class="label label-info">new</span>
+                  <a href="#callback">callback / jsonp</a>
                 </td>
                 <td>
                   Used for JSONP requests to provide a callback for the API output.
@@ -488,6 +488,34 @@
               This section is to provider developers a quick overview on SB API changes.<br/>
             </p>
             <div id="changelog" class="accordion well well-small">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a href="#v04" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
+                    SickBeard API v4
+                    <span class="pull-right">02/xx/2013</span>
+                  </a>
+                </div>
+                <div class="accordion-body collapse" id="v04">
+                  <div class="accordion-inner">
+                    <p>
+                      Updates to handle the 1080p related quality changes (rawhdtv, fullhdtv, fullhdwebdl). Build 500
+                    </p>
+                    <h4>
+                      Modified Commands
+                    </h4>
+                    <ul>
+                      <li><a href="#sbsetdefaults">sb.setdefaults</a></li>
+                        <li class="detail">Removed 'unknown' as a possible archive quality</li>
+                      <li><a href="#showaddexisting">show.addexisting</a></li>
+                        <li class="detail">Removed 'unknown' as a possible archive quality</li>
+                      <li><a href="#showaddnew">show.addnew</a></li>
+                        <li class="detail">Removed 'unknown' as a possible archive quality</li>
+                      <li><a href="#showsetquality">show.setquality</a></li>
+                        <li class="detail">Removed 'unknown' as a possible archive quality</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
               <div class="accordion-group">
                 <div class="accordion-heading">
                   <a href="#v03" data-parent="#changelog" data-toggle="collapse" class="accordion-toggle">
@@ -822,7 +850,7 @@
                 <td>
                   <p>
                     episode number<br/>
-                    <span class="label label-info">v3</span> if an episode is not provided then the whole season status will be set.
+                    if an episode is not provided, then the whole seasons' status will be set.
                   </p>
                 </td>
               </tr>
@@ -1464,18 +1492,20 @@
         "language": "en", 
         "location": "S:\\TV\\Dexter", 
         "network": "Showtime", 
-        "next_ep_airdate": "2011-11-27", 
+        "next_ep_airdate": "2013-06-30", 
         "paused": 0, 
-        "quality": "HD", 
+        "quality": "HD720p", 
         "quality_details": {
             "archive": [], 
             "initial": [
                 "hdtv", 
-                "hdbluray", 
-                "hdwebdl"
+                "hdwebdl", 
+                "hdbluray"
             ]
         }, 
         "season_list": [
+            8, 
+            7, 
             6, 
             5, 
             4, 
@@ -1571,7 +1601,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -1587,7 +1617,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -1717,7 +1747,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -1733,7 +1763,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray
                   </p>
                   <p>
                     <span class="default">if not provided then the config setting (default) is used</span>
@@ -2040,12 +2070,14 @@
 <pre class="example">
 {
     "data": {
-        "archive": [
-            "hdbluray", 
-            "hdwebdl"
-        ], 
         "initial": [
-            "hdtv"
+            "hdtv", 
+            "hdwebdl", 
+            "hdbluray"
+        ], 
+        "archive": [
+            "hdwebdl", 
+            "hdbluray"
         ]
     }, 
     "message": "", 
@@ -2413,7 +2445,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                 </td>
               </tr>
@@ -2426,7 +2458,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray
                   </p>
                 </td>
               </tr>
@@ -2502,27 +2534,33 @@
         "archived": 0, 
         "downloaded": {
             "1080p_bluray": 0, 
+            "1080p_hdtv": 0, 
+            "1080p_web-dl": 0, 
             "720p_bluray": 0, 
-            "720p_web-dl": 0, 
-            "hd_tv": 11, 
+            "720p_web-dl": 2, 
+            "hd_tv": 34, 
+            "rawhd_tv": 0, 
             "sd_dvd": 13, 
             "sd_tv": 50, 
-            "total": 74, 
+            "total": 99, 
             "unknown": 0
         }, 
         "ignored": 0, 
-        "skipped": 1, 
+        "skipped": 0, 
         "snatched": {
             "1080p_bluray": 0, 
+            "1080p_hdtv": 0, 
+            "1080p_web-dl": 0, 
             "720p_bluray": 0, 
             "720p_web-dl": 0, 
             "hd_tv": 0, 
+            "rawhd_tv": 0, 
             "sd_dvd": 0, 
             "sd_tv": 0, 
             "total": 0, 
             "unknown": 0
         }, 
-        "total": 75, 
+        "total": 99, 
         "unaired": 0, 
         "wanted": 0
     }, 
@@ -2672,7 +2710,7 @@
             "network": "USA Network", 
             "next_ep_airdate": "", 
             "paused": 0, 
-            "quality": "HD", 
+            "quality": "HD720p", 
             "show_name": "Law &amp; Order: Criminal Intent", 
             "status": "Ended", 
             "tvrage_id": 4203, 
@@ -2721,7 +2759,7 @@
             "network": "Cartoon Network", 
             "next_ep_airdate": "", 
             "paused": 1, 
-            "quality": "Custom", 
+            "quality": "HD", 
             "show_name": "NTSF:SD:SUV::", 
             "status": "Continuing", 
             "tvrage_id": 28439, 
@@ -2805,7 +2843,7 @@
               sb
             </h1>
             <div class="updated pull-right">
-              Updated on 2011-12-29<br/>
+              Updated on 2013-01-29<br/>
               <span class="version">added: <b>0.1</b></span>
             </div>
           </div>
@@ -2869,6 +2907,8 @@
             "show.addnew", 
             "show.cache", 
             "show.delete", 
+            "show.getbanner", 
+            "show.getposter", 
             "show.getquality", 
             "show.pause", 
             "show.refresh", 
@@ -2880,7 +2920,7 @@
             "shows", 
             "shows.stats"
         ], 
-        "api_version": 0.3, 
+        "api_version": 4, 
         "sb_version": "master"
     }, 
     "message": "", 
@@ -3209,17 +3249,18 @@
 {
     "data": {
         "archive": [
-            "hdtv", 
-            "hdbluray", 
-            "hdwebdl"
+            "fullhdtv", 
+            "fullhdwebdl", 
+            "fullhdbluray"
         ], 
         "flatten_folders": 0, 
         "future_show_paused": 1, 
         "initial": [
-            "sddvd", 
-            "sdtv"
+            "hdtv", 
+            "hdwebdl", 
+            "hdbluray"
         ], 
-        "status": "skipped"
+        "status": "ignored"
     }, 
     "message": "", 
     "result": "success"
@@ -3701,7 +3742,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, sddvd, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sdtv, sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray, unknown
                   </p>
                 </td>
               </tr>
@@ -3714,7 +3755,7 @@
                     multiple types can be passed when delimited by |
                   </p>
                   <p>
-                    sdtv, hdtv, hdwebdl, hdbluray, fullhdbluray, unknown
+                    sddvd, hdtv, rawhdtv, fullhdtv, hdwebdl, fullhdwebdl, hdbluray, fullhdbluray
                   </p>
                 </td>
               </tr>
@@ -3940,16 +3981,17 @@ function called 1 times
 <pre class="example">
 {
     "data": {
-        "optionalPramameters": {
+        "optionalParameters": {
             "archive": {
                 "allowedValues": [
                     "sddvd", 
                     "hdtv", 
+                    "rawhdtv", 
+                    "fullhdtv", 
                     "hdwebdl", 
+                    "fullhdwebdl", 
                     "hdbluray", 
-                    "fullhdbluray", 
-                    "unknown", 
-                    "any"
+                    "fullhdbluray"
                 ], 
                 "defaultValue": null, 
                 "desc": "archive quality for the show"
@@ -3974,11 +4016,13 @@ function called 1 times
                     "sdtv", 
                     "sddvd", 
                     "hdtv", 
+                    "rawhdtv", 
+                    "fullhdtv", 
                     "hdwebdl", 
+                    "fullhdwebdl", 
                     "hdbluray", 
                     "fullhdbluray", 
-                    "unknown", 
-                    "any"
+                    "unknown"
                 ], 
                 "defaultValue": null, 
                 "desc": "initial quality for the show"
@@ -3996,7 +4040,7 @@ function called 1 times
         }, 
         "requiredParameters": {}
     }, 
-    "message": "No description available", 
+    "message": "set sickbeard user defaults", 
     "result": "success"
 }
 </pre>
