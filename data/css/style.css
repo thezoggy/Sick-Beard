@@ -421,23 +421,24 @@ a.whitelink {
 home_addShows.tmpl
 ========================================================================== */
 #addShowPortal {
-  width: 480px;
+  width: 500px;
   padding: 10px 0;
   margin-right: auto;
   margin-left: auto;
 }
 #addShowPortal  a {
-  padding: 10px;
+  padding: 0 10px;
 }
 div.button img {
   display: block;
   float: left;
-  padding: 25px 5px;
+  padding: 35px 5px;
 }
 div.buttontext {
   display: block;
   margin-left: 55px;
   text-align: left;
+  white-space: normal;
 }
 
 /* =======================================================================
@@ -1139,6 +1140,20 @@ img {
   max-width: none;
   /* fixes IE8 */
 }
+.btn-default {
+  background-color: #F5F5F5;
+  border-color: #ccc;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+  background-color: #E6E6E6;
+  border-color: #ccc;
+}
+
+
 input, textarea, select, .uneditable-input {
   width: auto;
   color: #000;
@@ -1174,13 +1189,17 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
 .navbar, label, legend, form, input, textarea, select, .uneditable-input {
   margin-bottom: 0;
 }
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover {
+.navbar-nav .active > a,
+.navbar-nav .active > a:hover {
   background-color: transparent;
 }
-.navbar .nav > li > a {
+.navbar-nav > li > a {
   padding: 7px 10px 9px;
   color: #ddd;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
 }
 .nav > li.active > a {
   padding: 3px 10px 6px;
@@ -1192,7 +1211,7 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
      -moz-border-radius: 5px;
           border-radius: 5px;
 }
-.navbar-inner {
+.navbar {
   min-height: 36px;
   background-color: #614e35;
   background-image: -ms-linear-gradient(top, #67543b, #57442b);
@@ -1209,14 +1228,26 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
   -moz-box-shadow: none;
        box-shadow: none;
 }
+.nav .caret {
+  border-bottom-color: #FFFFFF;
+  border-top-color: #FFFFFF;
+  opacity: 0.3;
+}
+.nav a:hover .caret {
+  border-bottom-color: #FFFFFF;
+  border-top-color: #FFFFFF;
+  opacity: 1;
+}
 .navbar .navbar-text {
   line-height: 36px;
 }
+@media (min-width: 768px) {
 .navbar .divider-vertical {
   height: 36px;
   margin: 0 5px;
   background-color: #57442b;
   border-right: 1px solid #614e35;
+}
 }
 .dropdown-menu li > a:hover,
 .dropdown-menu .active > a,
@@ -1295,3 +1326,8 @@ ul.nav .dropdown-menu .divider {
   filter: progid:dximagetransform.microsoft.gradient(startColorstr='#51a9c4', endColorstr='#2d88a1', GradientType=0);
 }
 */
+
+.checkbox-inline {
+  padding: 2px 5px 2px 25px;
+  line-height: 20px;
+}

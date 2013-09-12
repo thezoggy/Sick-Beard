@@ -15,7 +15,7 @@ Manage episodes with status <select name="whichStatus">
 <option value="$curStatus"#if $curStatus == $whichStatus then " selected=\"selected\"" else ""#>$common.statusStrings[$curStatus]</option>
 #end for
 </select>
-<input class="btn" type="submit" value="Manage" /> 
+<input class="btn btn-primary" type="submit" value="Manage" /> 
 </form>
 
 #if $whichStatus and not $ep_counts:
@@ -60,7 +60,7 @@ $statusList.remove($int($whichStatus))
 <option value="$curStatus">$common.statusStrings[$curStatus]</option>
 #end for
 </select>
-<input class="btn" type="submit" value="Go" />
+<input class="btn btn-primary" type="submit" value="Go" />
 </form>
 
 #end if

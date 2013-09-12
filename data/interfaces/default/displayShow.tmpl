@@ -105,7 +105,7 @@ Change selected episodes to
 #end for
 </select>
 <input type="hidden" id="showID" value="$show.tvdbid" />
-<input type="button" class="btn" id="changeStatus" value="Go" /><br />
+<input type="button" class="btn btn-default" id="changeStatus" value="Go" /><br />
 <br />
 <br />
 </div>
@@ -114,14 +114,14 @@ Change selected episodes to
 
 <div class="float-right clearfix" id="checkboxControls">
     <div style="padding-bottom: 5px;">
-        <label for="wanted" class="checkbox inline wanted"><input type="checkbox" id="wanted" checked="checked" /> Wanted: <b>$epCounts[$Overview.WANTED]</b></label>
-        <label for="qual" class="checkbox inline qual"><input type="checkbox" id="qual" checked="checked" /> Low Quality: <b>$epCounts[$Overview.QUAL]</b></label>
-        <label for="good" class="checkbox inline good"><input type="checkbox" id="good" checked="checked" /> Downloaded: <b>$epCounts[$Overview.GOOD]</b></label>
-        <label for="skipped" class="checkbox inline skipped"><input type="checkbox" id="skipped" checked="checked" /> Skipped: <b>$epCounts[$Overview.SKIPPED]</b></label>
+        <label for="wanted" class="checkbox-inline wanted"><input type="checkbox" id="wanted" checked="checked" /> Wanted: <b>$epCounts[$Overview.WANTED]</b></label>
+        <label for="qual" class="checkbox-inline qual"><input type="checkbox" id="qual" checked="checked" /> Low Quality: <b>$epCounts[$Overview.QUAL]</b></label>
+        <label for="good" class="checkbox-inline good"><input type="checkbox" id="good" checked="checked" /> Downloaded: <b>$epCounts[$Overview.GOOD]</b></label>
+        <label for="skipped" class="checkbox-inline skipped"><input type="checkbox" id="skipped" checked="checked" /> Skipped: <b>$epCounts[$Overview.SKIPPED]</b></label>
     </div>
     <div class="pull-right">
-        <button class="btn btn-mini seriesCheck"><a href="#" onclick="return false;">Select Filtered Episodes</a></button> 
-        <button class="btn btn-mini clearAll"><a href="#" onclick="return false;">Clear All</a></button>
+        <button class="btn btn-xs seriesCheck"><a href="#" onclick="return false;">Select Filtered Episodes</a></button> 
+        <button class="btn btn-xs clearAll"><a href="#" onclick="return false;">Clear All</a></button>
     </div>
 </div>
 

@@ -37,9 +37,9 @@
             <a href="$sbRoot/home/displayShow?show=$curShow.tvdbid">$curShow.name</a>
         </h2>
         <div class="float-right clearfix">
-            <label for="wanted" class="checkbox inline wanted">Wanted: <b>$showCounts[$curShow.tvdbid][$Overview.WANTED]</b></label>
-            <label for="qual" class="checkbox inline qual">Low Quality: <b>$showCounts[$curShow.tvdbid][$Overview.QUAL]</b></label>
-            <a class="btn btn-mini btn-inverse forceBacklog" href="$sbRoot/manage/backlogShow?tvdb_id=$curShow.tvdbid"><i class="icon-play-circle icon-white"></i> Force Backlog</a>
+            <label for="wanted" class="checkbox-inline wanted">Wanted: <b>$showCounts[$curShow.tvdbid][$Overview.WANTED]</b></label>
+            <label for="qual" class="checkbox-inline qual">Low Quality: <b>$showCounts[$curShow.tvdbid][$Overview.QUAL]</b></label>
+            <a class="btn btn-xs btn-warning forceBacklog" href="$sbRoot/manage/backlogShow?tvdb_id=$curShow.tvdbid"><i class="glyphicon glyphicon-play-circle icon-white"></i> Force Backlog</a>
         </div>
     </td>
   </tr>

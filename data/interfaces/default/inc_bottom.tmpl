@@ -6,7 +6,7 @@
 </div> <!-- /contentWrapper -->
 
 <footer>
-    <div class="container footer">
+    <div class="footer">
         #set $myDB = $db.DBConnection()
         #set $today = str($datetime.date.today().toordinal())
         #set $numShows = len($sickbeard.showList)
@@ -17,7 +17,7 @@
         <br />
         <b>Search</b>: <%=str(sickbeard.currentSearchScheduler.timeLeft()).split('.')[0]%> |
         <b>Backlog</b>: $sickbeard.backlogSearchScheduler.nextRun().strftime("%Y-%m-%d").decode($sickbeard.SYS_ENCODING)
-    </div> <!-- /container footer -->
+    </div> <!-- /footer -->
 </footer>
 
 </body>
