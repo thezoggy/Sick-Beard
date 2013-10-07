@@ -1469,57 +1469,88 @@ class CMD_SickBeardSearchTVDB(ApiCall):
 
     def run(self):
         """ search for show at tvdb with a given string and language """
+
+        lang_id = self.valid_languages[self.lang]
+
+        ltvdb_api_parms = sickbeard.TVDB_API_PARMS.copy()
+        # bypass tvdb cache here, so we ensure we get the latest info (showname/details)
+        ltvdb_api_parms['cache'] = False
+        ltvdb_api_parms['language'] = self.lang
+
+        t = tvdb_api.Tvdb(**ltvdb_api_parms)
+
         if self.name and not self.tvdbid: # only name was given
-            baseURL = "http://thetvdb.com/api/GetSeries.php?"
-            params = {"seriesname": str(self.name).encode('utf-8'), 'language': self.lang}
-            finalURL = baseURL + urllib.urlencode(params)
-            urlData = sickbeard.helpers.getURL(finalURL)
+            try:
+                urlData = t.search(self.name)
+            except tvdb_exceptions.tvdb_error:
+                return _responds(RESULT_FAILURE, msg="We recently timed out, try again in 1 min")
+            except tvdb_exceptions.tvdb_shownotfound:
+                return _responds(RESULT_FAILURE, msg="Show not found on tvdb")
 
             if urlData is None:
-                return _responds(RESULT_FAILURE, msg="Did not get result from tvdb")
+                return _responds(RESULT_FAILURE, msg="Did not get a result from tvdb")
             else:
-                try:
-                    seriesXML = etree.ElementTree(etree.XML(urlData))
-                except Exception, e:
-                    logger.log(u"API :: Unable to parse XML for some reason: " + ex(e) + " from XML: " + urlData, logger.ERROR)
-                    return _responds(RESULT_FAILURE, msg="Unable to read result from tvdb")
-
-                series = seriesXML.getiterator('Series')
                 results = []
-                for curSeries in series:
-                    results.append({"tvdbid": int(curSeries.findtext('seriesid')),
-                                    "name": curSeries.findtext('SeriesName'),
-                                    "first_aired": curSeries.findtext('FirstAired')})
+                for i, cshow in enumerate(urlData): # @UnusedVariable
 
-                lang_id = self.valid_languages[self.lang]
+                    # only display shows that have a seriesname set
+                    if cshow["seriesname"]:
+
+                        if "overview" in cshow:
+                            # html tags may still be present, people are known to use <br>
+                            cshow["overview"] = cshow["overview"].encode("UTF-8", "ignore").replace("\n", " ").replace("  ", " ").strip(" \t\n\r")
+                        else:
+                            cshow["overview"] = None
+
+                        if "network" in cshow:
+                            cshow["network"] = cshow["network"].encode("UTF-8", "ignore")
+                        else:
+                            cshow["network"] = None
+
+                        if "firstaired" not in cshow:
+                            cshow["firstaired"] = None
+
+                        if "aliasnames" not in cshow:
+                            cshow["aliasnames"] = None
+
+                        results.append({"tvdbid": int(cshow["seriesid"]),
+                                    "name": cshow["seriesname"].encode("UTF-8", "ignore"),
+                                    "aliasnames": cshow["aliasnames"],
+                                    "overview": cshow["overview"],
+                                    "network": cshow["network"],
+                                    "first_aired": cshow["firstaired"]})
+
                 return _responds(RESULT_SUCCESS, {"results": results, "langid": lang_id})
 
         elif self.tvdbid:
-            # There's gotta be a better way of doing this but we don't wanna
-            # change the language value elsewhere
-            ltvdb_api_parms = sickbeard.TVDB_API_PARMS.copy()
-
-            lang_id = self.valid_languages[self.lang]
-            if self.lang and not self.lang == 'en':
-                ltvdb_api_parms['language'] = self.lang
-
-            t = tvdb_api.Tvdb(actors=False, **ltvdb_api_parms)
-
             try:
                 myShow = t[int(self.tvdbid)]
             except (tvdb_exceptions.tvdb_shownotfound, tvdb_exceptions.tvdb_error):
                 logger.log(u"API :: Unable to find show with id " + str(self.tvdbid), logger.WARNING)
                 return _responds(RESULT_SUCCESS, {"results": [], "langid": lang_id})
 
-            if not myShow.data['seriesname']:
+            if myShow is None:
+                return _responds(RESULT_FAILURE, msg="Did not get a result from tvdb")
+
+            if not myShow.data["seriesname"]:
                 logger.log(u"API :: Found show with tvdbid " + str(self.tvdbid) + ", however it contained no show name", logger.DEBUG)
                 return _responds(RESULT_FAILURE, msg="Show contains no name, invalid result")
 
+            if "overview" in myShow:
+                # html tags may still be present, people are known to use <br>
+                myShow["overview"] = myShow["overview"].encode("UTF-8", "ignore").replace("\n", " ").replace("  ", " ").strip(" \t\n\r")
+
+            if "network" in myShow:
+                myShow["network"] = myShow["network"].encode("UTF-8", "ignore")
+
             showOut = [{"tvdbid": self.tvdbid,
-                       "name": unicode(myShow.data['seriesname']),
-                       "first_aired": myShow.data['firstaired']}]
+                        "name": myShow.data["seriesname"].encode("UTF-8", "ignore"),
+                        "overview": myShow["overview"],
+                        "network": myShow["network"],
+                        "first_aired": myShow["firstaired"]}]
 
             return _responds(RESULT_SUCCESS, {"results": showOut, "langid": lang_id})
+
         else:
             return _responds(RESULT_FAILURE, msg="Either tvdbid or name is required")
 
