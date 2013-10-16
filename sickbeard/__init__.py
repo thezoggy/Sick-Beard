@@ -133,6 +133,7 @@ FLATTEN_FOLDERS_DEFAULT = None
 PROVIDER_ORDER = []
 
 NAMING_MULTI_EP = None
+NAMING_MULTI_EP_DELIMITER = None
 NAMING_PATTERN = None
 NAMING_ABD_PATTERN = None
 NAMING_CUSTOM_ABD = None
@@ -328,7 +329,7 @@ def initialize(consoleLogging=True):
                 versionCheckScheduler, VERSION_NOTIFY, PROCESS_AUTOMATICALLY, \
                 KEEP_PROCESSED_DIR, TV_DOWNLOAD_DIR, TVDB_BASE_URL, MIN_SEARCH_FREQUENCY, \
                 showQueueScheduler, searchQueueScheduler, ROOT_DIRS, CACHE_DIR, ACTUAL_CACHE_DIR, TVDB_API_PARMS, \
-                NAMING_PATTERN, NAMING_MULTI_EP, NAMING_FORCE_FOLDERS, NAMING_ABD_PATTERN, NAMING_CUSTOM_ABD, \
+                NAMING_PATTERN, NAMING_MULTI_EP, NAMING_MULTI_EP_DELIMITER, NAMING_FORCE_FOLDERS, NAMING_ABD_PATTERN, NAMING_CUSTOM_ABD, \
                 RENAME_EPISODES, properFinderScheduler, PROVIDER_ORDER, autoPostProcesserScheduler, \
                 WOMBLE, OMGWTFNZBS, OMGWTFNZBS_USERNAME, OMGWTFNZBS_APIKEY, providerList, newznabProviderList, \
                 EXTRA_SCRIPTS, USE_TWITTER, TWITTER_USERNAME, TWITTER_PASSWORD, TWITTER_PREFIX, \
@@ -429,6 +430,7 @@ def initialize(consoleLogging=True):
         NAMING_ABD_PATTERN = check_setting_str(CFG, 'General', 'naming_abd_pattern', '')
         NAMING_CUSTOM_ABD = check_setting_int(CFG, 'General', 'naming_custom_abd', 0)
         NAMING_MULTI_EP = check_setting_int(CFG, 'General', 'naming_multi_ep', 1)
+        NAMING_MULTI_EP_DELIMITER = check_setting_str(CFG, 'General', 'naming_multi_ep_delimiter', '&')
         NAMING_FORCE_FOLDERS = naming.check_force_season_folders()
 
         USE_NZBS = bool(check_setting_int(CFG, 'General', 'use_nzbs', 1))
@@ -768,7 +770,6 @@ def start():
             # start the version checker
             versionCheckScheduler.thread.start()
 
-
             # start the queue checker
             showQueueScheduler.thread.start()
 
@@ -982,6 +983,7 @@ def save_config():
     new_config['General']['naming_custom_abd'] = int(NAMING_CUSTOM_ABD)
     new_config['General']['naming_abd_pattern'] = NAMING_ABD_PATTERN
     new_config['General']['naming_multi_ep'] = int(NAMING_MULTI_EP)
+    new_config['General']['naming_multi_ep_delimiter'] = NAMING_MULTI_EP_DELIMITER
     new_config['General']['launch_browser'] = int(LAUNCH_BROWSER)
 
     new_config['General']['use_banner'] = int(USE_BANNER)

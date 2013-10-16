@@ -1412,7 +1412,10 @@ class TVEpisode(object):
             else:
                 goodName = self.name
                 for relEp in self.relatedEps:
-                    goodName += " & " + relEp.name
+                    if sickbeard.NAMING_MULTI_EP_DELIMITER:
+                        goodName += ' ' + sickbeard.NAMING_MULTI_EP_DELIMITER + ' ' + relEp.name
+                    else:
+                        goodName += ' ' + relEp.name
 
         return goodName
 
@@ -1428,6 +1431,15 @@ class TVEpisode(object):
 
         def dot(name):
             return helpers.sanitizeSceneName(name)
+
+        def dot_eptitle(name):
+            # reduced code from the sanitizeSceneName routine since we want to keep most things for the eptitle
+            name = name.replace("- ", ".").replace(" ", ".").replace('/', '.')
+            name = re.sub("\.\.*", ".", name)
+
+            if name.endswith('.'):
+                name = name[:-1]
+            return name
 
         def us(name):
             return re.sub('[ -]', '_', name)
@@ -1453,14 +1465,14 @@ class TVEpisode(object):
                 return ''
             return parse_result.release_group
 
-        epStatus, epQual = Quality.splitCompositeStatus(self.status)  #@UnusedVariable
+        epStatus, epQual = Quality.splitCompositeStatus(self.status) # @UnusedVariable
 
         return {
                    '%SN': self.show.name,
                    '%S.N': dot(self.show.name),
                    '%S_N': us(self.show.name),
                    '%EN': ep_name,
-                   '%E.N': dot(ep_name),
+                   '%E.N': dot_eptitle(ep_name),
                    '%E_N': us(ep_name),
                    '%QN': Quality.qualityStrings[epQual],
                    '%Q.N': dot(Quality.qualityStrings[epQual]),
