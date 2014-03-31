@@ -386,7 +386,11 @@ class TVShow(object):
 
         logger.log(str(self.tvdbid) + u": Loading all episodes from theTVDB...")
 
+        import time
+        start = time.time()
+
         scannedEps = {}
+        sql_l = []
 
         for season in showObj:
             scannedEps[season] = {}
@@ -411,9 +415,17 @@ class TVShow(object):
                     logger.log(str(self.tvdbid) + u": Loading info from theTVDB for episode " + str(season) + "x" + str(episode), logger.DEBUG)
                     ep.loadFromTVDB(season, episode, tvapi=t)
                     if ep.dirty:
-                        ep.saveToDB()
+                        #ep.saveToDB()  # old method was to save ep object to db, which tries to update first, if that doesnt do anything then just insert
+                        sql_l.append(ep.get_sql())
 
                 scannedEps[season][episode] = True
+
+        if len(sql_l) > 0:
+            myDB = db.DBConnection()
+            myDB.mass_action(sql_l, True)
+
+        diff = time.time() - start
+        logger.log(u"loadEpisodesFromTVDB - took: " + str( round(diff, 4)), logger.ERROR)
 
         # Done updating save last update date
         self.last_update_tvdb = datetime.date.today().toordinal()
@@ -1045,10 +1057,6 @@ class TVEpisode(object):
                     if result == False:
                         raise exceptions.EpisodeNotFoundException("Couldn't find episode " + str(season) + "x" + str(episode))
 
-        # don't update if not needed
-        if self.dirty:
-            self.saveToDB()
-
     def loadFromDB(self, season, episode):
 
         logger.log(str(self.show.tvdbid) + u": Loading episode details from DB for episode " + str(season) + "x" + str(episode), logger.DEBUG)
@@ -1338,6 +1346,24 @@ class TVEpisode(object):
 
         raise exceptions.EpisodeDeletedException()
 
+    def get_sql(self, forceSave=False):
+        """
+        Creates SQL queue for this episode if any of its data has been changed since the last save.
+
+        forceSave: If True it will create SQL queue even if no data has been changed since the
+                    last save (aka if the record is not dirty).
+        """
+
+        if not self.dirty and not forceSave:
+            logger.log(str(self.show.tvdbid) + u": Not creating SQL queue - record is not dirty", logger.DEBUG)
+            return
+
+        # use a custom update/insert method to get the data into the DB
+        return ["INSERT OR REPLACE INTO tv_episodes (episode_id, tvdbid, name, description, airdate, hasnfo, hastbn, status, location, file_size, release_name, showid, season, episode) " + \
+                "VALUES ((SELECT episode_id FROM tv_episodes WHERE showid = ? AND season = ? AND episode = ?), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", \
+                [self.show.tvdbid, self.season, self.episode, self.tvdbid, self.name, self.description, self.airdate.toordinal(), self.hasnfo, self.hastbn, self.status, self.location, self.file_size, self.release_name, self.show.tvdbid, self.season, self.episode]
+               ]
+
     def saveToDB(self, forceSave=False):
         """
         Saves this episode to the database if any of its data has been changed since the last save.
@@ -1351,8 +1377,6 @@ class TVEpisode(object):
             return
 
         logger.log(str(self.show.tvdbid) + u": Saving episode details to database", logger.DEBUG)
-
-        logger.log(u"STATUS IS " + str(self.status), logger.DEBUG)
 
         myDB = db.DBConnection()
         newValueDict = {"tvdbid": self.tvdbid,
