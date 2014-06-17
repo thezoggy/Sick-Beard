@@ -18,7 +18,7 @@
 
 import cherrypy.lib.auth_basic
 import os.path
-
+from lib import dowser
 import sickbeard
 
 from sickbeard import logger
@@ -168,6 +168,6 @@ def initWebServer(options={}):
                 'tools.auth_basic.checkpassword': checkpassword
             }
         })
-
+    cherrypy.tree.mount(dowser.Root(), '/dowser')
     cherrypy.server.start()
     cherrypy.server.wait()
