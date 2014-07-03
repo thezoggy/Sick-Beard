@@ -1129,6 +1129,8 @@ class ConfigNotifications:
                               xbmc_update_library=None, xbmc_update_full=None, xbmc_host=None, xbmc_username=None, xbmc_password=None,
                           use_plex=None, plex_notify_onsnatch=None, plex_notify_ondownload=None, plex_update_library=None,
                               plex_server_host=None, plex_host=None, plex_username=None, plex_password=None,
+                          use_mediabrowser3=None, mediabrowser3_notify_onsnatch=None, mediabrowser3_notify_ondownload=None, mediabrowser3_update_library=None, mediabrowser3_update_onlyfirst=None,
+                              mediabrowser3_host=None, mediabrowser3_username=None, mediabrowser3_password=None,
                           use_growl=None, growl_notify_onsnatch=None, growl_notify_ondownload=None, growl_host=None, growl_password=None,
                           use_prowl=None, prowl_notify_onsnatch=None, prowl_notify_ondownload=None, prowl_api=None, prowl_priority=None,
                           use_twitter=None, twitter_notify_onsnatch=None, twitter_notify_ondownload=None,
@@ -1169,6 +1171,15 @@ class ConfigNotifications:
         sickbeard.PLEX_HOST = config.clean_hosts(plex_host)
         sickbeard.PLEX_USERNAME = plex_username
         sickbeard.PLEX_PASSWORD = plex_password
+
+        sickbeard.USE_MEDIABROWSER3 = config.checkbox_to_value(use_mediabrowser3)
+        sickbeard.MEDIABROWSER3_NOTIFY_ONSNATCH = config.checkbox_to_value(mediabrowser3_notify_onsnatch)
+        sickbeard.MEDIABROWSER3_NOTIFY_ONDOWNLOAD = config.checkbox_to_value(mediabrowser3_notify_ondownload)
+        sickbeard.MEDIABROWSER3_UPDATE_LIBRARY = config.checkbox_to_value(mediabrowser3_update_library)
+        sickbeard.MEDIABROWSER3_UPDATE_ONLYFIRST = config.checkbox_to_value(mediabrowser3_update_onlyfirst)
+        sickbeard.MEDIABROWSER3_HOST = config.clean_hosts(mediabrowser3_host)
+        sickbeard.MEDIABROWSER3_USERNAME = mediabrowser3_username
+        sickbeard.MEDIABROWSER3_PASSWORD = mediabrowser3_password
 
         sickbeard.USE_NMJ = config.checkbox_to_value(use_nmj)
         sickbeard.NMJ_HOST = config.clean_host(nmj_host)
@@ -1393,14 +1404,18 @@ def havePLEX():
     return sickbeard.USE_PLEX and sickbeard.PLEX_UPDATE_LIBRARY
 
 
+def haveMB3():
+    return sickbeard.USE_MEDIABROWSER3 and sickbeard.MEDIABROWSER3_UPDATE_LIBRARY
+
+
 def HomeMenu():
     return [
-        { 'title': 'Add Shows',              'path': 'home/addShows/',                                          },
-        { 'title': 'Manual Post-Processing', 'path': 'home/postprocess/'                                        },
-        { 'title': 'Update XBMC',            'path': 'home/updateXBMC/', 'requires': haveXBMC                   },
-        { 'title': 'Update Plex',            'path': 'home/updatePLEX/', 'requires': havePLEX                   },
-        { 'title': 'Restart',                'path': 'home/restart/?pid=' + str(sickbeard.PID), 'confirm': True   },
-        { 'title': 'Shutdown',               'path': 'home/shutdown/?pid=' + str(sickbeard.PID), 'confirm': True  },
+        { 'title': 'Add Shows', 'path': 'home/addShows/' },
+        { 'title': 'Manual Post-Processing', 'path': 'home/postprocess/' },
+        { 'title': 'Update XBMC', 'path': 'home/updateXBMC/', 'requires': haveXBMC },
+        { 'title': 'Update Plex', 'path': 'home/updatePLEX/', 'requires': havePLEX },
+        { 'title': 'Restart', 'path': 'home/restart/?pid=' + str(sickbeard.PID), 'confirm': True },
+        { 'title': 'Shutdown', 'path': 'home/shutdown/?pid=' + str(sickbeard.PID), 'confirm': True },
     ]
 
 
@@ -2029,6 +2044,28 @@ class Home:
         return finalResult
 
     @cherrypy.expose
+    def testMB3(self, host=None, username=None, password=None):
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+
+        host = config.clean_hosts(host)
+        finalResult = ''
+
+        for curHost in [x.strip() for x in host.split(",")]:
+            curResult = notifiers.mediabrowser3_notifier.test_notify(urllib.unquote_plus(curHost), username, password)
+            if len(curResult.split(":")) > 2 and 'OK' in curResult.split(":")[2]:
+                finalResult += "Test MediaBrowser3 notice sent successfully to " + urllib.unquote_plus(curHost)
+            else:
+                finalResult += "Test MediaBrowser3 notice failed to " + urllib.unquote_plus(curHost)
+            finalResult += "<br />\n"
+
+        return finalResult
+
+    @cherrypy.expose
+    def broadcastMB3(self):
+        cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
+        return notifiers.mediabrowser3_notifier.server_broadcast()
+
+    @cherrypy.expose
     def testLibnotify(self):
         cherrypy.response.headers['Cache-Control'] = "max-age=0,no-cache,no-store"
 
@@ -2234,11 +2271,12 @@ class Home:
 
         if not sickbeard.showQueueScheduler.action.isBeingAdded(showObj):  # @UndefinedVariable
             if not sickbeard.showQueueScheduler.action.isBeingUpdated(showObj):  # @UndefinedVariable
-                t.submenu.append({ 'title': 'Delete',               'path': 'home/deleteShow?show=%d' % showObj.tvdbid, 'confirm': True })
-                t.submenu.append({ 'title': 'Re-scan files',        'path': 'home/refreshShow?show=%d' % showObj.tvdbid })
-                t.submenu.append({ 'title': 'Force Full Update',    'path': 'home/updateShow?show=%d&amp;force=1' % showObj.tvdbid })
-                t.submenu.append({ 'title': 'Update show in XBMC',  'path': 'home/updateXBMC?show=%d' % showObj.tvdbid, 'requires': haveXBMC })
-                t.submenu.append({ 'title': 'Preview Rename',       'path': 'home/testRename?show=%d' % showObj.tvdbid })
+                t.submenu.append({ 'title': 'Delete', 'path': 'home/deleteShow?show=%d' % showObj.tvdbid, 'confirm': True })
+                t.submenu.append({ 'title': 'Re-scan files', 'path': 'home/refreshShow?show=%d' % showObj.tvdbid })
+                t.submenu.append({ 'title': 'Force Full Update', 'path': 'home/updateShow?show=%d&amp;force=1' % showObj.tvdbid })
+                t.submenu.append({ 'title': 'Update show in XBMC', 'path': 'home/updateXBMC?show=%d' % showObj.tvdbid, 'requires': haveXBMC })
+                t.submenu.append({ 'title': 'Update show in MB3', 'path': 'home/updateMB3?tvdbid=%d' % showObj.tvdbid, 'requires': haveMB3 })
+                t.submenu.append({ 'title': 'Preview Rename', 'path': 'home/testRename?show=%d' % showObj.tvdbid })
 
         t.show = showObj
         t.sqlResults = sqlResults
@@ -2484,6 +2522,20 @@ class Home:
             ui.notifications.message("Library update command sent to Plex Media Server host: " + sickbeard.PLEX_SERVER_HOST)
         else:
             ui.notifications.error("Unable to contact Plex Media Server host: " + sickbeard.PLEX_SERVER_HOST)
+        redirect("/home/")
+
+    @cherrypy.expose
+    def updateMB3(self, tvdbid=None):
+        if sickbeard.MEDIABROWSER3_UPDATE_ONLYFIRST:
+            # only send update to first host in the list
+            host = sickbeard.MEDIABROWSER3_HOST.split(",")[0].strip()
+        else:
+            host = sickbeard.MEDIABROWSER3_HOST
+
+        if notifiers.mediabrowser3_notifier.update_library(tvdbid=tvdbid):
+            ui.notifications.message("Library update command sent to MediaBrowser3 host(s): " + host)
+        else:
+            ui.notifications.error("Unable to contact MediaBrowser3 host(s): " + host)
         redirect("/home/")
 
     @cherrypy.expose

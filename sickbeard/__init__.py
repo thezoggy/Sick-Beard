@@ -228,6 +228,15 @@ PLEX_HOST = None
 PLEX_USERNAME = None
 PLEX_PASSWORD = None
 
+USE_MEDIABROWSER3 = False
+MEDIABROWSER3_NOTIFY_ONSNATCH = False
+MEDIABROWSER3_NOTIFY_ONDOWNLOAD = False
+MEDIABROWSER3_UPDATE_LIBRARY = False
+MEDIABROWSER3_UPDATE_ONLYFIRST = False
+MEDIABROWSER3_HOST = ''
+MEDIABROWSER3_USERNAME = None
+MEDIABROWSER3_PASSWORD = None
+
 USE_GROWL = False
 GROWL_NOTIFY_ONSNATCH = False
 GROWL_NOTIFY_ONDOWNLOAD = False
@@ -340,6 +349,8 @@ def initialize(consoleLogging=True):
                 NZBGET_USERNAME, NZBGET_PASSWORD, NZBGET_CATEGORY, NZBGET_HOST, currentSearchScheduler, backlogSearchScheduler, \
                 USE_XBMC, XBMC_ALWAYS_ON, XBMC_NOTIFY_ONSNATCH, XBMC_NOTIFY_ONDOWNLOAD, XBMC_UPDATE_FULL, XBMC_UPDATE_ONLYFIRST, \
                 XBMC_UPDATE_LIBRARY, XBMC_HOST, XBMC_USERNAME, XBMC_PASSWORD, \
+                USE_MEDIABROWSER3, MEDIABROWSER3_NOTIFY_ONSNATCH, MEDIABROWSER3_NOTIFY_ONDOWNLOAD, MEDIABROWSER3_UPDATE_LIBRARY, MEDIABROWSER3_UPDATE_ONLYFIRST, \
+                MEDIABROWSER3_HOST, MEDIABROWSER3_USERNAME, MEDIABROWSER3_PASSWORD, \
                 USE_TRAKT, TRAKT_USERNAME, TRAKT_PASSWORD, TRAKT_API, \
                 USE_PLEX, PLEX_NOTIFY_ONSNATCH, PLEX_NOTIFY_ONDOWNLOAD, PLEX_UPDATE_LIBRARY, \
                 PLEX_SERVER_HOST, PLEX_HOST, PLEX_USERNAME, PLEX_PASSWORD, \
@@ -574,6 +585,16 @@ def initialize(consoleLogging=True):
         PLEX_HOST = check_setting_str(CFG, 'Plex', 'plex_host', '')
         PLEX_USERNAME = check_setting_str(CFG, 'Plex', 'plex_username', '')
         PLEX_PASSWORD = check_setting_str(CFG, 'Plex', 'plex_password', '')
+
+        CheckSection(CFG, 'MediaBrowser3')
+        USE_MEDIABROWSER3 = bool(check_setting_int(CFG, 'MediaBrowser3', 'use_mediabrowser3', 0))
+        MEDIABROWSER3_NOTIFY_ONSNATCH = bool(check_setting_int(CFG, 'MediaBrowser3', 'mediabrowser3_notify_onsnatch', 0))
+        MEDIABROWSER3_NOTIFY_ONDOWNLOAD = bool(check_setting_int(CFG, 'MediaBrowser3', 'mediabrowser3_notify_ondownload', 0))
+        MEDIABROWSER3_UPDATE_LIBRARY = bool(check_setting_int(CFG, 'MediaBrowser3', 'mediabrowser3_update_library', 0))
+        MEDIABROWSER3_UPDATE_ONLYFIRST = bool(check_setting_int(CFG, 'MediaBrowser3', 'mediabrowser3_update_onlyfirst', 0))
+        MEDIABROWSER3_HOST = check_setting_str(CFG, 'MediaBrowser3', 'mediabrowser3_host', '')
+        MEDIABROWSER3_USERNAME = check_setting_str(CFG, 'MediaBrowser3', 'mediabrowser3_username', '')
+        MEDIABROWSER3_PASSWORD = check_setting_str(CFG, 'MediaBrowser3', 'mediabrowser3_password', '')
 
         CheckSection(CFG, 'Growl')
         USE_GROWL = bool(check_setting_int(CFG, 'Growl', 'use_growl', 0))
@@ -1123,6 +1144,16 @@ def save_config():
     new_config['Plex']['plex_host'] = PLEX_HOST
     new_config['Plex']['plex_username'] = PLEX_USERNAME
     new_config['Plex']['plex_password'] = PLEX_PASSWORD
+
+    new_config['MediaBrowser3'] = {}
+    new_config['MediaBrowser3']['use_mediabrowser3'] = int(USE_MEDIABROWSER3)
+    new_config['MediaBrowser3']['mediabrowser3_notify_onsnatch'] = int(MEDIABROWSER3_NOTIFY_ONSNATCH)
+    new_config['MediaBrowser3']['mediabrowser3_notify_ondownload'] = int(MEDIABROWSER3_NOTIFY_ONDOWNLOAD)
+    new_config['MediaBrowser3']['mediabrowser3_update_library'] = int(MEDIABROWSER3_UPDATE_LIBRARY)
+    new_config['MediaBrowser3']['mediabrowser3_update_onlyfirst'] = int(MEDIABROWSER3_UPDATE_ONLYFIRST)
+    new_config['MediaBrowser3']['mediabrowser3_host'] = MEDIABROWSER3_HOST
+    new_config['MediaBrowser3']['mediabrowser3_username'] = MEDIABROWSER3_USERNAME
+    new_config['MediaBrowser3']['mediabrowser3_password'] = MEDIABROWSER3_PASSWORD
 
     new_config['Growl'] = {}
     new_config['Growl']['use_growl'] = int(USE_GROWL)

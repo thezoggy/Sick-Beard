@@ -20,6 +20,7 @@ import sickbeard
 
 import xbmc
 import plex
+import mediabrowser3
 import nmj
 import nmjv2
 import synoindex
@@ -44,6 +45,7 @@ from sickbeard.exceptions import ex
 # home theater/nas
 xbmc_notifier = xbmc.XBMCNotifier()
 plex_notifier = plex.PLEXNotifier()
+mediabrowser3_notifier = mediabrowser3.MediaBrowser3Notifier()
 nmj_notifier = nmj.NMJNotifier()
 nmjv2_notifier = nmjv2.NMJv2Notifier()
 synoindex_notifier = synoindex.synoIndexNotifier()
@@ -65,6 +67,7 @@ notifiers = [
     libnotify_notifier,  # Libnotify notifier goes first because it doesn't involve blocking on network activity.
     xbmc_notifier,
     plex_notifier,
+    mediabrowser3_notifier,
     nmj_notifier,
     nmjv2_notifier,
     synoindex_notifier,

@@ -216,6 +216,94 @@
 
                 <div class="component-group clearfix">
                     <div class="component-group-desc">
+                        <img class="notifier-icon" src="$sbRoot/images/notifiers/mb3.png" alt="" title="MediaBrowser3" />
+                        <h3><a href="http://mediabrowser.tv/" rel="noreferrer" onclick="window.open('${sickbeard.ANON_REDIRECT}' + this.href, '_blank'); return false;">MediaBrowser3</a></h3>
+                        <p>Media Browser Server is a home media server built using other popular open source technologies.</p>
+                    </div>
+                    <fieldset class="component-group-list">
+                        <div class="field-pair">
+                            <input type="checkbox" class="enabler" name="use_mediabrowser3" id="use_mediabrowser3" #if $sickbeard.USE_MEDIABROWSER3 then "checked=\"checked\"" else ""# />
+                            <label class="clearfix" for="use_mediabrowser3">
+                                <span class="component-title">Enable</span>
+                                <span class="component-desc">Should Sick Beard send MediaBrowser3 commands?</span>
+                            </label>
+                        </div>
+
+                        <div id="content_use_mediabrowser3">
+                            <div class="field-pair">
+                                <input type="checkbox" name="mediabrowser3_notify_onsnatch" id="mediabrowser3_notify_onsnatch" #if $sickbeard.MEDIABROWSER3_NOTIFY_ONSNATCH then "checked=\"checked\"" else ""# />
+                                <label class="clearfix" for="mediabrowser3_notify_onsnatch">
+                                    <span class="component-title">Notify on Snatch</span>
+                                    <span class="component-desc">Send notification when we start a download?</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <input type="checkbox" name="mediabrowser3_notify_ondownload" id="mediabrowser3_notify_ondownload" #if $sickbeard.MEDIABROWSER3_NOTIFY_ONDOWNLOAD then "checked=\"checked\"" else ""# />
+                                <label class="clearfix" for="mediabrowser3_notify_ondownload">
+                                    <span class="component-title">Notify on Download</span>
+                                    <span class="component-desc">Send notification when we finish a download?</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <input type="checkbox" name="mediabrowser3_update_library" id="mediabrowser3_update_library" #if $sickbeard.MEDIABROWSER3_UPDATE_LIBRARY then "checked=\"checked\"" else ""# />
+                                <label class="clearfix" for="mediabrowser3_update_library">
+                                    <span class="component-title">Update Library</span>
+                                    <span class="component-desc">Update MediaBrowser3 library when we finish a download?</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <input type="checkbox" name="mediabrowser3_update_onlyfirst" id="mediabrowser3_update_onlyfirst" #if $sickbeard.MEDIABROWSER3_UPDATE_ONLYFIRST then "checked=\"checked\"" else ""# />
+                                <label class="clearfix" for="mediabrowser3_update_onlyfirst">
+                                    <span class="component-title">Only Update First Host</span>
+                                    <span class="component-desc">Only send library update to the first host?</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">MB3 IP:Port</span>
+                                    <input type="text" name="mediabrowser3_host" id="mediabrowser3_host" value="$sickbeard.MEDIABROWSER3_HOST" size="35" />
+                                    <input type="button" class="btn" value="Search" id="broadcastMB3" />
+                                </label>
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">&nbsp;</span>
+                                    <span class="component-desc">Host running MediaBrowser3 (eg. 192.168.1.100:8096)</span>
+                                </label>
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">&nbsp;</span>
+                                    <span class="component-desc">(multiple host strings must be separated by commas)</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">MB3 Username</span>
+                                    <input type="text" name="mediabrowser3_username" id="mediabrowser3_username" value="$sickbeard.MEDIABROWSER3_USERNAME" size="35" />
+                                </label>
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">&nbsp;</span>
+                                    <span class="component-desc">Username of your MB3 client (blank for none)</span>
+                                </label>
+                            </div>
+                            <div class="field-pair">
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">MB3 Password</span>
+                                    <input type="password" name="mediabrowser3_password" id="mediabrowser3_password" value="$sickbeard.MEDIABROWSER3_PASSWORD" size="35" />
+                                </label>
+                                <label class="nocheck clearfix">
+                                    <span class="component-title">&nbsp;</span>
+                                    <span class="component-desc">Password of your MB3 client (blank for none)</span>
+                                </label>
+                            </div>
+                            <div class="testNotification" id="testMB3-result">Click below to test.</div>
+                            <input type="button" class="btn" value="Test MB3 Clients" id="testMB3" />
+                            <input type="submit" class="btn config_submitter" value="Save Changes" />
+                        </div><!-- /content_use_plex -->
+
+                    </fieldset>
+                </div><!-- /mb3 component-group -->
+
+
+                <div class="component-group clearfix">
+                    <div class="component-group-desc">
                         <img class="notifier-icon" src="$sbRoot/images/notifiers/nmj.png" alt="" title="Networked Media Jukebox" />
                         <h3><a href="http://www.popcornhour.com/" rel="noreferrer" onclick="window.open('${sickbeard.ANON_REDIRECT}' + this.href, '_blank'); return false;">NMJ</a></h3>
                         <p>The Networked Media Jukebox, or NMJ, is the official media jukebox interface made available for the Popcorn Hour 200-series.</p>

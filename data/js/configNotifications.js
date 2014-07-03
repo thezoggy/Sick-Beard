@@ -67,6 +67,38 @@ $(document).ready(function () {
             });
     });
 
+    $("#testMB3").click(function () {
+        var mediabrowser3_host = $.trim($("#mediabrowser3_host").val());
+        var mediabrowser3_username = $.trim($("#mediabrowser3_username").val());
+        var mediabrowser3_password = $.trim($("#mediabrowser3_password").val());
+        if (!mediabrowser3_host) {
+            $("#testMB3-result").html("Please fill out the necessary fields above.");
+            return;
+        }
+        $(this).prop("disabled", true);
+        $("#testMB3-result").html(loading);
+        $.get(sbRoot + "/home/testMB3", {'host': mediabrowser3_host, 'username': mediabrowser3_username, 'password': mediabrowser3_password})
+            .done(function (data) {
+                $("#testMB3-result").html(data);
+                $("#testMB3").prop("disabled", false);
+            });
+    });
+
+    $("#broadcastMB3").click(function () {
+        $(this).prop("disabled", true);
+        var spinner = $('<span style="vertical-align:middle;">' + loading + '</span>').insertAfter(this);
+        $.get(sbRoot + "/home/broadcastMB3")
+            .done(function (data) {
+                if (data != '') {
+                    $("#mediabrowser3_host").val(data);
+                } else {
+                    alert("There was a problem locating the server, is it running?");
+                }
+                $("#broadcastMB3").prop("disabled", false);
+                spinner.remove();
+            });
+    });
+
     $("#testBoxcar2").click(function () {
         var boxcar2_access_token = $.trim($("#boxcar2_access_token").val());
         var boxcar2_sound = $("#boxcar2_sound").val() || "default";
