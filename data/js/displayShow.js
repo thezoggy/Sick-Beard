@@ -140,10 +140,20 @@ $(document).ready(function(){
     });
 
     // add tooltip if the text overflow (ellipsis) is active
-    $('.mightOverflow').each(function() {
-        var $ele = $(this);
-        if (this.offsetWidth < this.scrollWidth)
-            $ele.attr('title', $ele.text());
+    $.fn.overflowTitle = function() {
+        $('.mightOverflow').each(function() {
+            var $ele = $(this);
+            if (this.offsetWidth < this.scrollWidth)
+                $ele.attr('title', $ele.text());
+        });
+    };
+
+    // show the rest of the seasons
+    $("#showAllSeasons").click(function() {
+        $(this).hide();
+        $('#segment').show();
+        // since the previous seasons were hidden, the title needs to be set
+        $(this).overflowTitle();
     });
 
     $.fn.showHideRows = function(whichClass) {
@@ -174,5 +184,8 @@ $(document).ready(function(){
 
          });
     };
+
+    // initialize
+    $(this).overflowTitle();
 
 });

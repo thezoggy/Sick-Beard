@@ -138,12 +138,20 @@ Change selected episodes to
     </tr>
 
 #set $curSeason = -1
+#set $seasonCount = 0
+
 #for $epResult in $sqlResults:
 
   #if int($epResult["season"]) != $curSeason:
     #set $curSeason = int($epResult["season"])
 
     #if $curSeason != -1:
+
+    #set $seasonCount = $seasonCount + 1
+    #if $seasonCount == 2:
+        <tbody id="segment" class="hide">
+    #end if
+
     <!-- start season $epResult["season"] -->
     <tr>
       <th class="row-seasonheader" colspan="10" style="width: auto;"><a name="season-$epResult["season"]"></a>#if int($epResult["season"]) == 0 then "Specials" else "Season " + str($epResult["season"])#</th>
@@ -197,6 +205,13 @@ Change selected episodes to
    </tr>
 
 #end for
+#if $seasonCount > 1:
+    </tbody>
+#end if
 </table><br />
+
+#if $seasonCount > 1:
+    <button class="btn btn-large btn-block btn-inverse" id="showAllSeasons"><i class="icon-chevron-down icon-white"></i> Show All Seasons <i class="icon-chevron-down icon-white"></i></button>
+#end if
 
 #include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_bottom.tmpl")

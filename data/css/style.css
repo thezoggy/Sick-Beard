@@ -607,6 +607,14 @@ th.row-seasonheader {
   width: 46px;
 }
 
+/* need to remove when we upgrade bootstrap */
+.btn-block {
+  box-sizing: border-box;
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+}
 
 /* =======================================================================
 displayShow.tmpl + manage_backlogOverview.tmpl
