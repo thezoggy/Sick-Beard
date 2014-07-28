@@ -2103,12 +2103,12 @@ class Home:
     @cherrypy.expose
     def displayShow(self, show=None):
 
-        if show == None:
+        if show is None:
             return _genericMessage("Error", "Invalid show ID")
         else:
             showObj = sickbeard.helpers.findCertainShow(sickbeard.showList, int(show))
 
-            if showObj == None:
+            if showObj is None:
                 return _genericMessage("Error", "Show not in show list")
 
         myDB = db.DBConnection()

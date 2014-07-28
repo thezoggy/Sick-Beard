@@ -139,6 +139,13 @@ $(document).ready(function(){
         });
     });
 
+    // add tooltip if the text overflow (ellipsis) is active
+    $('.mightOverflow').each(function() {
+        var $ele = $(this);
+        if (this.offsetWidth < this.scrollWidth)
+            $ele.attr('title', $ele.text());
+    });
+
     $.fn.showHideRows = function(whichClass) {
 
         var status = $('#checkboxControls > input, #' + whichClass).prop('checked');
