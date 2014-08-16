@@ -1,0 +1,171 @@
+#import sickbeard
+#import os.path
+#import json
+#set global $title="History Stats"
+
+#set global $sbPath=".."
+
+#set global $topmenu="history"#
+#include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_top.tmpl")
+
+<script type="text/javascript" src="$sbRoot/js/lib/highcharts.js?$sbPID"></script>
+<script type="text/javascript" src="$sbRoot/js/lib/drilldown.js?$sbPID"></script>
+
+<h4>historyResults</h4>
+#set data1 = json.dumps($historyResults, sort_keys=True, indent=4)
+<pre>$data1</pre><br>
+
+<h4>episodeResults</h4>
+#set data2 = json.dumps($episodeResults, sort_keys=True, indent=4)
+<pre>$data2</pre><br>
+<br>
+
+<h4>properResults</h4>
+#set data3 = json.dumps($properResults, sort_keys=True, indent=4)
+<pre>$data3</pre><br>
+
+<h4>proper %</h4>
+<pre>$properAmount %</pre><br>
+
+<h4>properAmountByShow</h4>
+#set data4 = json.dumps($properAmountByShow, sort_keys=True, indent=4)
+<pre>$data4</pre><br>
+
+<div id="container" style="min-width: 710px; height: 350px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+<!--
+\$(document).ready(function() {
+
+    \$('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Episodes Stats'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            alternateGridColor: '#f5f1e4',
+            min: 0,
+            title: {
+                text: 'Releases'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        plotOptions: {
+            series: {
+                borderWidth: 0,
+                dataLabels: {
+                    enabled: true
+                },
+            }
+        },
+        tooltip: {
+            headerFormat: '',
+            pointFormat: '<b>{point.y}</b> of $episodeResults['total']<br/>'
+        },
+        cursor: 'pointer',
+        series: [{
+            name: 'Episode Stats',
+            colorByPoint: true,
+            data: [{
+                        name: 'unaired',
+                        y: $episodeResults['unaired'],
+                        drilldown: false,
+                        color: '#8d4653'
+                    }, {
+                        name: 'snatched',
+                        y: $episodeResults['snatched']['total'],
+                        drilldown: 'snatched',
+                        color: '#f15c80'
+                    }, {
+                        name: 'wanted',
+                        y: $episodeResults['wanted'],
+                        drilldown: false,
+                        color: '#8d4653'
+                    }, {
+                        name: 'downloaded',
+                        y: $episodeResults['downloaded']['total'],
+                        drilldown: 'downloaded',
+                        color: '#90ed7d'
+                    }, {
+                        name: 'skipped',
+                        y: $episodeResults['skipped'],
+                        drilldown: false,
+                        color: '#7cb5ec'
+                    }, {
+                        name: 'ignored',
+                        y: $episodeResults['ignored'],
+                        drilldown: false,
+                        color: '#f7a35c'
+                    },
+            ]
+        }],
+        drilldown: {
+            activeAxisLabelStyle: {
+                textDecoration: 'underline',
+                fontWeight: 'normal'
+            },
+            activeDataLabelStyle: {
+                textDecoration: 'none',
+                fontWeight: 'normal'
+            },
+            series: [
+                // downloaded drilldown
+                {
+                    tooltip: {
+                        headerFormat: '',
+                        pointFormat: '<b>{point.y}</b> of $episodeResults['downloaded']['total']<br/>'
+                    },
+                    colorByPoint: false,
+                    id: 'downloaded',
+                    data: [
+                        ['SD DVD', $episodeResults['downloaded']['sd_dvd']],
+                        ['HD TV', $episodeResults['downloaded']['hd_tv']],
+                        ['RawHD TV', $episodeResults['downloaded']['rawhd_tv']],
+                        ['1080p HD TV', $episodeResults['downloaded']['1080p_hd_tv']],
+                        ['720p WEB-DL', $episodeResults['downloaded']['720p_web-dl']],
+                        ['1080p WEB-DL', $episodeResults['downloaded']['1080p_web-dl']],
+                        ['720p BluRay', $episodeResults['downloaded']['720p_bluray']],
+                        ['1080p BluRay', $episodeResults['downloaded']['1080p_bluray']],
+                        ['Unknown', $episodeResults['downloaded']['unknown']]
+                    ]
+                },
+                // snatched drilldown
+                {
+                    tooltip: {
+                        headerFormat: '',
+                        pointFormat: '<b>{point.y}</b> of $episodeResults['snatched']['total']<br/>'
+                    },
+                    colorByPoint: false,
+                    id: 'snatched',
+                    data: [
+                        ['SD DVD', $episodeResults['snatched']['sd_dvd']],
+                        ['HD TV', $episodeResults['snatched']['hd_tv']],
+                        ['RawHD TV', $episodeResults['snatched']['rawhd_tv']],
+                        ['1080p HD TV', $episodeResults['snatched']['1080p_hd_tv']],
+                        ['720p WEB-DL', $episodeResults['snatched']['720p_web-dl']],
+                        ['1080p WEB-DL', $episodeResults['snatched']['1080p_web-dl']],
+                        ['720p BluRay', $episodeResults['snatched']['720p_bluray']],
+                        ['1080p BluRay', $episodeResults['snatched']['1080p_bluray']],
+                        ['Unknown', $episodeResults['snatched']['unknown']]
+                    ]
+                }
+            ]
+        }
+
+    });
+
+});
+//-->
+</script>
+
+#include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_bottom.tmpl")
