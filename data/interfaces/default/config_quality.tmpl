@@ -1,0 +1,74 @@
+#import os.path
+#import sickbeard
+#from sickbeard.common import Quality, qualityPresets, qualityPresetStrings
+#from sickbeard import config
+
+#set global $title  = "Config - Quality"
+#set global $header = "Quality Configuration"
+
+#set global $sbPath="../.."
+
+#set global $topmenu="config"#
+#include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_top.tmpl")
+
+<script type="text/javascript" src="$sbRoot/js/config.js?$sbPID"></script>
+<script type="text/javascript" src="$sbRoot/js/configQuality.js?$sbPID"></script>
+
+<div id="config">
+<div id="config-content">
+
+<form id="configForm" action="saveQuality" method="post">
+
+            <div id="config-components">
+
+                <div id="core-component-group1" class="component-group clearfix">
+
+                    <div class="component-group-desc">
+                        <h3>Quality</h3>
+                        <p>Startup options.</p>
+                        <p><b>Some options may require a manual restart to take effect.</b></p>
+                    </div>
+
+                    <fieldset class="component-group-list">
+                    <div class="field-pair" style="border-bottom: 1px solid #ddd;">
+                        <span style="font-weight: bold; font-size: 15px;">Quality</span>
+                        <span style="font-weight: bold; font-size: 15px; margin-left: 225px;">Size Limits</span>
+                    </div>
+                    <div class="clearfix"></div>
+
+#set $anyQualityList = filter(lambda x: x > $Quality.NONE, $Quality.qualityStrings)
+#for $curQuality in sorted($anyQualityList):
+                    <div class="field-pair" style="border-bottom: 1px solid #ddd;">
+                        <h4 style="float: left; line-height: 30px;">$Quality.qualityStrings[$curQuality]</h4>
+                        <span style="display: block; margin-left: 140px; padding-bottom: 25px; line-height: 25px;">
+                            <div class="x-slider" data-id="$curQuality"></div>
+                            <div class="size-label-wrapper">
+                                <div class="pull-left">
+                                    <span name="thirtyMinuteMinSize" title="Minimum size for a 30 minute episode" class="label label-warning x-min-thirty"></span>
+                                    <span name="sixtyMinuteMinSize" title="Minimum size for a 60 minute episode" class="label label-info x-min-sixty"></span>
+                                </div>
+                                <input id="qual$curQuality" class="sizeRange" style="margin-left: 10px; width: 100px;"></input>
+                                <div class="pull-right">
+                                    <span name="thirtyMinuteMaxSize" title="Maximum size for a 30 minute episode" class="label label-warning x-max-thirty"></span>
+                                    <span name="sixtyMinuteMaxSize" title="Maximum size for a 60 minute episode" class="label label-info x-max-sixty"></span>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+#end for
+
+                        <input type="submit" class="btn config_submitter" value="Save Changes" />
+                    </fieldset>
+                </div><!-- /component-group1 //-->
+
+                <div class="component-group-save">
+                    <input type="submit" class="btn config_submitter" value="Save Changes" />
+                </div><br />
+
+            </div><!-- /config-components -->
+
+</form>
+</div></div>
+
+#include $os.path.join($sickbeard.PROG_DIR, "data/interfaces/default/inc_bottom.tmpl")

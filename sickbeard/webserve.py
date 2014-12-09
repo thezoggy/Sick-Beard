@@ -653,6 +653,7 @@ class History:
 
 ConfigMenu = [
     { 'title': 'General',           'path': 'config/general/'          },
+    { 'title': 'Quality',           'path': 'config/quality/'          },
     { 'title': 'Search Settings',   'path': 'config/search/'           },
     { 'title': 'Search Providers',  'path': 'config/providers/'        },
     { 'title': 'Post Processing',   'path': 'config/postProcessing/'   },
@@ -763,6 +764,25 @@ class ConfigGeneral:
             ui.notifications.message('Configuration Saved', ek.ek(os.path.join, sickbeard.CONFIG_FILE))
 
         redirect("/config/general/")
+
+
+class ConfigQuality:
+
+    @cherrypy.expose
+    def index(self):
+
+        t = PageTemplate(file="config_quality.tmpl")
+        t.submenu = ConfigMenu
+        return _munge(t)
+
+    @cherrypy.expose
+    def getQualitySizes(self):
+        quality = {"1": {"minSize": 0, "maxSize": 0 }, "2": {"minSize": 1, "maxSize": 254 }, "4": {"minSize": 10, "maxSize": 100 }}
+        return json.dumps(quality)
+
+    @cherrypy.expose
+    def saveQuality(self, use_nzbs=None):
+        redirect("/config/quality/")
 
 
 class ConfigSearch:
@@ -1374,6 +1394,8 @@ class Config:
         return _munge(t)
 
     general = ConfigGeneral()
+
+    quality = ConfigQuality()
 
     search = ConfigSearch()
 
